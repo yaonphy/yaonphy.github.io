@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-03-06T17:34:59+08:00</updated>
+  <updated>2014-03-06T17:38:06+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -19,6 +19,14 @@
     <updated>2014-03-06T17:23:22+08:00</updated>
     <id>http://yaonphy.github.io/blog/2014/03/06/just-for-test</id>
     <content type="html"><![CDATA[<h2>第一篇blog</h2>
+
+<pre><code>int main()
+{
+    ;
+}
+</code></pre>
+
+<h1>添加些东西</h1>
 ]]></content>
   </entry>
   
