@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-03-06T17:48:22+08:00</updated>
+  <updated>2014-03-06T17:57:32+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -19,6 +19,8 @@
     <updated>2014-03-06T17:23:22+08:00</updated>
     <id>http://yaonphy.github.io/blog/2014/03/06/just-for-test</id>
     <content type="html"><![CDATA[<h2>第一篇blog</h2>
+
+<p>&#8220;` objc let me test code highlighting <a href="http:www.github.com">http:www.github.com</a></p>
 
 <pre><code>#import "Cocoa1AppDelegate.h"
 
@@ -39,9 +41,11 @@
     [pageContents setString:reply];
     [[[pageContents textStorage] mutableString] appendString:reply];
 }
+
+@end
 </code></pre>
 
-<p>@end</p>
+<p> &#8220;`</p>
 
 <h1>添加些东西</h1>
 ]]></content>
