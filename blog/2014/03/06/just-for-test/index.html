@@ -221,12 +221,17 @@
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-06T17:23:22+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2014</time>
           
 
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/test/'>test</a>
+  
+</span>
+
 
         </p>
         
           <div class="sharing">
-  
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://yaonphy.github.io/blog/2014/03/06/just-for-test/" data-via="" data-counturl="http://yaonphy.github.io/blog/2014/03/06/just-for-test/" >Tweet</a>
   
   
   
@@ -252,6 +257,39 @@
     <a class="list-group-item active" href="/blog/2014/03/06/just-for-test/">Just_for_test</a>
     
   </div>
+</section>
+
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating...</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/yaonphy">@yaonphy</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'yaonphy',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
@@ -287,16 +325,6 @@
 
 
 
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
 
 
 

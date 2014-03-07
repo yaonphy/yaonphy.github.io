@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: test | yaongfeng]]></title>
+  <link href="http://yaonphy.github.io/blog/categories/test/atom.xml" rel="self"/>
+  <link href="http://yaonphy.github.io/"/>
+  <updated>2014-03-07T16:33:08+08:00</updated>
+  <id>http://yaonphy.github.io/</id>
+  <author>
+    <name><![CDATA[yaongfeng]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[just_for_test]]></title>
+    <link href="http://yaonphy.github.io/blog/2014/03/06/just-for-test/"/>
+    <updated>2014-03-06T17:23:22+08:00</updated>
+    <id>http://yaonphy.github.io/blog/2014/03/06/just-for-test</id>
+    <content type="html"><![CDATA[<h2>第一篇blog</h2>
+
+<p>``` objc let me test code highlighting <a href="http://www.github.com/">http://www.github.com/</a> source code</p>
+
+<h1>import &ldquo;Cocoa1AppDelegate.h&rdquo;</h1>
+
+<p>@implementation Cocoa1AppDelegate</p>
+
+<p>@synthesize window,siteUrl,pageContents;</p>
+
+<ul>
+<li><p>(void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+  // Insert code here to initialize your application
+  model = [[Cocoa1Model alloc] init];
+}</p></li>
+<li><p>(IBAction)getSiteContents:(id)sender {
+  [model setPageUrl:[siteUrl stringValue]];
+  NSString* reply = [model getUrlAsString];
+  NSLog(@&ldquo;pageSrc: %@&rdquo;, reply);
+  [pageContents setString:reply];
+  [[[pageContents textStorage] mutableString] appendString:reply];
+}</p></li>
+</ul>
+
+
+<p>@end</p>
+
+<p>```</p>
+
+<p>``` ruby Discover if a number is prime <a href="http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/">http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/</a> Source Article
+class Fixnum
+  def prime?</p>
+
+<pre><code>('1' * self) !~ /^1?$|^(11+?)\1+$/
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p><blockquote><p>Last night I lay in bed looking up at the stars in the sky and I thought to myself, where the heck is the ceiling.</p></blockquote></p>
+
+<p><blockquote><p>Over the past 24 hours I&rsquo;ve been reflecting on my life &amp; I&rsquo;ve realized only one thing. I need a medieval battle axe.</p><footer><strong>@allanbranch <a href="https://twitter.com/allanbranch/status/90766146063712256">https://twitter.com/allanbranch/status/90766146063712256</a></strong></footer></blockquote></p>
+
+<h1>添加些东西</h1>
+
+<p><div><script src='https://gist.github.com/4321346.js'></script>
+<noscript><pre><code>@@ -590,7 +590,7 @@ class SpritesTest &lt; Test::Unit::TestCase
+  it &quot;should generate a sprite from nested folders&quot; do
+    css = render &lt;&lt;-SCSS
+-     @import &quot;nested/*.png&quot;;
++     @import &quot;nested/**/*.png&quot;;
+      @include all-nested-sprites;
+    SCSS
+    assert_correct css, &lt;&lt;-CSS</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
+  
+</feed>
