@@ -219,52 +219,7 @@
   
     <aside class="sidebar col-md-3">
       
-        <section class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Recent Posts</h3>
-  </div>
-  
-  <div id="recent_posts" class="list-group">
-    
-    <a class="list-group-item " href="/blog/2014/03/06/just-for-test/">Just_for_test</a>
-    
-  </div>
-</section>
-
-<section class="panel panel-default clearfix">
-  <div class="panel-heading">
-      <h3 class="panel-title">GitHub Repos</h3>
-  </div>
-  <div class="list-group" id="gh_repos">
-    <p class="loading">Status updating&#8230;</p>
-  </div>
-  
-    <div class="gh-profile-link pull-right text-muted">
-      <a href="https://github.com/yaonphy">@yaonphy</a> on GitHub
-    </div>
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'yaonphy',
-            count: 3,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
+        
 <section class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Tag Cloud</h3>
@@ -272,23 +227,6 @@
     <span id="tag-cloud">
         <embed type='application/x-shockwave-flash' src='/javascripts/tagcloud.swf'width='100%' height='250' bgcolor='#ffffff' id='tagcloudflash' name='tagcloudflash' quality='high' allowscriptaccess='always'flashvars="tcolor=0x333333&amp;tcolor2=0x333333&amp;hicolor=0x000000&amp;tspeed=100&amp;distr=true&amp;mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Ftest%27+style%3D%27font-size%3A+50.0%25%27%3Etest%3C%2Fa%3E+%3C%2Ftags%3E">
     </span>
-</section>
-
-
-<section class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">sina weibo</h3>
-    </div>
-    <iframe width="100%" height="480" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=480&fansRow=1&ptype=1&speed=0&skin=5&isTitle=1&noborder=0&isWeibo=1&isFans=0&uid=1851246553&verifier=4e1ba554&dpc=1">
-    </iframe>
-</section>
-
-
-<section class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Earth</h3>
-    </div>
-    <script type="text/javascript" src="http://jh.revolvermaps.com/2/1.js?i=7k60tywjsze&amp;s=230&amp;m=8&amp;v=false&amp;r=false&amp;b=ffffff&amp;n=false&amp;c=ff0000" async="async"></script>
 </section>
 
 
