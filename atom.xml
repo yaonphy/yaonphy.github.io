@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-03-31T16:27:23+08:00</updated>
+  <updated>2014-03-31T16:30:23+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -31,7 +31,9 @@
 <p>官方英文教材已经非常的详细和完善了，但是对于英文不是母语，又需要在短时间内将其用于现有项目中的开发者来说，这并不是最佳的选择。
 我个人觉得，她适宜在时间比较充裕的时候仔细探究，如若兴趣使然，能力所及，还可以为其贡献源代码。</p>
 
-<p>待读。。。</p>
+<p>待细读。。。</p>
+
+<hr />
 
 <h3><a href="http://geeklu.com/2013/06/cocoapods-101/">Cocoapods 101</a></h3>
 ]]></content>
