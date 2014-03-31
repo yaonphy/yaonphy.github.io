@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>CocoasPods —— 高效管理Xocde工程所依赖的第三方开源库(CocoasPods Guides) - yaongfeng</title>
+  <title>CocoaPods —— 高效管理Xocde工程所依赖的第三方开源库(CocoaPods Guides) - yaongfeng</title>
   <meta name="author" content="yaongfeng">
 
   
@@ -104,7 +104,7 @@
     
     
     <h1 class="entry-title">
-        CocoasPods —— 高效管理Xocde工程所依赖的第三方开源库(CocoasPods Guides)
+        CocoaPods —— 高效管理Xocde工程所依赖的第三方开源库(CocoaPods Guides)
         
     </h1>
     
@@ -113,8 +113,8 @@
 
 <div class="entry-content clearfix"><h3>说明</h3>
 
-<p>对于CocoasPods的安装使用，<a href="http://guides.cocoapods.org/">其官方网站</a>中有详细的说明。也有一些中文Blog中的文章，翻译、
-总结了CocoasPods的使用技巧。既然有许多现成的学习资源，就没有必要再造轮子，自己闷头搞，这样吃力也没得好可讨。因此本篇文章的目
+<p>对于CocoaPods的安装使用，<a href="http://guides.cocoapods.org/">其官方网站</a>中有详细的说明。也有一些中文Blog中的文章，翻译、
+总结了CocoaPods的使用技巧。既然有许多现成的学习资源，就没有必要再造轮子，自己闷头搞，这样吃力也没得好可讨。因此本篇文章的目
 的是，搜罗并整理相关的资源。</p>
 
 <hr />
@@ -129,6 +129,27 @@
 <hr />
 
 <h3><a href="http://geeklu.com/2013/06/cocoapods-101/">Cocoapods 101</a></h3>
+
+<p>这篇技术博文介绍了CocoaPods简单使用。简单的介绍了下子CocoaPods的背景之后，比较详细的描述了其安装过程，包括rbenv的安装，ruby
+的更新安装。最后通过一个简单的实例，用pod自动导入AFNetwork到项目中。</p>
+
+<p>对于不知道的童靴，这个细节值得关注下：淘宝提供一个国内的<a href="http://ruby.taobao.org/">RubyGems镜像地址</a>,解救深受间接性网络连接失败
+困扰的民众（15分钟更新一次）。如若这样，在安装CocoaPods前，需要添加新的Gem源地址，并且删掉默认的源地址。如下</p>
+
+<figure class='code'><figcaption><span>更改Gem源地址为国内淘宝镜像地址</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>gem sources -a http://ruby.taobao.org/
+</span><span class='line'>gem sources -l <span class="c">#查看现在所有的源地址</span>
+</span><span class='line'>gem sources --remove http://rubygems.org/ <span class="c">#移除默认的源地址</span>
+</span><span class='line'>gem install cocoapods <span class="c">#安装cocoapods</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h2>#</h2>
 </div>
 
 
@@ -195,7 +216,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item active" href="/blog/2014/03/31/cocospods-preliminary/">CocoasPods —— 高效管理Xocde工程所依赖的第三方开源库(CocoasPods Guides)</a>
+    <a class="list-group-item active" href="/blog/2014/03/31/cocospods-preliminary/">CocoaPods —— 高效管理Xocde工程所依赖的第三方开源库(CocoaPods Guides)</a>
     
     <a class="list-group-item " href="/blog/2014/03/06/just-for-test/">这是一篇测试用的文章标题啊！！</a>
     
