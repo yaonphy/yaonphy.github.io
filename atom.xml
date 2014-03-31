@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-03-11T18:20:33+08:00</updated>
+  <updated>2014-03-31T16:10:36+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Cocospods Preliminary]]></title>
+    <link href="http://yaonphy.github.io/blog/2014/03/31/cocospods-preliminary/"/>
+    <updated>2014-03-31T15:29:06+08:00</updated>
+    <id>http://yaonphy.github.io/blog/2014/03/31/cocospods-preliminary</id>
+    <content type="html"><![CDATA[<h2>CocoasPods —— 高效管理Xocde工程所依赖的第三方开源库(CocoasPods Guides)</h2>
+
+<h3>说明</h3>
+
+<h4>对于CocoasPods的安装使用，<a href="http://guides.cocoapods.org/">其官方网站</a>中有详细的说明。也有一些中文Blog中的文章，翻译、总结了CocoasPods的使用技巧。既然有许多现成的学习资源，就没有必要再造轮子，自己闷头搞，这样吃力也没得好可讨。因此本篇文章的目的是，搜罗并整理相关的资源。</h4>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[这是一篇测试用的文章标题啊！！]]></title>
