@@ -4,7 +4,7 @@
   <title><![CDATA[Category: test | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/test/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-03-31T16:30:23+08:00</updated>
+  <updated>2014-03-31T16:58:52+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -59,22 +59,17 @@ class Fixnum
 end
 ```</p>
 
-<p><blockquote><p>Last night I lay in bed looking up at the stars in the sky and I thought to myself, where the heck is the ceiling.</p></blockquote></p>
+<p>{% blockquote %}
+Last night I lay in bed looking up at the stars in the sky and I thought to myself, where the heck is the ceiling.
+{% endblockquote %}</p>
 
-<p><blockquote><p>Over the past 24 hours I&rsquo;ve been reflecting on my life &amp; I&rsquo;ve realized only one thing. I need a medieval battle axe.</p><footer><strong>@allanbranch <a href="https://twitter.com/allanbranch/status/90766146063712256">https://twitter.com/allanbranch/status/90766146063712256</a></strong></footer></blockquote></p>
+<p>{% blockquote @allanbranch <a href="https://twitter.com/allanbranch/status/90766146063712256">https://twitter.com/allanbranch/status/90766146063712256</a> %}
+Over the past 24 hours I&rsquo;ve been reflecting on my life &amp; I&rsquo;ve realized only one thing. I need a medieval battle axe.
+{% endblockquote %}</p>
 
 <h1>添加些东西</h1>
 
-<p><div><script src='https://gist.github.com/4321346.js'></script>
-<noscript><pre><code>@@ -590,7 +590,7 @@ class SpritesTest &lt; Test::Unit::TestCase
-  it &quot;should generate a sprite from nested folders&quot; do
-    css = render &lt;&lt;-SCSS
--     @import &quot;nested/*.png&quot;;
-+     @import &quot;nested/**/*.png&quot;;
-      @include all-nested-sprites;
-    SCSS
-    assert_correct css, &lt;&lt;-CSS</code></pre></noscript></div>
-</p>
+<p>{% gist 4321346 %}</p>
 ]]></content>
   </entry>
   
