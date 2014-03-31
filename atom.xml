@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-03-31T17:13:52+08:00</updated>
+  <updated>2014-03-31T18:42:57+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -51,7 +51,7 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>   <span class="nv">$ </span>gem sources --remove https://rubygems.org/ <span class="c">#</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>   <span class="nv">$ </span>gem sources --remove https://rubygems.org/
 </span><span class='line'>   <span class="nv">$ </span>gem sources -a http://ruby.taobao.org/
 </span><span class='line'>   <span class="nv">$ </span>gem sources -l   <span class="c"># *** CURRENT SOURCES ***</span>
 </span><span class='line'>
@@ -64,7 +64,19 @@
 
 <hr />
 
-<h2>#</h2>
+<h3><a href="http://blog.devtang.com/blog/2012/12/02/use-cocoapod-to-manage-ios-lib-dependency/">使用CocoaPods来做iOS程序的包依赖管理</a></h3>
+
+<p>巧哥的这篇还是比较全面的，从其他语言的代码依赖管理工具引入，用他们团队开发的粉笔网客户端为例，阐释了为什么应该使用CocoaPods,以及其带来的好处。接着描述了CocoaPods的安装过程，用实例说明了如何用其导入<a href="https://github.com/CocoaPods/Specs">CocoaPods/Specs</a>中提供的第三方库。另外，还介绍了pod search命令——根据关键字快速查看相匹配库的信息。当然，甄选优质的同类型库需要咨询使用过的开发者或者跟进一步的实践。文章还提到，为了利于团队协作，不能将Podfile.lock加入.gitignore文件中，如果安装appledoc工具，CocoaPods还可以帮助生成帮助文档。最后，简单的阐释了下子CocoaPods的内部原理。</p>
+
+<hr />
+
+<h3><a href="http://www.iwangke.me/2013/04/18/advanced-cocoapods/">CocoaPods进阶：本地包管理</a></h3>
+
+<p>这篇文章列出了实际使用过程中遇到的两个问题，之后依次通过实例，细致的描述了相应的解决方案。对于<a href="https://github.com/CocoaPods/Specs">CocoaPods/Specs</a>中提供的三方库版本更新滞后的问题，可以通过自己创建最新版本的PodSpec来解决。另外，对于不便于公开的代码库，可以通过本地路径来引入。两者的关键都在于创建新的*.podspec文件，并在该文件添加所引用库的路径，之后在Podfile文件中导入新建的podspec。最后还提到weak_frameworks选项的用途。</p>
+
+<hr />
+
+<h3><a href="http://blog.jobbole.com/53365/">iOS系列译文：深入理解 CocoaPods</a></h3>
 ]]></content>
   </entry>
   
