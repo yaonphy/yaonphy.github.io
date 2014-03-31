@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CocoasPods | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/cocoaspods/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-03-31T17:10:11+08:00</updated>
+  <updated>2014-03-31T17:13:52+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -44,20 +44,19 @@
 困扰的民众（15分钟更新一次）。如若这样，在安装CocoaPods前，需要添加新的Gem源地址，并且删掉默认的源地址。如下</p>
 
 <p>```sh 更改Gem源地址为国内淘宝镜像地址
-   $ gem sources &mdash;remove <a href="https://rubygems.org/">https://rubygems.org/</a>
+   $ gem sources &mdash;remove <a href="https://rubygems.org/">https://rubygems.org/</a> #
    $ gem sources -a <a href="http://ruby.taobao.org/">http://ruby.taobao.org/</a>
-   $ gem sources -l
-   <strong><em> CURRENT SOURCES </em></strong></p>
+   $ gem sources -l   # <strong><em> CURRENT SOURCES </em></strong></p>
 
 <p>   # <a href="http://ruby.taobao.org">http://ruby.taobao.org</a>
    # 请确保只有 ruby.taobao.org</p>
 
-<p>   $ gem install cocoapods #安装cocoapods
+<p>   $ gem install cocoapods
 ```</p>
 
 <hr />
 
-<h3></h3>
+<h2>#</h2>
 ]]></content>
   </entry>
   
