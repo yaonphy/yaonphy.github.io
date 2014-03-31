@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-03-31T17:05:12+08:00</updated>
+  <updated>2014-03-31T17:10:11+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -47,16 +47,26 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>gem sources -a http://ruby.taobao.org/
-</span><span class='line'>gem sources -l <span class="c">#查看现在所有的源地址</span>
-</span><span class='line'>gem sources --remove http://rubygems.org/ <span class="c">#移除默认的源地址</span>
-</span><span class='line'>gem install cocoapods <span class="c">#安装cocoapods</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>   <span class="nv">$ </span>gem sources --remove https://rubygems.org/
+</span><span class='line'>   <span class="nv">$ </span>gem sources -a http://ruby.taobao.org/
+</span><span class='line'>   <span class="nv">$ </span>gem sources -l
+</span><span class='line'>   *** CURRENT SOURCES ***
+</span><span class='line'>
+</span><span class='line'>   <span class="c"># http://ruby.taobao.org</span>
+</span><span class='line'>   <span class="c"># 请确保只有 ruby.taobao.org</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="nv">$ </span>gem install cocoapods <span class="c">#安装cocoapods</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <hr />
 
-<h2>#</h2>
+<h3></h3>
 ]]></content>
   </entry>
   
