@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CocoaPods | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-02T12:06:25+08:00</updated>
+  <updated>2014-04-02T14:16:05+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -33,6 +33,113 @@
 <p>CocoaPods 实际上是由一些 Ruby Gems 构成的一个 Ruby 应用程序。探索其内部构成最需要关注的 gems 有：<a href="https://github.com/CocoaPods/CocoaPods/">CocoaPods/CocoaPods</a>, <a href="https://github.com/CocoaPods/Core">CocoaPods/Core</a>, <a href="https://github.com/CocoaPods/Xcodeproj">CocoaPods/XCodeproj</a>（是的，CocoaPods 是由依赖管理工具构建成的依赖管理工具）。</p>
 
 <h3>CocoaPods/CocoaPod</h3>
+
+<p>这是使用者直接调用的一个组件。任何时候，你调用一个 pod 命令，它便处于活动状态。它里面囊括了使用 CocoaPods 时用到的所有功能，充分利用其它 gems 来完成任务。</p>
+
+<h3>CocoaPods/Core</h3>
+
+<p>Core gem 提供了对 CocoaPods 中的一些文件的处理操作，主要是 Podfile 和 podspecs 。</p>
+
+<h4>Podfile</h4>
+
+<p>Podfile 是用来定义你想使用的pods的文件。它是可以高度自定义的，你可以根据具体需求，创建相应的pods文件。更多信息，请查看<a href="http://guides.cocoapods.org/syntax/podfile.html">Podfile guide</a> 。</p>
+
+<h4>Podspec</h4>
+
+<p>*.podspec 文件中定义了将某个具体的 pod 添加到工程中时所需的信息。这些信息包括源文件路径，使用到的官方框架，编译器参数，以及该 pod 所依赖的其它 pod 的细信息，等等。</p>
+
+<h3>CocoaPods/Xcodeproj</h3>
+
+<p>这个 gem 用来处理所有工程文件之间的交互操作。它可以创建并修改 <em>.xcodeproj 和 </em>.xcworkspace 文件。它同样可以作为一个独立的 gem 来使用。如果你想通过脚本来轻松的修改工程文件，它可以帮到你。</p>
+
+<hr />
+
+<h2>运行 pod install 命令</h2>
+
+<p>运行 pod install 命令时，进行了很多的操作。在运行该命令时，附加一个 &mdash;verbose 参数，可以观察到整个内部的详细执行流程。现在，让我们运行 pod install &mdash;verbose 命令，将会出现下面所示的信息：</p>
+
+<p>``` sh  通过 pod install &mdash;verbose 命令观察详细执行流程
+$ pod install &mdash;verbose</p>
+
+<p>Analyzing dependencies</p>
+
+<p>Updating spec repositories
+Updating spec repo <code>master</code>
+  $ /usr/bin/git pull
+  Already up-to-date.</p>
+
+<p>Finding Podfile changes
+  &ndash; AFNetworking
+  &ndash; HockeySDK</p>
+
+<p>Resolving dependencies of <code>Podfile</code>
+Resolving dependencies for target `Pods' (iOS 6.0)
+  &ndash; AFNetworking (= 1.2.1)
+  &ndash; SDWebImage (= 3.2)</p>
+
+<pre><code>- SDWebImage/Core
+</code></pre>
+
+<p>Comparing resolved specification to the sandbox manifest
+  &ndash; AFNetworking
+  &ndash; HockeySDK</p>
+
+<p>Downloading dependencies</p>
+
+<p>&ndash;> Using AFNetworking (1.2.1)</p>
+
+<p>&ndash;> Using HockeySDK (3.0.0)
+  &ndash; Running pre install hooks</p>
+
+<pre><code>- HockeySDK
+</code></pre>
+
+<p>Generating Pods project
+  &ndash; Creating Pods project
+  &ndash; Adding source files to Pods project
+  &ndash; Adding frameworks to Pods project
+  &ndash; Adding libraries to Pods project
+  &ndash; Adding resources to Pods project
+  &ndash; Linking headers
+  &ndash; Installing libraries</p>
+
+<pre><code>- Installing target 'Pods-AFNetworking' iOS 6.0
+  - Adding Build files
+  - Adding resource bundles to Pods project
+  - Generating public xcconfig file at 'Pods/Pods-AFNetworking.xcconfig'
+  - Generating private xcconfig file at 'Pods/Pods-AFNetworking-Private.xcconfig'
+  - Generating prefix header at 'Pods/Pods-AFNetworking-prefix.pch'
+  - Generating dummy source file at 'Pods/Pods-AFNetworking-dummy.m'
+- Installing target 'Pods-HockeySDK' iOS 6.0
+  - Adding Build files
+  - Adding resource bundles to Pods project
+  - Generating public xcconfig file at 'Pods/Pods-HockeySDK.xcconfig'
+  - Generating private xcconfig file at 'Pods/Pods-HockeySDK-Private.xcconfig'
+  - Generating prefix header at 'Pods/Pods-HockeySDK-prefix.pch'
+  - Generating dummy source file at 'Pods/Pods-HockeySDK-dummy.m'
+- Installing target 'Pods' iOS 6.0
+  - Generating xcconfig file at 'Pods/Pods.xcconfig'
+  - Generating target environment header at 'Pods/Pods-environment.h'
+  - Generating copy resources script at 'Pods/Pods-resources.sh'
+  - Generating acknowledgements at 'Pods/Pods-acknowledgements.plist'
+  - Generating acknowledgements at 'Pods/Pods-acknowledgements.markdown'
+  - Generating dummy source file at 'Pods/Pods-dummy.m'
+</code></pre>
+
+<ul>
+<li>Running post install hooks</li>
+<li>Writing Xcode project file to &lsquo;Pods/Pods.xcodeproj&rsquo;</li>
+<li>Writing Lockfile in &lsquo;Podfile.lock&rsquo;</li>
+<li>Writing Manifest in &lsquo;Pods/Manifest.lock&rsquo;</li>
+</ul>
+
+
+<p>Integrating client project
+```</p>
+
+<p>打印出了很多的信息，但是分解之后，整个流程显得清晰明了。下面，让我们来逐一分析。</p>
+
+<h3>读 Podfile 文件</h3>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-02T12:06:25+08:00</updated>
+  <updated>2014-04-02T14:16:05+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -33,6 +33,171 @@
 <p>CocoaPods 实际上是由一些 Ruby Gems 构成的一个 Ruby 应用程序。探索其内部构成最需要关注的 gems 有：<a href="https://github.com/CocoaPods/CocoaPods/">CocoaPods/CocoaPods</a>, <a href="https://github.com/CocoaPods/Core">CocoaPods/Core</a>, <a href="https://github.com/CocoaPods/Xcodeproj">CocoaPods/XCodeproj</a>（是的，CocoaPods 是由依赖管理工具构建成的依赖管理工具）。</p>
 
 <h3>CocoaPods/CocoaPod</h3>
+
+<p>这是使用者直接调用的一个组件。任何时候，你调用一个 pod 命令，它便处于活动状态。它里面囊括了使用 CocoaPods 时用到的所有功能，充分利用其它 gems 来完成任务。</p>
+
+<h3>CocoaPods/Core</h3>
+
+<p>Core gem 提供了对 CocoaPods 中的一些文件的处理操作，主要是 Podfile 和 podspecs 。</p>
+
+<h4>Podfile</h4>
+
+<p>Podfile 是用来定义你想使用的pods的文件。它是可以高度自定义的，你可以根据具体需求，创建相应的pods文件。更多信息，请查看<a href="http://guides.cocoapods.org/syntax/podfile.html">Podfile guide</a> 。</p>
+
+<h4>Podspec</h4>
+
+<p>*.podspec 文件中定义了将某个具体的 pod 添加到工程中时所需的信息。这些信息包括源文件路径，使用到的官方框架，编译器参数，以及该 pod 所依赖的其它 pod 的细信息，等等。</p>
+
+<h3>CocoaPods/Xcodeproj</h3>
+
+<p>这个 gem 用来处理所有工程文件之间的交互操作。它可以创建并修改 <em>.xcodeproj 和 </em>.xcworkspace 文件。它同样可以作为一个独立的 gem 来使用。如果你想通过脚本来轻松的修改工程文件，它可以帮到你。</p>
+
+<hr />
+
+<h2>运行 pod install 命令</h2>
+
+<p>运行 pod install 命令时，进行了很多的操作。在运行该命令时，附加一个 &mdash;verbose 参数，可以观察到整个内部的详细执行流程。现在，让我们运行 pod install &mdash;verbose 命令，将会出现下面所示的信息：</p>
+
+<figure class='code'><figcaption><span>通过 pod install &#8211;verbose 命令观察详细执行流程</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>pod install --verbose
+</span><span class='line'>
+</span><span class='line'>Analyzing dependencies
+</span><span class='line'>
+</span><span class='line'>Updating spec repositories
+</span><span class='line'>Updating spec repo <span class="sb">`</span>master<span class="sb">`</span>
+</span><span class='line'>  <span class="nv">$ </span>/usr/bin/git pull
+</span><span class='line'>  Already up-to-date.
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Finding Podfile changes
+</span><span class='line'>  - AFNetworking
+</span><span class='line'>  - HockeySDK
+</span><span class='line'>
+</span><span class='line'>Resolving dependencies of <span class="sb">`</span>Podfile<span class="sb">`</span>
+</span><span class='line'>Resolving dependencies <span class="k">for </span>target <span class="sb">`</span>Pods<span class="s1">&#39; (iOS 6.0)</span>
+</span><span class='line'><span class="s1">  - AFNetworking (= 1.2.1)</span>
+</span><span class='line'><span class="s1">  - SDWebImage (= 3.2)</span>
+</span><span class='line'><span class="s1">    - SDWebImage/Core</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">Comparing resolved specification to the sandbox manifest</span>
+</span><span class='line'><span class="s1">  - AFNetworking</span>
+</span><span class='line'><span class="s1">  - HockeySDK</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">Downloading dependencies</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">-&gt; Using AFNetworking (1.2.1)</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">-&gt; Using HockeySDK (3.0.0)</span>
+</span><span class='line'><span class="s1">  - Running pre install hooks</span>
+</span><span class='line'><span class="s1">    - HockeySDK</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">Generating Pods project</span>
+</span><span class='line'><span class="s1">  - Creating Pods project</span>
+</span><span class='line'><span class="s1">  - Adding source files to Pods project</span>
+</span><span class='line'><span class="s1">  - Adding frameworks to Pods project</span>
+</span><span class='line'><span class="s1">  - Adding libraries to Pods project</span>
+</span><span class='line'><span class="s1">  - Adding resources to Pods project</span>
+</span><span class='line'><span class="s1">  - Linking headers</span>
+</span><span class='line'><span class="s1">  - Installing libraries</span>
+</span><span class='line'><span class="s1">    - Installing target &#39;</span>Pods-AFNetworking<span class="s1">&#39; iOS 6.0</span>
+</span><span class='line'><span class="s1">      - Adding Build files</span>
+</span><span class='line'><span class="s1">      - Adding resource bundles to Pods project</span>
+</span><span class='line'><span class="s1">      - Generating public xcconfig file at &#39;</span>Pods/Pods-AFNetworking.xcconfig<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">      - Generating private xcconfig file at &#39;</span>Pods/Pods-AFNetworking-Private.xcconfig<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">      - Generating prefix header at &#39;</span>Pods/Pods-AFNetworking-prefix.pch<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">      - Generating dummy source file at &#39;</span>Pods/Pods-AFNetworking-dummy.m<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">    - Installing target &#39;</span>Pods-HockeySDK<span class="s1">&#39; iOS 6.0</span>
+</span><span class='line'><span class="s1">      - Adding Build files</span>
+</span><span class='line'><span class="s1">      - Adding resource bundles to Pods project</span>
+</span><span class='line'><span class="s1">      - Generating public xcconfig file at &#39;</span>Pods/Pods-HockeySDK.xcconfig<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">      - Generating private xcconfig file at &#39;</span>Pods/Pods-HockeySDK-Private.xcconfig<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">      - Generating prefix header at &#39;</span>Pods/Pods-HockeySDK-prefix.pch<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">      - Generating dummy source file at &#39;</span>Pods/Pods-HockeySDK-dummy.m<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">    - Installing target &#39;</span>Pods<span class="s1">&#39; iOS 6.0</span>
+</span><span class='line'><span class="s1">      - Generating xcconfig file at &#39;</span>Pods/Pods.xcconfig<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">      - Generating target environment header at &#39;</span>Pods/Pods-environment.h<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">      - Generating copy resources script at &#39;</span>Pods/Pods-resources.sh<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">      - Generating acknowledgements at &#39;</span>Pods/Pods-acknowledgements.plist<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">      - Generating acknowledgements at &#39;</span>Pods/Pods-acknowledgements.markdown<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">      - Generating dummy source file at &#39;</span>Pods/Pods-dummy.m<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  - Running post install hooks</span>
+</span><span class='line'><span class="s1">  - Writing Xcode project file to &#39;</span>Pods/Pods.xcodeproj<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  - Writing Lockfile in &#39;</span>Podfile.lock<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  - Writing Manifest in &#39;</span>Pods/Manifest.lock<span class="err">&#39;</span>
+</span><span class='line'>
+</span><span class='line'>Integrating client project
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>打印出了很多的信息，但是分解之后，整个流程显得清晰明了。下面，让我们来逐一分析。</p>
+
+<h3>读 Podfile 文件</h3>
 ]]></content>
   </entry>
   
