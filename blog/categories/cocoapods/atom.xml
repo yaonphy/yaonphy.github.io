@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CocoaPods | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-02T17:24:18+08:00</updated>
+  <updated>2014-04-02T18:25:07+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -201,7 +201,27 @@ Resolving dependencies for target &lsquo;Pods&rsquo; (iOS 6.0)
 
 <hr />
 
-<h2>BTW(Buy the way):<a href="http://en.wikipedia.org/wiki/Continuous_integration">Continuous Integration</a></h2>
+<h2>BTW: <a href="http://en.wikipedia.org/wiki/Continuous_integration">持续集成</a></h2>
+
+<p>CocoaPods 和持续集成并不冲突。对于不同的工程设置，让工程得以成功构建还是相对容易的。</p>
+
+<h3>具有一个版本控制的 Pods 目录</h3>
+
+<p>如果你用版本控制工具来控制 Pods 目录及其中包含的所有文件。你不需要额外做一些特殊处理来完成持续集成。如果你需要指定一个特定的构建方案，选择正确的构建方案来构建 *.xcworkspace 就可以了。</p>
+
+<h3>没有 Pods 目录</h3>
+
+<p>如果你没有使用版本控制工具来控制你的 Pods 目录，你需要做更多的事儿来促使持续集成能够正确的运行。至少，需要对 Podfile 文件进行版本控制。为了易于使用，建议对 .xcworkspace 和 Podfile.lock 文件同样进行版本控制。同样，建议确保被使用的 Pod 的版本是正确的。</p>
+
+<p>一旦你完成了上述的工作，在持续集成环境下运行 CocoaPods 的关键是，确保 pod install 命令在构建(build)工程之前完成。在大多数集成系统中，比如 Jenkins 或者 Travis 中，你仅仅需要将其设置为一个构建步骤(实际上，Travis 将会自动的完成)。Xcode Bots 发布之后，写作此文之际，我们还没有想出一个流畅的处理过程。但是我们正在努力，一旦有所收获，将立即分享给你们。</p>
+
+<hr />
+
+<h2>结束语</h2>
+
+<p>CocoaPods 简化了 Objective-C 的开发，我们的目标是快速发现和利用优质的第三方开源库，并积极参与开源项目的开发。深入理解隐藏在屏幕下面的技术仅仅帮你开发出更好的 apps，我们已经分析了整个执行流程，从加载 specs 和源代码开始，到创建 .xcodeproj 文件及其所有的组件，再到保存所有文件到磁盘中。所以了，下一次使用CocoaPods 时，运行 pod install &mdash; verbose 命令，然后看看有哪些神奇的事情发生了。</p>
+
+<h3>(本文完)</h3>
 ]]></content>
   </entry>
   
