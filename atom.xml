@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-02T14:16:05+08:00</updated>
+  <updated>2014-04-02T14:46:34+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -58,7 +58,7 @@
 
 <p>运行 pod install 命令时，进行了很多的操作。在运行该命令时，附加一个 &mdash;verbose 参数，可以观察到整个内部的详细执行流程。现在，让我们运行 pod install &mdash;verbose 命令，将会出现下面所示的信息：</p>
 
-<figure class='code'><figcaption><span>通过 pod install &#8211;verbose 命令观察详细执行流程</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>通过 pod install &#8211; verbose 命令观察详细执行流程</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -130,7 +130,7 @@
 </span><span class='line'>Analyzing dependencies
 </span><span class='line'>
 </span><span class='line'>Updating spec repositories
-</span><span class='line'>Updating spec repo <span class="sb">`</span>master<span class="sb">`</span>
+</span><span class='line'>Updating spec repo <span class="s1">&#39;master&#39;</span>
 </span><span class='line'>  <span class="nv">$ </span>/usr/bin/git pull
 </span><span class='line'>  Already up-to-date.
 </span><span class='line'>
@@ -139,57 +139,57 @@
 </span><span class='line'>  - AFNetworking
 </span><span class='line'>  - HockeySDK
 </span><span class='line'>
-</span><span class='line'>Resolving dependencies of <span class="sb">`</span>Podfile<span class="sb">`</span>
-</span><span class='line'>Resolving dependencies <span class="k">for </span>target <span class="sb">`</span>Pods<span class="s1">&#39; (iOS 6.0)</span>
-</span><span class='line'><span class="s1">  - AFNetworking (= 1.2.1)</span>
-</span><span class='line'><span class="s1">  - SDWebImage (= 3.2)</span>
-</span><span class='line'><span class="s1">    - SDWebImage/Core</span>
+</span><span class='line'>Resolving dependencies of <span class="s1">&#39;Podfile&#39;</span>
+</span><span class='line'>Resolving dependencies <span class="k">for </span>target <span class="s1">&#39;Pods&#39;</span> <span class="o">(</span>iOS 6.0<span class="o">)</span>
+</span><span class='line'>  - AFNetworking <span class="o">(=</span> 1.2.1<span class="o">)</span>
+</span><span class='line'>  - SDWebImage <span class="o">(=</span> 3.2<span class="o">)</span>
+</span><span class='line'>    - SDWebImage/Core
 </span><span class='line'>
-</span><span class='line'><span class="s1">Comparing resolved specification to the sandbox manifest</span>
-</span><span class='line'><span class="s1">  - AFNetworking</span>
-</span><span class='line'><span class="s1">  - HockeySDK</span>
+</span><span class='line'>Comparing resolved specification to the sandbox manifest
+</span><span class='line'>  - AFNetworking
+</span><span class='line'>  - HockeySDK
 </span><span class='line'>
-</span><span class='line'><span class="s1">Downloading dependencies</span>
+</span><span class='line'>Downloading dependencies
 </span><span class='line'>
-</span><span class='line'><span class="s1">-&gt; Using AFNetworking (1.2.1)</span>
+</span><span class='line'>-&gt; Using AFNetworking <span class="o">(</span>1.2.1<span class="o">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="s1">-&gt; Using HockeySDK (3.0.0)</span>
-</span><span class='line'><span class="s1">  - Running pre install hooks</span>
-</span><span class='line'><span class="s1">    - HockeySDK</span>
+</span><span class='line'>-&gt; Using HockeySDK <span class="o">(</span>3.0.0<span class="o">)</span>
+</span><span class='line'>  - Running pre install hooks
+</span><span class='line'>    - HockeySDK
 </span><span class='line'>
-</span><span class='line'><span class="s1">Generating Pods project</span>
-</span><span class='line'><span class="s1">  - Creating Pods project</span>
-</span><span class='line'><span class="s1">  - Adding source files to Pods project</span>
-</span><span class='line'><span class="s1">  - Adding frameworks to Pods project</span>
-</span><span class='line'><span class="s1">  - Adding libraries to Pods project</span>
-</span><span class='line'><span class="s1">  - Adding resources to Pods project</span>
-</span><span class='line'><span class="s1">  - Linking headers</span>
-</span><span class='line'><span class="s1">  - Installing libraries</span>
-</span><span class='line'><span class="s1">    - Installing target &#39;</span>Pods-AFNetworking<span class="s1">&#39; iOS 6.0</span>
-</span><span class='line'><span class="s1">      - Adding Build files</span>
-</span><span class='line'><span class="s1">      - Adding resource bundles to Pods project</span>
-</span><span class='line'><span class="s1">      - Generating public xcconfig file at &#39;</span>Pods/Pods-AFNetworking.xcconfig<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">      - Generating private xcconfig file at &#39;</span>Pods/Pods-AFNetworking-Private.xcconfig<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">      - Generating prefix header at &#39;</span>Pods/Pods-AFNetworking-prefix.pch<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">      - Generating dummy source file at &#39;</span>Pods/Pods-AFNetworking-dummy.m<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">    - Installing target &#39;</span>Pods-HockeySDK<span class="s1">&#39; iOS 6.0</span>
-</span><span class='line'><span class="s1">      - Adding Build files</span>
-</span><span class='line'><span class="s1">      - Adding resource bundles to Pods project</span>
-</span><span class='line'><span class="s1">      - Generating public xcconfig file at &#39;</span>Pods/Pods-HockeySDK.xcconfig<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">      - Generating private xcconfig file at &#39;</span>Pods/Pods-HockeySDK-Private.xcconfig<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">      - Generating prefix header at &#39;</span>Pods/Pods-HockeySDK-prefix.pch<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">      - Generating dummy source file at &#39;</span>Pods/Pods-HockeySDK-dummy.m<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">    - Installing target &#39;</span>Pods<span class="s1">&#39; iOS 6.0</span>
-</span><span class='line'><span class="s1">      - Generating xcconfig file at &#39;</span>Pods/Pods.xcconfig<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">      - Generating target environment header at &#39;</span>Pods/Pods-environment.h<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">      - Generating copy resources script at &#39;</span>Pods/Pods-resources.sh<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">      - Generating acknowledgements at &#39;</span>Pods/Pods-acknowledgements.plist<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">      - Generating acknowledgements at &#39;</span>Pods/Pods-acknowledgements.markdown<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">      - Generating dummy source file at &#39;</span>Pods/Pods-dummy.m<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">  - Running post install hooks</span>
-</span><span class='line'><span class="s1">  - Writing Xcode project file to &#39;</span>Pods/Pods.xcodeproj<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">  - Writing Lockfile in &#39;</span>Podfile.lock<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">  - Writing Manifest in &#39;</span>Pods/Manifest.lock<span class="err">&#39;</span>
+</span><span class='line'>Generating Pods project
+</span><span class='line'>  - Creating Pods project
+</span><span class='line'>  - Adding <span class="nb">source </span>files to Pods project
+</span><span class='line'>  - Adding frameworks to Pods project
+</span><span class='line'>  - Adding libraries to Pods project
+</span><span class='line'>  - Adding resources to Pods project
+</span><span class='line'>  - Linking headers
+</span><span class='line'>  - Installing libraries
+</span><span class='line'>    - Installing target <span class="s1">&#39;Pods-AFNetworking&#39;</span> iOS 6.0
+</span><span class='line'>      - Adding Build files
+</span><span class='line'>      - Adding resource bundles to Pods project
+</span><span class='line'>      - Generating public xcconfig file at <span class="s1">&#39;Pods/Pods-AFNetworking.xcconfig&#39;</span>
+</span><span class='line'>      - Generating private xcconfig file at <span class="s1">&#39;Pods/Pods-AFNetworking-Private.xcconfig&#39;</span>
+</span><span class='line'>      - Generating prefix header at <span class="s1">&#39;Pods/Pods-AFNetworking-prefix.pch&#39;</span>
+</span><span class='line'>      - Generating dummy <span class="nb">source </span>file at <span class="s1">&#39;Pods/Pods-AFNetworking-dummy.m&#39;</span>
+</span><span class='line'>    - Installing target <span class="s1">&#39;Pods-HockeySDK&#39;</span> iOS 6.0
+</span><span class='line'>      - Adding Build files
+</span><span class='line'>      - Adding resource bundles to Pods project
+</span><span class='line'>      - Generating public xcconfig file at <span class="s1">&#39;Pods/Pods-HockeySDK.xcconfig&#39;</span>
+</span><span class='line'>      - Generating private xcconfig file at <span class="s1">&#39;Pods/Pods-HockeySDK-Private.xcconfig&#39;</span>
+</span><span class='line'>      - Generating prefix header at <span class="s1">&#39;Pods/Pods-HockeySDK-prefix.pch&#39;</span>
+</span><span class='line'>      - Generating dummy <span class="nb">source </span>file at <span class="s1">&#39;Pods/Pods-HockeySDK-dummy.m&#39;</span>
+</span><span class='line'>    - Installing target <span class="s1">&#39;Pods&#39;</span> iOS 6.0
+</span><span class='line'>      - Generating xcconfig file at <span class="s1">&#39;Pods/Pods.xcconfig&#39;</span>
+</span><span class='line'>      - Generating target environment header at <span class="s1">&#39;Pods/Pods-environment.h&#39;</span>
+</span><span class='line'>      - Generating copy resources script at <span class="s1">&#39;Pods/Pods-resources.sh&#39;</span>
+</span><span class='line'>      - Generating acknowledgements at <span class="s1">&#39;Pods/Pods-acknowledgements.plist&#39;</span>
+</span><span class='line'>      - Generating acknowledgements at <span class="s1">&#39;Pods/Pods-acknowledgements.markdown&#39;</span>
+</span><span class='line'>      - Generating dummy <span class="nb">source </span>file at <span class="s1">&#39;Pods/Pods-dummy.m&#39;</span>
+</span><span class='line'>  - Running post install hooks
+</span><span class='line'>  - Writing Xcode project file to <span class="s1">&#39;Pods/Pods.xcodeproj&#39;</span>
+</span><span class='line'>  - Writing Lockfile in <span class="s1">&#39;Podfile.lock&#39;</span>
+</span><span class='line'>  - Writing Manifest in <span class="s1">&#39;Pods/Manifest.lock&#39;</span>
 </span><span class='line'>
 </span><span class='line'>Integrating client project
 </span></code></pre></td></tr></table></div></figure>
@@ -197,7 +197,13 @@
 
 <p>打印出了很多的信息，但是分解之后，整个流程显得清晰明了。下面，让我们来逐一分析。</p>
 
-<h3>读 Podfile 文件</h3>
+<h3>读取 Podfile 文件</h3>
+
+<p>如果你曾经感觉到 Podfile 文件中的语法看起来特别古怪，那是因为你正在写的是 Ruby 。相比其它的可用语言，它是一种更加简单的领域特定语言(DSL：Domain Specific Language)。</p>
+
+<p>因此，安装过程中的第一步应当是搞清楚文件中显示地或者隐式地定义了那些 pods 。通过加载 podspecs ，CocoaPods 检索并建立一个包含所有这些 pods 和 它们的版本的列表。Podspecs 被存放在本地的 ~/.cocoapods 目录下。</p>
+
+<h2>版本和冲突</h2>
 ]]></content>
   </entry>
   

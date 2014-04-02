@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CocoaPods | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-02T14:16:05+08:00</updated>
+  <updated>2014-04-02T14:46:34+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -58,13 +58,13 @@
 
 <p>运行 pod install 命令时，进行了很多的操作。在运行该命令时，附加一个 &mdash;verbose 参数，可以观察到整个内部的详细执行流程。现在，让我们运行 pod install &mdash;verbose 命令，将会出现下面所示的信息：</p>
 
-<p>``` sh  通过 pod install &mdash;verbose 命令观察详细执行流程
+<p>``` sh  通过 pod install &mdash; verbose 命令观察详细执行流程
 $ pod install &mdash;verbose</p>
 
 <p>Analyzing dependencies</p>
 
 <p>Updating spec repositories
-Updating spec repo <code>master</code>
+Updating spec repo &lsquo;master&rsquo;
   $ /usr/bin/git pull
   Already up-to-date.</p>
 
@@ -72,8 +72,8 @@ Updating spec repo <code>master</code>
   &ndash; AFNetworking
   &ndash; HockeySDK</p>
 
-<p>Resolving dependencies of <code>Podfile</code>
-Resolving dependencies for target `Pods' (iOS 6.0)
+<p>Resolving dependencies of &lsquo;Podfile&rsquo;
+Resolving dependencies for target &lsquo;Pods&rsquo; (iOS 6.0)
   &ndash; AFNetworking (= 1.2.1)
   &ndash; SDWebImage (= 3.2)</p>
 
@@ -139,7 +139,13 @@ Resolving dependencies for target `Pods' (iOS 6.0)
 
 <p>打印出了很多的信息，但是分解之后，整个流程显得清晰明了。下面，让我们来逐一分析。</p>
 
-<h3>读 Podfile 文件</h3>
+<h3>读取 Podfile 文件</h3>
+
+<p>如果你曾经感觉到 Podfile 文件中的语法看起来特别古怪，那是因为你正在写的是 Ruby 。相比其它的可用语言，它是一种更加简单的领域特定语言(DSL：Domain Specific Language)。</p>
+
+<p>因此，安装过程中的第一步应当是搞清楚文件中显示地或者隐式地定义了那些 pods 。通过加载 podspecs ，CocoaPods 检索并建立一个包含所有这些 pods 和 它们的版本的列表。Podspecs 被存放在本地的 ~/.cocoapods 目录下。</p>
+
+<h2>版本和冲突</h2>
 ]]></content>
   </entry>
   
