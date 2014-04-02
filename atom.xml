@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-02T16:37:44+08:00</updated>
+  <updated>2014-04-02T16:42:11+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -225,10 +225,10 @@
 
 <p>当 CocoaPods 添加一个库到工程中时，它除了添加库的源代码之外，还添加了很多其它东西。由于每个库的变动都会影响到它自己的 target ，所以对于每一个库，会被添加一些其它的文件。每一个库的源代码需要的附加文件：</p>
 
-<pre><code>** 一个 *.xcconfig 文件，包含工程构建阶段的设置。
-** 一个私有的 *.xcconfig 文件，将上述文件中的设置与 CocoaPods 的默认设置合并。
-** prefix.pch 文件，构建阶段所需要的。
-** dummy.m 文件，同样在构建阶段需要。
+<pre><code>* 一个 *.xcconfig 文件，包含工程构建阶段的设置。
+* 一个私有的 *.xcconfig 文件，将上述文件中的设置与 CocoaPods 的默认设置合并。
+* prefix.pch 文件，构建阶段所需要的。
+* dummy.m 文件，同样在构建阶段需要。
 </code></pre>
 
 <p>每一个 Pod Target 中都完成这些工作之后，整个的 Pods Target 便被创建了。它同样添加了上述这些文件，同时还添加了一些其它的。如果哪个库源代码包含一个资源 bundle , 添加该 bundle 到 App’target 的说明信息将被添加到 Pods-Rosources.sh 文件中。同样，有一个 Pods-environment.h 文件，可以用其定义的宏来判断某一个组件是否来自某个 pod 。最后，两个声明文件被创建，一个 plist 文件，一个 markdown 文件，用来帮助使用者确认版权信息。</p>
