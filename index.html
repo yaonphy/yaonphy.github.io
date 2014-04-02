@@ -150,9 +150,9 @@
 
 <h2>运行 pod install 命令</h2>
 
-<p>运行 pod install 命令时，进行了很多的操作。在运行该命令时，附加一个 &mdash;verbose 参数，可以观察到整个内部的详细执行流程。现在，让我们运行 pod install &mdash;verbose 命令，将会出现下面所示的信息：</p>
+<p>运行 pod install 命令时，进行了很多的操作。在运行该命令时，附加一个 &ndash; -verbose 参数，可以观察到整个内部的详细执行流程。现在，让我们运行 pod install &mdash;verbose 命令，将会出现下面所示的信息：</p>
 
-<figure class='code'><figcaption><span>通过 pod install &#8211; verbose 命令观察详细执行流程</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>通过 pod install - - verbose 命令观察详细执行流程</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -297,7 +297,45 @@
 
 <p>因此，安装过程中的第一步应当是搞清楚文件中显示地或者隐式地定义了那些 pods 。通过加载 podspecs ，CocoaPods 检索并建立一个包含所有这些 pods 和 它们的版本的列表。Podspecs 被存放在本地的 ~/.cocoapods 目录下。</p>
 
-<h2>版本和冲突</h2>
+<h3>版本和冲突</h3>
+
+<p>CocoaPods 使用由 <a href="http://semver.org/">Semantic Versioning</a> 定义的规则来解决依赖库的版本问题。由于这种冲突解决方案可以依赖于补丁版本间的非大量更改，所以可以更加容易的解决依赖问题。比如说，两个不同的 pods 依赖于两个不同版本的 CocoaLumberjack 。如果其中一个依赖于 2.3.1，而另一个依赖于2.3.3版本，解析器会使用最新的2.3.3版本，因为该版本是向后兼容2.3.1版本的。</p>
+
+<p>但是，这并不总是有效。有很多的库不使用这种依赖规则，使得解决版本和冲突问题变得非常困难。</p>
+
+<p>当然，也有很多手动解决冲突的方式。如果一个库依赖于 CocoaLumberjack 的1.2.5 版本，而另一个依赖于 2.3.1，最终的使用者可以通过设置一个确定的版本来解决冲突。</p>
+
+<h3>下载第三方库源代码</h3>
+
+<p>处理过程的下一步是装载依赖库的源代码。每一个 *.podspec 中都包含一个变量，存放 git 远程资源的地址和 tag 标签。这些信息被SHA(Secure Hash Algorithm)算法处理后，存储在 ~/Library/Caches/CocoaPods 目录下。Core gem 负责创建该目录下的文件。</p>
+
+<p>然后，通过使用 Podfile,.podspec,以及 caches 中的信息，将库源码文件下载到 Pods 目录下面。</p>
+
+<h3>生成 Pods.xcodeproj 文件</h3>
+
+<p>每次运行 Pod install 命令时，一旦检测到 *.xcodeproj 文件内容有更改，Xcodeproj gem 将更新其内容。如果该文件不存在， Xcodeproj gem 将按照默认设置创建该文件。否则，将现有的设置信息加载到内存当中。</p>
+
+<h3>安装第三方库</h3>
+
+<p>当 CocoaPods 添加一个库到工程中时，它除了添加库的源代码之外，还添加了很多其它东西。由于每个库的变动都会影响到它自己的 target ，所以对于每一个库，会被添加一些其它的文件。每一个库的源代码需要的附加文件：</p>
+
+<pre><code>** 一个 *.xcconfig 文件，包含工程构建阶段的设置。
+** 一个私有的 *.xcconfig 文件，将上述文件中的设置与 CocoaPods 的默认设置合并。
+** prefix.pch 文件，构建阶段所需要的。
+** dummy.m 文件，同样在构建阶段需要。
+</code></pre>
+
+<p>每一个 Pod Target 中都完成这些工作之后，整个的 Pods Target 便被创建了。它同样添加了上述这些文件，同时还添加了一些其它的。如果哪个库源代码包含一个资源 bundle , 添加该 bundle 到 App’target 的说明信息将被添加到 Pods-Rosources.sh 文件中。同样，有一个 Pods-environment.h 文件，可以用其定义的宏来判断某一个组件是否来自某个 pod 。最后，两个声明文件被创建，一个 plist 文件，一个 markdown 文件，用来帮助使用者确认版权信息。</p>
+
+<h3>写入到磁盘中</h3>
+
+<p>到目前为止，很多工作都是用内存中的对象来完成。为了使工作能够重复进行，我们需要一个文件保存所有的配置信息。因而，Pods.xcodeproj 文件，连同其它两个重要的文件  Podfile.lock 和 Manifest.lock，被保存到磁盘中。</p>
+
+<h4>Podfile.lock</h4>
+
+<p>这是 CocoaPods 创建的最重要的文件之一。它追踪所有需要安装的 pods 的现有版本信息。如果你不确定某个已经安装了的 pod 的版本信息，那就查看该文件吧。如果将该文件添加到版本控制工具的资源文件中(<em>译者注：例如，不将该文件添加到.gitignore中</em>)，有利于团队协作开发的一致性，这也是大家推荐的做法。</p>
+
+<h4>Manifest.lock</h4>
 </div>
   
   
