@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: CocoaPods | yaongfeng]]></title>
+  <link href="http://yaonphy.github.io/blog/categories/cocoapods/atom.xml" rel="self"/>
+  <link href="http://yaonphy.github.io/"/>
+  <updated>2014-04-02T11:43:53+08:00</updated>
+  <id>http://yaonphy.github.io/</id>
+  <author>
+    <name><![CDATA[yaongfeng]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[揭开CocoaPods的神秘面纱]]></title>
+    <link href="http://yaonphy.github.io/blog/2014/04/02/cocoapods-under-the-hood/"/>
+    <updated>2014-04-02T10:32:50+08:00</updated>
+    <id>http://yaonphy.github.io/blog/2014/04/02/cocoapods-under-the-hood</id>
+    <content type="html"><![CDATA[<h3>本文是 objc 系列文章中 <a href="http://www.objc.io/issue-6/cocoapods-under-the-hood.html">Issue#6 BuildTools</a> 的中文简体翻译，仅用于学习交流。原作者是<a href="https://twitter.com/micheletitolo">Michele Titolo</a></h3>
+
+<p>CocoaPods用于管理OSX和iOS应用程序中的第三方库。有了CocoaPods，你就可以自定义一种叫做Pods的依赖文件了，并且可以在不同的时间点和不同的开发环境下轻松的管理他们的版本。</p>
+
+<p>CocoaPods的设计理念包括两个方面。首先，在自己的项目中导入第三方代码时可能会出现不少的“坑”。对于Objective-C的新手开发者来说，配置工程文件是一件很让他们抓狂的事情。在手动配置程序构建阶段的选项和连接器参数的过程中，很容易出现人为的错误。CocoaPods能够自动的配置编译器的各种设置选项，简化了所有的配置工作。</p>
+
+<p>其次，使用CocoaPods可以更加容易的发现新的第三方库。但是，这并不是意味着你可以构建一个叫FrankApp的应用，而应用里的每一部分都是别人代码的简单拼凑。也不是说你可以发现能够缩短开发周期并能提升你的应用程序质量的优质代码库。</p>
+
+<hr />
+
+<h2>核心组件</h2>
+]]></content>
+  </entry>
+  
+</feed>
