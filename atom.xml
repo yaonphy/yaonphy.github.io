@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-02T18:25:07+08:00</updated>
+  <updated>2014-04-02T19:04:24+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用 CocoaPods 来模块化一个复杂庞大的 iOS App]]></title>
+    <link href="http://yaonphy.github.io/blog/2014/04/02/using-cocoapods-to-modularize-big-app/"/>
+    <updated>2014-04-02T18:33:20+08:00</updated>
+    <id>http://yaonphy.github.io/blog/2014/04/02/using-cocoapods-to-modularize-big-app</id>
+    <content type="html"><![CDATA[<h3>这是一篇对英文技术文章 <a href="http://dev.hubspot.com/blog/architecting-a-large-ios-app-with-cocoapods">Using CocoaPods to Modularize a Big iOS App</a>的简体中文翻译，仅供学习交流。</h3>
+
+<p>原作者：<a href="http://dev.hubspot.com/blog/author/anthony-roldan">Anthony Roldan</a></p>
+
+<p>为你的移动 App 选择正确的架构确实是一个大问题。架构会影响你个日常开发流程，决定了你在开发中可能遇到的问题，可以让你变得富可敌国，也可以让你变得穷困潦倒。</p>
+
+<p> HubSpot 的移动端 App 功能非常的丰富。它是一个分析统计 App，也是一个社交媒体 App，还是一个邮件 App，还是一个联系人管理类 App（多对一），所有的这些都同处于一个屋檐下。去年夏天，当我们计划开发这个相当复杂的 App 时，我们知道我们必须有一个与其规模相符合的架构。</p>
+
+<p> 我们最终把每一个 sub-app 当作一个完全独立的 App 来开发，然后用 <a href="http://cocoapods.org/">CocoaPods</a> 来将它们集成到 main App 当中。</p>
+
+<p> 从下面的截图中，你可以看到，Sources, Dashboard, Social Media 这些 sub-app 都是独立的 iPhone App，同时它们又是 main App 中的组成模块。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[揭开CocoaPods的神秘面纱]]></title>
