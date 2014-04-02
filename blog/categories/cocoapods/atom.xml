@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CocoaPods | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-02T11:45:40+08:00</updated>
+  <updated>2014-04-02T12:05:11+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -29,6 +29,10 @@
 <hr />
 
 <h2>核心组件</h2>
+
+<p>CocoaPods 实际上是由一些 Ruby Gems 构成的一个 Ruby 应用程序。探索其内部构成最需要关注的 gems 有：<a href="https://github.com/CocoaPods/CocoaPods/">CocoaPods/CocoaPods</a>, <a href="https://github.com/CocoaPods/Core">CocoaPods/Core</a>, <a href="https://github.com/CocoaPods/Xcodeproj">CocoaPods/XCodeproj</a>（是的，CocoaPods 是由依赖管理工具构建成的依赖管理工具）。</p>
+
+<h3>CocoaPods/CocoaPod</h3>
 ]]></content>
   </entry>
   
