@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MKNetworkKit | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/mknetworkkit/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-03T18:16:04+08:00</updated>
+  <updated>2014-04-03T18:37:38+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -18,10 +18,11 @@
     <link href="http://yaonphy.github.io/blog/2014/04/03/introducing-mknetworkkit/"/>
     <updated>2014-04-03T17:51:49+08:00</updated>
     <id>http://yaonphy.github.io/blog/2014/04/03/introducing-mknetworkkit</id>
-    <content type="html"><![CDATA[<h4>文章的原版（英文原文）<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/">链接</a>，看到教程已经被翻译为<a href="http://science.webhostinggeeks.com/predstavljanje-mknetworkkit">塞尔维亚 – 克罗地亚语</a> by <a href="http://webhostinggeeks.com/">Jovana Milutinovich</a>，<a href="http://odoruinu.net/blog/mknetworkkit/">日语</a> by <a href="http://odoruinu.net/">@noradaiko</a>，<a href="http://blog.mugunthkumar.com/products/ios-framework-einfuhrung-in-mknetworkkit-german-translation-of-mknetworkkit-documentation/">德语</a> by <a href="https://twitter.com/jonaspencke">Jonas Pencke</a>.故而有了翻译为中文的念头。</h4>
+    <content type="html"><![CDATA[<h4>文章的原版（英文原文）<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/">链接</a>，看到教程已经被翻译为<a href="http://science.webhostinggeeks.com/predstavljanje-mknetworkkit">塞尔维亚 – 克罗地亚语</a> by <a href="http://webhostinggeeks.com/">Jovana Milutinovich</a>，<a href="http://odoruinu.net/blog/mknetworkkit/">日语</a> by <a href="http://odoruinu.net/">@noradaiko</a>，<a href="http://blog.mugunthkumar.com/products/ios-framework-einfuhrung-in-mknetworkkit-german-translation-of-mknetworkkit-documentation/">德语</a> by <a href="https://twitter.com/jonaspencke">Jonas Pencke</a>。故而有了翻译为中文的念头。</h4>
 
-<p>如果有一个网络库能够自动的帮你搞定缓存处理，那该是多么爽的一件事。当你的App 的网络变为离线状态时，要是有一个网络库能够自动的保留未完成的网络操作，那简直爽歪歪的赶脚啊。
-你在离线状态下，将某个Tweet 标记为喜欢，或者将某个推荐内容标记为已读。你不用额外多敲任何代码，网络库会在网络处于连接状态时自动完成所有的离线任务。让我们一起走进 MKNetworkKit。</p>
+<p>如果有一个网络库能够自动的帮你搞定缓存处理，那该是多么爽的一件事。当你的App 的网络变为离线状态时，要是有一个网络库能够自动的保留未完成的网络操作，那简直爽歪歪的赶脚啊。</p>
+
+<p>你在离线状态下，将某个Tweet 标记为喜欢，或者将某个推荐内容标记为已读。你不用额外多敲任何代码，网络库会在网络处于连接状态时自动完成所有的离线任务。让我们一起走进 MKNetworkKit。</p>
 
 <hr />
 
@@ -103,19 +104,25 @@ if (object == _sharedNetworkQueue &amp;&amp; [keyPath isEqualToString:@&ldquo;op
 
 <h3>添加 MKNetworkKit 到你的项目中</h3>
 
-<p>1.将 MKNetworkKit 文件拖拽到你的项目中
-2.添加 CFNetwork.Framework, SystemConfiguration.framework,Security.framework，以及ImageIO.Framework。
-3.将 MKNetworkKit.h 添加到 PCH 文件中
-4.如果你开发的是iOS项目，删除 NSAlert+MKNetworkKitAdditions.h。
-5.如果你开发的是Mac项目，删除 UIAlertView+MKNetworkKitAdditions.h。</p>
+<ol>
+<li>将 MKNetworkKit 文件拖拽到你的项目中</li>
+<li>添加 CFNetwork.Framework, SystemConfiguration.framework,Security.framework，以及ImageIO.Framework。</li>
+<li>将 MKNetworkKit.h 添加到 PCH 文件中</li>
+<li>如果你开发的是iOS项目，删除 NSAlert+MKNetworkKitAdditions.h。</li>
+<li>如果你开发的是Mac项目，删除 UIAlertView+MKNetworkKitAdditions.h。</li>
+</ol>
+
 
 <p>仅仅需要5个核心文件，一个功能强大的网络库就配置好了。</p>
 
 <h3>MKNetworkKit 中的类</h3>
 
-<p>1.MKNetworkOperation
-2.MKNetworkEngine
-3.其它辅助类(苹果官方用于判断网络是否可连接的类)以及附加类（categories）</p>
+<ol>
+<li>MKNetworkOperation</li>
+<li>MKNetworkEngine</li>
+<li>其它辅助类(苹果官方用于判断网络是否可连接的类)以及附加类（categories）</li>
+</ol>
+
 
 <p>我推崇简洁易用的原则。苹果已经为开发者完成了繁重的网络连接工作。一个三方库应该做的是，提供一个基于网络的任务队列，并实现可选的缓存功能。我认为所有的三方库都应当不超过10个类文件（无论这个三方库是网络库，或者UIKit的封装库，或者其它任何类型的库。反之，超过10个类文件的库都是臃肿的。 Three 20 是一个臃肿库的例子，ShareKit也是。也许它们是功能丰富的，但是太大，太臃肿。不像RESTKit那样，ASIHttpRequest 和 AFNetworking 是精悍轻巧的。JSONKit 比 TouchJSON（或者TouchCode 库中的其它分支类库） 轻量级。这也许只是我个人的观点，但是，如果在我的项目中，超过三分之一的代码都来自三方库，那我是无法接受的。</p>
 
@@ -124,6 +131,266 @@ if (object == _sharedNetworkQueue &amp;&amp; [keyPath isEqualToString:@&ldquo;op
 <p>MKNetworkEngine 是一个管理网络队列的“假”单例类。由于是假的单例，对于一些简单的请求，你可以直接使用MKNetworkEngine中的方法。在需要更多自定义功能的情况下，应该创建一个它的子类。每一个MKNetworkEngine的子类都有一个属于它自己的用于监测网络连接性的对象，此对象会在网络状态发生变化的时候给它发送通知。你应当为你所使用的每一个独立REST服务器创建一个MKNetworkEngine类的子类。由于是伪单例，所以在它的子类中的每一个单独请求都共享一个全局的单一队列。</p>
 
 <p>你可以在 application delegate 中保留一次MKNetworkEngine的实例对象，就像对CoreData中managedObjectContext类一样。在你使用MKNetworkKit的时候，你创建了一个MKnetworkEngine类的子类去有序的管理网络请求。比如，所以向Yahoo的请求方法定义在一个单独的类中，所有向Facebook的请求放在另一个单独的类中。我将展示使用该框架的三个不同的案例。</p>
+
+<h3>示例1：</h3>
+
+<p>我们现在创建一个从雅虎财经栏目拉取数据的“YahooEngine”类</p>
+
+<p>步骤1：创建一个 YahooEngine 类，并继承MKNetworkEngine。MKNetworkEngine的初始化方法需要主机名和自定义的协议头部内容（可选）。这些自定义的协议头是可选的，并且可以为空。如果你使用的自己的REST服务器（不同于该示例），你可能需要传递app的版本，或者其它需要的信息，比如客户端ID。</p>
+
+<p>```objc
+NSMutableDictionary *headerFields = [NSMutableDictionary dictionary];
+[headerFields setValue:@&ldquo;iOS&rdquo; forKey:@&ldquo;x-client-identifier&rdquo;];</p>
+
+<p>self.engine = [[YahooEngine alloc] initWithHostName:@&ldquo;download.finance.yahoo.com&rdquo;</p>
+
+<pre><code>               customHeaderFields:headerFields];
+</code></pre>
+
+<p>```</p>
+
+<p>雅虎有可能没有要求你在协议头中包含 x-client-identifier 字段的值，这个例子只是为了展示这样的功能。</p>
+
+<p>由于使用的是ARC，所以是否需要设置对引擎实例对象的强引用关系（strong reference）完全取决于你自己。当你所访问的服务器宕机了，或者由于其它无法预知的因素，你的主机无法访问了，你当前的请求将被自动的添加到冻结请求队列中。对于冻结网络请求的更多信息，请阅读本篇文章中冻结网络操作的部分。</p>
+
+<p>步骤2：设计引擎类（Separation of concerns）</p>
+
+<p>让我们现在开始在yahoo Engine 中写用来获取汇率的方法。这些引擎方法将会在你的view Controller中调用。一个好的实践经验是，你的引擎类最好不要向调用类暴露URL或者HTTPHeaders。你的view应当不“知道”所需的URL端口或者其它参数。也就是说，引擎中的方法的参数应该是货币数量以及货币种类，方法的返回值应该是浮点型的汇率或者获取数据时的时间戳。由于操作是被异步执行的，所以你应该在blocks中返回这些值。下面举一个例子：</p>
+
+<p><code>objc
+-(MKNetworkOperation*) currencyRateFor:(NSString*) sourceCurrency inCurrency:(NSString*) targetCurrency onCompletion:(CurrencyResponseBlock) completion onError:(ErrorBlock) error;
+</code></p>
+
+<p>父类——MKNetworkEngine中定义了如下的三种类型的方法：</p>
+
+<p><code>objc
+typedef void (^ProgressBlock)(double progress);
+typedef void (^ResponseBlock)(MKNetworkOperation* operation);
+typedef void (^ErrorBlock)(NSError* error);
+</code></p>
+
+<p>在我们定义的YahooEngine中，我们使用一种新的类型的block，返回汇率值的CurrencyResponseBlock 。定义如下：</p>
+
+<p><code>objc
+typedef void (^CurrencyResponseBlock)(double rate);
+</code></p>
+
+<p>在一般的App中，你应当使用类似于定义CurrencyResponseBlock 的方式定义你自己的block，从而可以在controller中获取到需要的数据。</p>
+
+<p>步骤3：处理数据</p>
+
+<p>数据处理，说白了就是转换你从服务器获取到的数据，这些数据有可能是JSON格式，XML格式，或者是二进制的plists。你应当在你的引擎类中进行数据格式的转换。同样，不要让controller去完成数据解析的任务。你的引擎类应当返回相应的模块化的数据对象，或者包含模块化对象的数组（数据列表）。在引擎类中将JSON/XML格式的数据转换成模块化的数据，考虑到需要降低耦合度，你的view controller 不应该知道获取JSON数据中某个值（value）的键（key）。</p>
+
+<p>上面介绍了如何设计你的自定义引擎类。大多数的网络引擎不要求你降低controller和数据处理之前的耦合度，减轻controller的负载，但是我要求这样，因为我们在乎你</p>
+
+<p>步骤4：方法的实现</p>
+
+<p>我们现在讨论计算汇率的方法的实现细节</p>
+
+<p>从yahoo网站获取货币信息，只需要简单的发送一个GET请求即可。</p>
+
+<p>我写了一个宏定义，通过给定的一对货币单位值来格式化URL</p>
+
+<p>```objc</p>
+
+<h1>define YAHOO_URL(<strong>C1</strong>, <strong>C2</strong>) [NSString stringWithFormat:@&ldquo;d/quotes.csv?e=.csv&amp;f=sl1d1t1&amp;s=%@%@=X&rdquo;, <strong>C1</strong>, <strong>C2</strong>]</h1>
+
+<p>```</p>
+
+<p>你的引擎类中定义的方法，应当有序的完成下面的任务</p>
+
+<ol>
+<li>根据传递的参数，格式化好所需的URL</li>
+<li>创建一个MKNetworkOperation的实例对象用于发送请求</li>
+<li>设置HTTP请求类型</li>
+<li>为创建好的Operation添加请求成功和请求失败的回调block（请求成功的回调block中，通常是处理response并将其数据进行模块化）</li>
+<li>可选，为operation添加进度处理（或者在view controller中进行请求进度处理）</li>
+<li>可选，如果是下载文件的请求，需要为operation设置一个下载流（通常是一个文件）</li>
+<li>当请求完成的时候，处理请求结果，并将数据返回给调用方法（通常是controller中的方法）</li>
+</ol>
+
+
+<p>上代码：</p>
+
+<p>```objc
+MKNetworkOperation <em>op = [self operationWithPath:YAHOO_URL(sourceCurrency, targetCurrency) params:nil httpMethod:@&ldquo;GET&rdquo;];
+[op onCompletion:^(MKNetworkOperation </em>completedOperation)
+{</p>
+
+<pre><code> DLog(@"%@", [completedOperation responseString]);
+ // do your processing here
+completionBlock(5.0f);
+</code></pre>
+
+<p>}onError:^(NSError* error) {</p>
+
+<pre><code>errorBlock(error);
+</code></pre>
+
+<p>}];</p>
+
+<p>[self enqueueOperation:op];</p>
+
+<p>return op;
+```</p>
+
+<p>上面的实例代码中，格式化了URL，并且创建了一个MKNetworkOperation。在分别添加了请求成功和失败的回调block之后，它又调用了父类的equequeOperation方法，并返回创建好的MKNetworkOperation对象的指针。你的viewcontroller应当保留保留对该指针的引用关系，当该viewcontroller从整个viewcontroller体系中移除时，应当取消此次请求操作。因此，如果你在viewDidAppear方法中调用了引擎中的方法，应该在viewWillDisappear中取消此次请求操作。取消请求操作将会让请求队列去执行其它的网络请求操作（不知道你还记不记得，在移动网络中，仅仅允许两个并发的网络请求，当某个网络请求不再需要时，将其释放掉，能够提升你的App的性能和速度）</p>
+
+<p>你的viewcontroller也可以（可选）添加请求进度处理，并更新界面。下面的代码实现了进度条的时时更新</p>
+
+<p>```objc
+[self.uploadOperation onUploadProgressChanged:^(double progress) {</p>
+
+<pre><code>   DLog(@"%.2f", progress*100.0);
+   self.uploadProgessBar.progress = progress;
+</code></pre>
+
+<p>   }];
+```</p>
+
+<p>MKNetworkEngine 也提供了通过一个URL来创建MKNetworkOperation对象的便捷方法，本部分前面用于创建MKNetworkOperation对象的代码也可以用下面的代码替换：</p>
+
+<p><code>objc
+MKNetworkOperation *op = [self operationWithPath:YAHOO_URL(sourceCurrency, targetCurrency)];
+</code></p>
+
+<p>请求URL会被自动的添加相应的前缀域名，这个域名是你在创建引擎类的时候提供的。</p>
+
+<p>创建一个POST类型，DELETE类型，或者PUT类型的请求，仅仅需要改变httpMethod的参数值即可。MKNetworkEngine提供了许多这样的便捷方法，你可以在头文件中找到的。</p>
+
+<h3>示例2：</h3>
+
+<p>向服务器传送一张图片（比如发布一条twit时附加的图片）</p>
+
+<p>现在让我们来看一个如何向服务器传图片的例子。显然，上传图片的请求必须被编码为multi-part form的数据格式。MKNetworkKit 使用和ASIHttpRequest相似的模型。通过调用MKNetworkOperation中的addFile：forKey：方法，可以添加一个multi-part form 格式的数据到你的请求中。就是这样简单。</p>
+
+<p>MKNetworkOperation同时还提供了一个简单的方法，通过NSData类型的指针来添加图片。也就是说，你可以调用addData：forKey：方法来上传图片到远程服务器上。（可以想想从相册里直接上传图片的情形）</p>
+
+<h3>示例3：</h3>
+
+<p>下载图片到本地的目录中（缓存）</p>
+
+<p>使用MKNetworkKit，从远程服务器下载文件，并保存到本地的操作变的异常容易。</p>
+
+<p>设置MKNetworkOperation的outputStream即可：</p>
+
+<p>```objc
+[operation setDownloadStream:[NSOutputStream</p>
+
+<pre><code>outputStreamToFileAtPath:@"/Users/mugunth/Desktop/DownloadedFile.pdf"
+          append:YES]];
+</code></pre>
+
+<p>```</p>
+
+<p>你可以设置多个 outputStream 到一个单独的operation中，这样可以将相同的文件保存到不同的位置（保存到缓存目录的同时还保存到工作目录中）</p>
+
+<h3>示例4：</h3>
+
+<p>图片缩略图的缓存</p>
+
+<p>为了下载图片，你需要提供一个绝对的URL地址，而不是一个路径。MKNetworkEngine中有一个方便的方法来实现。使用 operationWithURLString:params:httpMethod:就可以创建一个基于绝地URL的operation。</p>
+
+<p>MKNetworkEngine是智能的。它将多个基于同一URL的GET请求合成为一个，在这个请求完成时，通知（回调）所有的blocks。
+这大幅度的提升了下载缩略图的速度。</p>
+
+<p>创建继承于MKNetworkEngine的子类，复写相应的方法可以设置缓存的目录和缓存的消耗控制参数。如果你不想自定义这些，你可以直接使用MKNetworkEngine方法来下载图片。我建议你自己配置相关的缓存设置。</p>
+
+<h3>缓存操作</h3>
+
+<p>MKNetworkKit 默认会缓存所有的操作。你所要做的是，为你的引擎打开缓存操作。当一个GET类型的请求被执行时，如果对应的response之前被缓存过，缓存的response马上会被返回。使用isCachedResponse方法可以判断一个response是不是缓存过的。下面的代码作了进一步的说明</p>
+
+<p>```objc
+[op onCompletion:^(MKNetworkOperation *completedOperation)
+ {</p>
+
+<pre><code> if([completedOperation isCachedResponse]) {
+     DLog(@"Data from cache");
+ }
+ else {
+     DLog(@"Data from server");
+ }
+
+ DLog(@"%@", [completedOperation responseString]);
+</code></pre>
+
+<p> }onError:^(NSError* error) {</p>
+
+<pre><code> errorBlock(error);
+</code></pre>
+
+<p> }];
+```</p>
+
+<h3>冻结操作</h3>
+
+<p>可以说，MKNetworkKit中内置的自动冻结操作的功能是最让人来劲的。只需设置一下就可以使用该功能了，基本上零花费啊！</p>
+
+<p><code>objc
+[op setFreezable:YES];
+</code></p>
+
+<p>网络不可用时，操作被冻结，并被序列化到一个队列中。当网络恢复到可用状态时，冻结的操作继续执行。在tweeter中，离线的时候喜欢某个tweet，等会上线之后，网络操作被自动执行，就是一个很好的例子。</p>
+
+<p>当App进入后台时，冻结的操作会被保存到磁盘中，当app从后台中被唤起之后，冻结的操作也会被自动的执行。</p>
+
+<p>MKNetworkOperation 中方便的方法：</p>
+
+<p>MKNetworkOperation 中提供了如下一些用来格式化网络请求返回数据的便捷方法：</p>
+
+<ol>
+<li>responseData</li>
+<li>responseString</li>
+<li>responseJSON (Only on iOS 5)</li>
+<li>responseImage</li>
+<li>responseXML</li>
+<li>error</li>
+</ol>
+
+
+<p>当网络请求成功后处理response时，使用它们会显得非常便捷。如果数据格式不对，这些方法将会返回nil。比如，使用responseImage来返回图片，但是response中的数据却是HTML格式，这样便会得到一个nil。唯一一个不会出现错误的方法是responseData，使用其它的方法时你必须确保自己知道response中数据的类型。</p>
+
+<hr />
+
+<h2>方便的宏定义</h2>
+
+<p>DLog 和 ALog 这两个宏定义是我公然从Stackoverflow里偷来的，我也忘了是从哪里偷来的了。如果这是你写的话，那就麻烦告诉我一声。</p>
+
+<hr />
+
+<h2>关于GCD的一点说明</h2>
+
+<p>我故意没有使用GCD，因为网络操作需要随时停止和优化。尽管GCD要比NSOperation更加高效，但是它无法做这些工作。我不建议你的网络操作使用基于GCD的队列。</p>
+
+<hr />
+
+<h2>文档</h2>
+
+<p>所有的头文件中都添加了注释，我尝试使用apple的文档风格来加注释。顺便说一句，代码你可以随便用哦。</p>
+
+<hr />
+
+<h2>源代码</h2>
+
+<p>代码在github上，并且包含一个demo</p>
+
+<p><a href="https://github.com/mugunthkumar/mknetworkkit">MKNetworkKit on Github</a></p>
+
+<hr />
+
+<h2>功能建议</h2>
+
+<p>功能建议不要以邮件的方式发给我，最好的方式是<a href="https://github.com/mugunthkumar/mknetworkkit/issues">在github上添加issue</a></p>
+
+<hr />
+
+<h2>许可</h2>
+
+<p>遵循 MIT License</p>
+
+<hr />
+
+<h2>——Mugunth</h2>
 ]]></content>
   </entry>
   
