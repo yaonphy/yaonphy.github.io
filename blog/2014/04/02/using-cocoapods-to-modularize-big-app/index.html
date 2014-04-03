@@ -124,6 +124,26 @@
 <p> 从下面的截图中，你可以看到，Sources, Dashboard, Social Media 这些 sub-app 都是独立的 iPhone App，同时它们又是 main App 中的组成模块。</p>
 
 <p> <img src="http://cdn2.hubspot.net/hub/51294/file-435767237-png/app_example.png?t=1396302307000" alt="哈哈" /></p>
+
+<p>这给我们带来了很多优势：</p>
+
+<ul>
+<li>最关键的是，我们能够确定，每个 sub-app 的主分支是稳定可用的，而且 sub-app 的某个特定版本能够很快的被集成到 main app 中。</li>
+<li>我们花了更多的时间去 build，花费更少的时间去 merge 。沙盒使得每个 sub-app 内的迭代变得非常容易，而且能使不同 app 之间的集成花费更少的时间。如果你在多于一个人的 iOS 开发团队工作过，你肯定遇到过大量的 .xcodeproj 合并问题。尽管这是<a href="http://stackoverflow.com/questions/2615378/how-to-use-git-properly-with-xcode">可以解决的</a>，但是过程非常的令人痛苦。使用 CocoaPods 来构建应用，几乎让我们完全远离了这种痛苦。</li>
+<li>如果需要，我们可以打包部署每个独立的 app ,这对于独立 app 层次的功能测试来说，简直爽爆了。在类似 Navigation 这样的粘合功能没有被完成之前，我们都可以为测试人员提供独立的 app 来测试。这让我们能够收集到高质量，有针对性的反馈。</li>
+<li>由于 sub-apps 之间的用户使用流程是通过基于URL的路径(稍后讨论)来实现，这意味着路径是内置的，并且是规划好的。而不是通过检索一大堆 UIViewController 来寻找需要显示的 View 。这对于一些基本功能，比如引导教程和新的推送通知，是非常有帮助的。</li>
+</ul>
+
+
+<p>这种架构方式，对于构建功能丰富多样的 iOS App 的多人协作团队来说，可以节省大量时间。听起来很合你的口味? 那就别停下来。</p>
+
+<hr />
+
+<h3>灵感来自于 Web 架构</h3>
+
+<p>将我们的移动应用分解成多个子应用的灵感，来自于已经非常成功的 HubSpot 的 web 架构。</p>
+
+<p>HubSpot 的 web 架构，专为快速开发和可扩展性而设计。</p>
 </div>
 
 
