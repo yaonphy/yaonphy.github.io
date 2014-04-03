@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CocoaPods | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-03T12:07:06+08:00</updated>
+  <updated>2014-04-03T16:31:14+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -50,7 +50,45 @@
 
 <p>将我们的移动应用分解成多个子应用的灵感，来自于已经非常成功的 HubSpot 的 web 架构。</p>
 
-<p>HubSpot 的 web 架构，专为快速开发和可扩展性而设计。</p>
+<p>HubSpot 的 web 架构，专为快速开发和可扩展性而设计。就像我的同事在<a href="http://dev.hubspot.com/blog/how-we-deploy-300-times-a-day">一篇文章中</a>所写的一样，我们使用各种工具和技术，使得我们的整体部署达到300次/每天。最主要的是，HubSpot 的产品系列是由一些松耦合，完全不同功能的应用组成——分析统计，社交媒体，邮件，博客，以及报告工具。</p>
+
+<p>在Web端，我们可以独立地构建、测试、部署 HubSpot 应用中的一小部分。包括后台的 APIs 和 Java 实现的功能，前端的 CoffeeScript 项目，以及 Python 项目。移动端为什么也不这样做呢？</p>
+
+<hr />
+
+<h3>用 CocoaPods 吧</h3>
+
+<p><a href="http://cocoapods.org/">CocoaPods</a>,为iOS而生的极佳依赖管理工具，是将所有东西粘合到一块的关键。</p>
+
+<p>一个多应用架构对于你的需求来说可能是大材小用，但是 CocoaPods 绝对不是这样的。就算你仅仅想添加一些第三方库到项目中时，比如应用统计的库，View 组件，网络库等，它能在短短几分钟的时间内帮你搞定一切设置，节省不少时间。Ruby 风格的语法，能无缝地集成一些第三方库到项目中。</p>
+
+<p>核心的库和可以分享的资源，比如登录，定义了样式的类，访问认证接口，连同 <a href="https://github.com/allending/Kiwi">Kiwi</a> 测试和一个 podspec 文件,构建成一个独立的工程。将其发布到我们的一个私有 <a href="http://guides.cocoapods.org/making/private-cocoapods.html">Repo</a> 中,然后在我们的完整项目中引入。更进一步，每一个子应用连同一个 Podspec 文件单独构建成一个工程之后，用 CocoaPods 将它们构建到一个完整的工程中。</p>
+
+<p>这就意味着，我们可以在一个单独的子应用内部构建测试版本，进行快速的迭代开发，而不用考虑会影响到其它不相关的子应用的开发。</p>
+
+<p>我们整体的应用的 Podfile 应该是这个样子的：</p>
+
+<p><div><script src='https://gist.github.com/8224121.js'></script>
+<noscript><pre><code>platform :ios, &#39;6.0&#39;
+
+# networking, slider navigation, routing
+pod &#39;AFNetworking&#39;, &#39;~&gt; 1.2.1&#39;
+pod &#39;ViewDeck&#39;, &#39;~&gt; 2.2.11&#39;
+pod &#39;JLRoutes&#39;, &#39;~&gt; 1.2&#39;
+
+# sub-apps, pulling from the head of each repo for development. alternately, we can pin it to a release version like we do the other pods
+pod &#39;HSAPIClient&#39;, :head
+pod &#39;HSCommonResources&#39;, :head
+pod &#39;HSMarketingGraderApp&#39;, :head
+pod &#39;HSContactsApp&#39;, :head
+pod &#39;HSDashboardApp&#39;, :head
+pod &#39;HSLoginApp&#39;, :head
+pod &#39;HSSocialApp&#39;, :head
+pod &#39;HSSourcesApp&#39;, :head
+pod &#39;HSSettingsApp&#39;, :head
+pod &#39;HSSocialReach&#39;, :head
+pod &#39;HSEmailApp&#39;, :head</code></pre></noscript></div>
+</p>
 ]]></content>
   </entry>
   
