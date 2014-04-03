@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MKNetworkKit | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/mknetworkkit/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-03T19:00:28+08:00</updated>
+  <updated>2014-04-03T19:03:41+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -394,7 +394,9 @@ MKNetworkOperation *op = [self operationWithPath:YAHOO_URL(sourceCurrency, targe
 
 <h2>——Mugunth</h2>
 
-<h3>本文最初写在我的<a href="http://yaongphy.sinaapp.com/?p=531">老博客里面</a>，之前格式太乱。</h3>
+<hr />
+
+<h4><em>本文最初写在我的<a href="http://yaongphy.sinaapp.com/?p=531">老博客里面</a>，之前格式太乱。</em></h4>
 ]]></content>
   </entry>
   
