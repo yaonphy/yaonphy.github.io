@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CocoaPods | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-03T16:31:14+08:00</updated>
+  <updated>2014-04-03T17:31:48+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -89,6 +89,59 @@ pod &#39;HSSettingsApp&#39;, :head
 pod &#39;HSSocialReach&#39;, :head
 pod &#39;HSEmailApp&#39;, :head</code></pre></noscript></div>
 </p>
+
+<hr />
+
+<h3>将所有的东西粘合到一块</h3>
+
+<p>聪明的读者一定注意到了，我们在主应用中使用了很多的第三方开源工具，比如 <a href="https://github.com/Inferis/ViewDeck">IIViewDeck</a> 和 <a href="https://github.com/joeldev/JLRoutes">JLRoutes</a>。这也是将所有的子应用粘合到一块的关键。</p>
+
+<p>我们不需要在主应用中提供每个子应用能够处理的不同menu items 和 routes 信息。每一个子应用提供了一个单独的类，这个类实现了一个 HSBaseApp protocol 和一些方法，如下：</p>
+
+<p><div><script src='https://gist.github.com/8224163.js'></script>
+<noscript><pre><code>@protocol HSBaseApp &lt;NSObject&gt;
++ (UINavigationController *)baseNavigationController;
++ (NSArray *)menuItems;
++ (NSArray *)routesToRegister;
+@end</code></pre></noscript></div>
+</p>
+
+<p>下面给出一个具体的实现例子：</p>
+
+<p><div><script src='https://gist.github.com/8224273.js'></script>
+<noscript><pre><code>+ (UINavigationController *)baseNavigationController {
+    return [[HSNavigationController alloc] initWithRootViewController:[[HSSocialViewController alloc] initWithNibName:@&quot;HSSocialViewController&quot; bundle:nil]];
+}
+
++ (NSArray *)menuItems {
+    HSMenuItem *calendarMenuItem = [[HSMenuItem alloc] initWithTitle:@&quot;Publishing&quot; icon:@&quot;\\&quot; launchHubSpotApp:[HSSocial class]];
+    calendarMenuItem.sectionTitle = @&quot;Social&quot;;
+    
+    return @[calendarMenuItem];
+}
+
++ (NSArray *)routesToRegister {
+    HSRoute *newItemRoute = [HSRoute routeWithUrl:@&quot;social/new&quot; andAction:^BOOL(id&lt;HSRoutingDelegate&gt; routingDelegate, NSString *url, NSDictionary *parameters) {
+    //  handle route, usually by suppying a UIViewController to the routingDelegate
+    }];
+
+    NSArray *routes = @[newItemRoute]; // could be more routes here too
+
+    return routes;
+}</code></pre></noscript></div>
+</p>
+
+<p>我们使用 routes 来实现可能出现的 push 通知，我们同样使用这种模式来将子应用串到主应用中。比如这样的场景——我们从 Source 或者 Social Media 中跳到 Contact 。</p>
+
+<p>HSRoutingDelegate 在绕过当前活动的 UINavigationController 时，施展了一些小魔法。因此，我们可以根据特定的场景，Push 某个 controller 到屏幕顶层，或者创建一个模型化的 controller 。然而，它只是对 JLRoutes 的漂亮的基于 Block 的语法的简单封装。</p>
+
+<h3>我们还可以做些什么？</h3>
+
+<p>从长远的角度来看，我们想把简单的 Kiwi 测试添加到一些共享的库中，并且构建到 KIF 测试中。这样每一个通过 Kiwi 和 KIF 测试的子应用都可以构建到持续集成环境中。我们可以将当前最好的子应用版本拼合起来构成主应用的发布版本。</p>
+
+<p>你是如果管理多人团队的大型 iOS Apps 的开发的？有没有更好的方式？我们非常期待！</p>
+
+<h4>（本文完）</h4>
 ]]></content>
   </entry>
   
