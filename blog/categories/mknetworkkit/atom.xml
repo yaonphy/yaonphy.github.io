@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: MKNetworkKit | yaongfeng]]></title>
+  <link href="http://yaonphy.github.io/blog/categories/mknetworkkit/atom.xml" rel="self"/>
+  <link href="http://yaonphy.github.io/"/>
+  <updated>2014-04-03T18:16:04+08:00</updated>
+  <id>http://yaonphy.github.io/</id>
+  <author>
+    <name><![CDATA[yaongfeng]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[introducing MKNetworkKit]]></title>
+    <link href="http://yaonphy.github.io/blog/2014/04/03/introducing-mknetworkkit/"/>
+    <updated>2014-04-03T17:51:49+08:00</updated>
+    <id>http://yaonphy.github.io/blog/2014/04/03/introducing-mknetworkkit</id>
+    <content type="html"><![CDATA[<h4>文章的原版（英文原文）<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/">链接</a>，看到教程已经被翻译为<a href="http://science.webhostinggeeks.com/predstavljanje-mknetworkkit">塞尔维亚 – 克罗地亚语</a> by <a href="http://webhostinggeeks.com/">Jovana Milutinovich</a>，<a href="http://odoruinu.net/blog/mknetworkkit/">日语</a> by <a href="http://odoruinu.net/">@noradaiko</a>，<a href="http://blog.mugunthkumar.com/products/ios-framework-einfuhrung-in-mknetworkkit-german-translation-of-mknetworkkit-documentation/">德语</a> by <a href="https://twitter.com/jonaspencke">Jonas Pencke</a>.故而有了翻译为中文的念头。</h4>
+
+<p>如果有一个网络库能够自动的帮你搞定缓存处理，那该是多么爽的一件事。当你的App 的网络变为离线状态时，要是有一个网络库能够自动的保留未完成的网络操作，那简直爽歪歪的赶脚啊。
+你在离线状态下，将某个Tweet 标记为喜欢，或者将某个推荐内容标记为已读。你不用额外多敲任何代码，网络库会在网络处于连接状态时自动完成所有的离线任务。让我们一起走进 MKNetworkKit。</p>
+
+<hr />
+
+<h2>MKNetwork 渊源</h2>
+
+<p>MKNetwork 使用Objective-C编写，是一款与apple官方网络接口无缝对接，基于block，支持ARC，并且非常简单易用的网络库。编写MKNetwork的灵感来源于ASIHTTPRequest 和AFNetworking 这两款非常流行的OC网络库。</p>
+
+<p>在吸收这两款网络库的优秀功能的基础之上，MKNetwork 增加了一些 新的功能。除此之外，相比于其他网络库，MKNetwork能够让你写出更多清晰、简洁的代码。使用MKNetwork，你就很难写出非常恶心的网络接口代码了。</p>
+
+<hr />
+
+<h2>功能</h2>
+
+<h3>超轻量级</h3>
+
+<p>这个kit由两个主要的类，以及一些 category(附加)方法组成。这意味着，使用MKNetwork是超简单的一件事。</p>
+
+<p>为整个App 提供 单一共享 的请求队列</p>
+
+<p>基于大量网络请求的apps应当优化并发的网络请求操作。非常遗憾的是，目前没有一个网络库能够彻底的实现。如果你的应用程序没有优化/控制并发网络请求操作数，将会出现哪些问题呢？我下面一一举例说明。</p>
+
+<p>假设你正在往服务器传送一批图片（color or batch）。对于某一个IP地址，大多数的移动网络(3G)不允许超过两个的并发HTTP请求。也就是说，在3G网络环境下，你的移动设备不能开启多于两个的并发网络请求。在<a href="http://zh.wikipedia.org/wiki/GSM%E5%A2%9E%E5%BC%BA%E6%95%B0%E6%8D%AE%E7%8E%87%E6%BC%94%E8%BF%9B">EDGE</a>（2.75G）网络环境下，情况更糟糕，很多情况下，你都不能建立多于一个的网络连接。在Wifi环境下，情况会好一些，并发网络请求的上限个数是6。由于移动设备会在不同的网络环境中使用，所以应当根据网络环境对网络请求数做出相应的限制。通常，移动设备更多的使用3G网络，也就是说，同时最多上传两张图片。然而，问题不是缓慢的上传速度。当你在一个View（其他的View）中下载图片的缩略图，同时，上传图片的操作在后台运行。这样，真正的问题便出现了。如果你的App没能正确的控制网络连接队列中连接数的大小，缩略图的加载操作将会超时。这显然不是你想要的结果吧。遇到上述的情况，应该这样处理：提高下载缩略图的网络请求的优先级，或者等到上传图片的操作完成之后再加载缩略图。这就要求在整个App中始终保持单一的网络请求列。MKNetwork自动的为其每一个实例对象提供单一共享的请求队列。尽管MKNetwork本身不是一个单例，共享的queue是。</p>
+
+<h3>及时准确的显示网络活动指示图标</h3>
+
+<p>有很多第三方库的类追踪网络请求个数，通过网络请求个数的加加减减来显示/隐藏网络活动指示图标。回归到单一共享队列的原则，通过监听（KVO）operationCount 属性，MKNetwork自动地显示/隐藏网络活动指示图标。作为一个developer，你不再需要手动的控制网络活动指示图标，永远不需要。</p>
+
+<p>```objc
+if (object == _sharedNetworkQueue &amp;&amp; [keyPath isEqualToString:@&ldquo;operationCount&rdquo;]) {</p>
+
+<pre><code>    [UIApplication sharedApplication].networkActivityIndicatorVisible =
+    ([_sharedNetworkQueue.operations count] &amp;gt; 0);
+}
+</code></pre>
+
+<p>```</p>
+
+<h3>自动调整的队列大小</h3>
+
+<p>继续前面的讨论，我说大多数的网络不允许多于两个的并发网络连接。所以在3G网络环境下，你的queue的大小应当设置为2。MKNetwork自动的为你处理这些问题。当网络环境为3G/EDGE/GPRS,它自动的将当前并发网络连接数调整为2.当切换到wifi网络时，又自动的调整为6.有了这种技术，在3G 网络下，从远程服务器的图片库中下载缩略图（或者大量相似的请求）将会得到很大的性能提升。</p>
+
+<h3>自动缓存</h3>
+
+<p>MKNetwork能够自动的缓存所有的“GET”请求。当你再次发送相同的请求时，MKNetworkKit 会立即调用请求完成的回调方法，并传送缓存的数据。它也会再次向服务器发送请求。当从远程服务器获取到新的数据，请求完成的回调方法会被再次调用，而这时传送的是最新的数据。因此，你不需要手动的处理缓存。只需要写一行代码，调用一个方法即可，仅此而已。</p>
+
+<p><code>objc
+[[MKNetworkEngine sharedEngine] useCache];
+</code></p>
+
+<p>或者，你可以复写MKNetworkEngine 子类中的方法，自定义缓存的路径和内存中缓存的消耗。</p>
+
+<h3>操作冻结</h3>
+
+<p>使用MKNetworkKit ，你可以冻结网络操作。如果你冻结了一个网络请求操作，当网络连接中断时，它将被自动的加入冻结操作的线性队列中。一旦网络恢复，网络请求将会继续进行。比如微博中的草稿箱功能，就是一个很好的例子。</p>
+
+<p>当你发送了一个微博，并将其网络请求标记为冻结模式，这样MKNetworkKit 将会自动的处理冻结操作，并为你保存这个请求。这样的微博将会在稍后自动发布，而你不用写一行额外的代码的。这种方式也可以用到其它网络请求中，比如喜欢某个微博，在Google reader 客户端分享一篇文章，向Instapaper中添加一条链接。</p>
+
+<p>对于相似的网络请求，只执行一次</p>
+
+<p>当你加载缩略图（for a twitter stream）时，你最终可能会为每一个缩略图都创建一个网络请求。事实上，你所需要的的请求数和 独立的（unique URLs） 的URL个数是一致的。使用MKNetworkKit ，在queue中的每个GET请求，实际上只被执行了一次。MKNetworkKit  还不能做到对“POST”方式的请求进行智能缓存处理。</p>
+
+<h3>图片缓存</h3>
+
+<p>MKNetworkKit  可以完美的实现对图片的缓存处理。通过复写一些方法，你可以设置需要缓存的图片的数量，内存内缓存的负载，以及缓存的路径等。对于这些方法的复写完全是可选的。</p>
+
+<h3>性能</h3>
+
+<p>两个字，速度。MKNetworkKit 进行了无缝的缓存处理。它的处理方式就像NSCache一样，除此之外，当出现内存警告时，内存中的缓存会被转移到磁盘的缓存目录中。</p>
+
+<h3>完全支持ARC</h3>
+
+<p>你通常会为新的项目选择新的网络库。MKNetworkKit 并不是想让你替换掉正在使用的网络库（尽管可以，但是那是一件非常恶心的事儿）。在新的项目中，你总会想着去启用ARC，在写本篇文章的时候，MKNetworkKit 也许是唯一完全支持ARC的网络库。基于ARC的内存管理要比non-ARC（RRC）的内存管理快一个数量级。</p>
+
+<hr />
+
+<h2>如何使用</h2>
+
+<p>好了，不再自我陶醉了，让我们来看看如何使用这个网络库。</p>
+
+<h3>添加 MKNetworkKit 到你的项目中</h3>
+
+<p>1.将 MKNetworkKit 文件拖拽到你的项目中
+2.添加 CFNetwork.Framework, SystemConfiguration.framework,Security.framework，以及ImageIO.Framework。
+3.将 MKNetworkKit.h 添加到 PCH 文件中
+4.如果你开发的是iOS项目，删除 NSAlert+MKNetworkKitAdditions.h。
+5.如果你开发的是Mac项目，删除 UIAlertView+MKNetworkKitAdditions.h。</p>
+
+<p>仅仅需要5个核心文件，一个功能强大的网络库就配置好了。</p>
+
+<h3>MKNetworkKit 中的类</h3>
+
+<p>1.MKNetworkOperation
+2.MKNetworkEngine
+3.其它辅助类(苹果官方用于判断网络是否可连接的类)以及附加类（categories）</p>
+
+<p>我推崇简洁易用的原则。苹果已经为开发者完成了繁重的网络连接工作。一个三方库应该做的是，提供一个基于网络的任务队列，并实现可选的缓存功能。我认为所有的三方库都应当不超过10个类文件（无论这个三方库是网络库，或者UIKit的封装库，或者其它任何类型的库。反之，超过10个类文件的库都是臃肿的。 Three 20 是一个臃肿库的例子，ShareKit也是。也许它们是功能丰富的，但是太大，太臃肿。不像RESTKit那样，ASIHttpRequest 和 AFNetworking 是精悍轻巧的。JSONKit 比 TouchJSON（或者TouchCode 库中的其它分支类库） 轻量级。这也许只是我个人的观点，但是，如果在我的项目中，超过三分之一的代码都来自三方库，那我是无法接受的。</p>
+
+<p>使用臃肿的三方库带来的问题是，我们需要理解它的内部机制，进而进行自定义，使其与自己的需求融合（如果有这个需要的话）。我之前写的一个三方库（MKStoreKit：帮你添加应用内置购买功能）超轻量级，并且非常容易上手。我相信MKNetworkKit 也会保持这样的优点。要使用MKNetworkKit，你仅仅需要理解MKNetworkOperation和MKNetworkEngine这两个类提供的一些共用方法。MKNetworkOperation类和ASIHttpRequest类相似。它是NSOperation类的子类，并且进一步封装了所用到的request类和response类。你为你的App中的每一个网络操作创建了一个MKNetworkOperation类。</p>
+
+<p>MKNetworkEngine 是一个管理网络队列的“假”单例类。由于是假的单例，对于一些简单的请求，你可以直接使用MKNetworkEngine中的方法。在需要更多自定义功能的情况下，应该创建一个它的子类。每一个MKNetworkEngine的子类都有一个属于它自己的用于监测网络连接性的对象，此对象会在网络状态发生变化的时候给它发送通知。你应当为你所使用的每一个独立REST服务器创建一个MKNetworkEngine类的子类。由于是伪单例，所以在它的子类中的每一个单独请求都共享一个全局的单一队列。</p>
+
+<p>你可以在 application delegate 中保留一次MKNetworkEngine的实例对象，就像对CoreData中managedObjectContext类一样。在你使用MKNetworkKit的时候，你创建了一个MKnetworkEngine类的子类去有序的管理网络请求。比如，所以向Yahoo的请求方法定义在一个单独的类中，所有向Facebook的请求放在另一个单独的类中。我将展示使用该框架的三个不同的案例。</p>
+]]></content>
+  </entry>
+  
+</feed>
