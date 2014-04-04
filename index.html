@@ -1080,11 +1080,29 @@ pod &#39;HSEmailApp&#39;, :head</code></pre></noscript></div>
 
 <h3><a href="http://www.objc.io/issue-6/cocoapods-under-the-hood.html">CocoaPods Under The Hood</a></h3>
 
-<p>objc.io 系列的文章真的是太好了，当然这一篇也不例外。BTW，有一篇伯乐在线的译文供参考：<a href="http://blog.jobbole.com/53365/">iOS系列译文：深入理解 CocoaPods</a>。</p>
+<p>objc.io 系列的文章真的是太好了，当然这一篇也不例外。我的简体中文翻译版本：<a href="http://yaonphy.github.io/blog/2014/04/02/cocoapods-under-the-hood/">揭开CocoaPods的神秘面纱</a></p>
+
+<p>文章介绍了 CocoaPods 的几个核心组件：CocoaPods/CocoaPod，CocoaPods/Core，CocoaPods/Xcodeproj。之后通过 pod install &mdash;verbose 命令打印出信息入手，分析了详细的执行流程。之后又谈到 CocoaPod 如何在持续集成环境中更好的发挥作用。</p>
 
 <hr />
 
 <h3><a href="http://dev.hubspot.com/blog/architecting-a-large-ios-app-with-cocoapods">Using CocoaPods to Modularize a Big iOS App</a></h3>
+
+<p>这里有我的一篇翻译文章：<a href="http://yaonphy.github.io/blog/2014/04/02/using-cocoapods-to-modularize-big-app/">使用 CocoaPods 来模块化一个复杂庞大的 iOS App</a>，仅供参考。</p>
+
+<p>该文以作者开发的 HubSpot 项目为例，介绍了如何用 CocoaPods 来构建、管理功能丰富的大型 App。对于各个子功能之间耦合度比较松散，但是需要集成到一个整体 App 的情况，用 CocoaPods 将整体 App 模块化为若干个 sub-app，不但简化了架构，便于子功能层次的测试，还可以让代码管理变得更加轻松。</p>
+
+<p>文章通过具体的代码，分享了如何用 CocoaPods 将各个 sub-app 粘合起来，构建完整的应用。</p>
+
+<hr />
+
+<h3><a href="https://github.com/Galeas/CocoaPodUI">CocoaPodUI</a></h3>
+
+<p>这是一个 CocoaPod 图形化界面的 Xcode 插件，感兴趣的话可以试试。我目前还没用过。</p>
+
+<hr />
+
+<h4><em>2014.04.04 更新</em></h4>
 </div>
   
   
