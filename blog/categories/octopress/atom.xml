@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | yaongfeng]]></title>
+  <link href="http://yaonphy.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://yaonphy.github.io/"/>
+  <updated>2014-04-23T11:25:13+08:00</updated>
+  <id>http://yaonphy.github.io/</id>
+  <author>
+    <name><![CDATA[yaongfeng]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[在新的环境（电脑）配置已有的 Octopress 博客]]></title>
+    <link href="http://yaonphy.github.io/blog/2014/04/22/clone-a-octopress-to-new-places/"/>
+    <updated>2014-04-22T16:10:41+08:00</updated>
+    <id>http://yaonphy.github.io/blog/2014/04/22/clone-a-octopress-to-new-places</id>
+    <content type="html"><![CDATA[<p>于2014.04.14在苹果官方商城下单，预定了第一台属于自己的 Mac 电脑。内心自然是非常喜欢 MBA 的，也算是实现了近期的一个愿望。之前用过非Retina的15英寸 MBP，毕竟是配备的，不是自己的，感觉是完全不一样的（是不是有点偏执^_^）。离开的时候还得留下设备，细心点的话，还需要清空下浏览器的cookie啦，保留的密码啦，浏览历史记录啦等等个人信息。如果是个好人，还会清理掉其它所有自己认为不应该留给第二个机主看到的东西。拿到新的配备机后，重新配置环境，设置自己的喜好风格，太麻烦！</p>
+
+<p>再三纠结之后，选择了 i7 8G内存 128G闪存的配置，官网价格约9500人民币，使用教育优惠渠道（随机抽查（偷笑））购买约9000人民币。历经4天后，于4.18日下午到手，组装地在上海南汇，EMS的快递一般吧。</p>
+
+<hr />
+
+<h2>安装 Homebrew（可选）</h2>
+
+<p>由于后续操作依赖于Homebrew，所以必须要装的。可以按照 Homebrew <a href="http://brew.sh/">官网的说明</a>来安装。需要注意的是，最好将网络DNS设置为Google的8.8.8.8 DNS 服务，否则拉不下来数据，我是新机子，还没来得及设置 DNS ，试了好几次，下载都中断了。。。</p>
+
+<p>``` sh
+ruby -e &ldquo;$(curl -fsSL <a href="https://raw.github.com/Homebrew/homebrew/go/install">https://raw.github.com/Homebrew/homebrew/go/install</a>)&rdquo;</p>
+
+<p>```</p>
+
+<hr />
+
+<h2>安装 Ruby 的相关工具（可选）</h2>
+
+<p>如果你的机器中已经安装好了下面的工具，请忽略。</p>
+
+<h3>安装RVM</h3>
+
+<p>RVM可以方便的管理 Ruby 的各个版本，在 Terminal 输入下面的命令即可：</p>
+
+<p>``` sh
+curl -L <a href="https://get.rvm.io">https://get.rvm.io</a> | bash -s stable &mdash;ruby</p>
+
+<p>```</p>
+
+<h3>安装 bundle</h3>
+
+<p><code>sh
+gem install bundler
+bundle install
+</code></p>
+
+<hr />
+
+<h2>确保 remote 端的 repository 中 source 分支是最新的</h2>
+
+<p>在老机器（老环境中），如果一直使用 rake deploy 命令来 push 生成的 blog 资源到远程 repository 中，更新的只是 master 分支。看一下本地 source 分支（即 Octopress 根目录）中的内容是否和远程 source 分支中的内容同步，若不是，在老机器中，用下面的命令来 push 下：</p>
+
+<p>``` sh</p>
+
+<h1>切换到 Octopress 目录下</h1>
+
+<p>$ rake generate
+$ git add &mdash;a
+$ git commit -a &ldquo;Some comment here.&rdquo;
+$ git push origin source  # update the remote source branch
+```</p>
+
+<hr />
+
+<h2>在新环境中拉取 source 分支资源</h2>
+
+<p>在你想要的地方，将远程 source 分支拉取到 Octopress 目录，将 repository 地址更换为自己的而已。</p>
+
+<p>``` sh
+$ git clone -b source <a href="https://github.com/username/username.github.io.git">https://github.com/username/username.github.io.git</a> Octopress</p>
+
+<p>```</p>
+
+<hr />
+
+<h2>在新环境中拉取 master 分支资源</h2>
+
+<p>紧接着上一步，进入 Octopress 目录（随意），将远程 repository 中的 master 分支拉取到 _deploy 目录中，将 repository 地址更换为自己的而已</p>
+
+<p><code>sh
+$ cd Octopress
+$ git clone -b master https://github.com/username/username.github.io.git _deploy
+</code></p>
+
+<hr />
+
+<h2>完成</h2>
+
+<p>好了，现在可以在新环境下，使用 rake generate 和 rake preview 命令来生成和本地查看 blog 了。如果有在两个环境下同时更新博客的需求，就要像多人协作开发那样，提交更新前，需要先拉取远程资源，合并后再 push，以保持一致。</p>
+
+<hr />
+
+<h2>参考</h2>
+
+<p><a href="http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/">Clone Your Octopress to Blog From Two Places</a></p>
+]]></content>
+  </entry>
+  
+</feed>
