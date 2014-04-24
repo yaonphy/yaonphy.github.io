@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-23T11:25:13+08:00</updated>
+  <updated>2014-04-24T10:38:27+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -110,7 +110,9 @@
 
 <h2>参考</h2>
 
-<p><a href="http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/">Clone Your Octopress to Blog From Two Places</a></p>
+<p><a href="http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/">Clone Your Octopress to Blog From Two Places</a>
+<a href="http://octopress.org/docs/">Octopress</a>
+<a href="http://brew.sh/">Homebrew</a></p>
 ]]></content>
   </entry>
   
