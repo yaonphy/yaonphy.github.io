@@ -4,7 +4,7 @@
   <title><![CDATA[Category: review.io | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/review-dot-io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-30T12:20:25+08:00</updated>
+  <updated>2014-04-30T12:25:41+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -152,7 +152,6 @@ NSError *error = nil;
 <p>临时收集三个电子书收集站点：</p>
 
 <ul>
-<li><a href = "http://www.it-ebooks.info" target="_blank"><a href="http://www.it-ebooks.info">http://www.it-ebooks.info</a></a></li>
 <li><a href="http://www.it-ebooks.info">www.it-ebooks.info</a></li>
 <li><a href="http://www.salttiger.com">www.salttiger.com</a></li>
 <li><a href="http://www.ppurl.com">www.ppurl.com</a></li>
@@ -192,7 +191,7 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 <p>```</p>
 
-<h4>经过测试，在本地 rake preview 模式下，上述两种跳转方式都无法正确执行。</h4>
+<h4>经过测试，在本地 rake preview 模式下，以及 deploy 之后，上述两种跳转方式都无效。</h4>
 ]]></content>
   </entry>
   

@@ -23,17 +23,6 @@
   <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script language = "JavaScript">
-        function addBlankTargetForLinks () {
-            $('a[href^="http"]').each(function(){
-                                      $(this).attr('target', '_blank');
-                                      });
-        }
-    
-    $(document).bind('DOMNodeInserted', function(event) {
-                     addBlankTargetForLinks();
-                     });
-        </script>
 
   <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
   
@@ -276,7 +265,6 @@ URLForDirectory:inDomain:appropriateForURL:create:error: 方法：</p>
 <p>临时收集三个电子书收集站点：</p>
 
 <ul>
-<li><a href = "http://www.it-ebooks.info" target="_blank"><a href="http://www.it-ebooks.info">http://www.it-ebooks.info</a></a></li>
 <li><a href="http://www.it-ebooks.info">www.it-ebooks.info</a></li>
 <li><a href="http://www.salttiger.com">www.salttiger.com</a></li>
 <li><a href="http://www.ppurl.com">www.ppurl.com</a></li>
@@ -323,7 +311,7 @@ URLForDirectory:inDomain:appropriateForURL:create:error: 方法：</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>经过测试，在本地 rake preview 模式下，上述两种跳转方式都无法正确执行。</h4>
+<h4>经过测试，在本地 rake preview 模式下，以及 deploy 之后，上述两种跳转方式都无效。</h4>
 </div>
 
 
