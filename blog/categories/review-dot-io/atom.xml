@@ -4,7 +4,7 @@
   <title><![CDATA[Category: review.io | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/review-dot-io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-29T18:37:50+08:00</updated>
+  <updated>2014-04-30T12:18:06+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -144,6 +144,55 @@ NSError *error = nil;
 <p><blockquote><p>一切都会过去的（This too shall pass）</p></blockquote></p>
 
 <p>我们短暂而辉煌的生命也是这个道理啊。</p>
+
+<hr />
+
+<h2>电子书网站</h2>
+
+<p>临时收集三个电子书收集站点：</p>
+
+<ul>
+<li><a href = "http://www.it-ebooks.info" target="_blank"><a href="http://www.it-ebooks.info">http://www.it-ebooks.info</a></a></li>
+<li><a href="http://www.it-ebooks.info">www.it-ebooks.info</a></li>
+<li><a href="http://www.salttiger.com">www.salttiger.com</a></li>
+<li><a href="http://www.ppurl.com">www.ppurl.com</a></li>
+</ul>
+
+
+<p>之后，又发现 <a href="http://www.zhihu.com/question/19734795?rf=19620112">合法地免费下载电子书的站点有哪些推荐?</a> 罗列的更加全面！！</p>
+
+<hr />
+
+<h2>Octopress 中点击链接之后，跳转到新打开的页面。</h2>
+
+<p>可以在 Octopress根目录/source/_includes/custom/head.html 文件中加入如下代码</p>
+
+<p>``` html</p>
+
+<script language = "JavaScript">
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+        $(this).attr('target', '_blank');
+    });
+}
+ 
+$(document).bind('DOMNodeInserted', function(event) {
+    addBlankTargetForLinks();
+});
+</script>
+
+
+<p>```
+也可直接使用 HTML 的标签</p>
+
+<p>``` html</p>
+
+<pre><code>&lt;a href="http://newPage.html" target="_blank"&gt;new page&lt;/a&gt;
+</code></pre>
+
+<p>```</p>
+
+<h4>经过测试，在本地 rake preview 模式下，上述两种跳转方式都无法正确执行。</h4>
 ]]></content>
   </entry>
   

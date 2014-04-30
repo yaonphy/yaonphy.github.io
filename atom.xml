@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-29T18:37:50+08:00</updated>
+  <updated>2014-04-30T12:18:06+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -165,6 +165,62 @@ URLForDirectory:inDomain:appropriateForURL:create:error: 方法：</p>
 
 
 <p>我们短暂而辉煌的生命也是这个道理啊。</p>
+
+<hr />
+
+<h2>电子书网站</h2>
+
+<p>临时收集三个电子书收集站点：</p>
+
+<ul>
+<li><a href = "http://www.it-ebooks.info" target="_blank"><a href="http://www.it-ebooks.info">http://www.it-ebooks.info</a></a></li>
+<li><a href="http://www.it-ebooks.info">www.it-ebooks.info</a></li>
+<li><a href="http://www.salttiger.com">www.salttiger.com</a></li>
+<li><a href="http://www.ppurl.com">www.ppurl.com</a></li>
+</ul>
+
+
+<p>之后，又发现 <a href="http://www.zhihu.com/question/19734795?rf=19620112">合法地免费下载电子书的站点有哪些推荐?</a> 罗列的更加全面！！</p>
+
+<hr />
+
+<h2>Octopress 中点击链接之后，跳转到新打开的页面。</h2>
+
+<p>可以在 Octopress根目录/source/_includes/custom/head.html 文件中加入如下代码</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">language =</span><span class="err"> </span><span class="s">&quot;JavaScript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">addBlankTargetForLinks</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a[href^=&quot;http&quot;]&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="s1">&#39;_blank&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;DOMNodeInserted&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">addBlankTargetForLinks</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也可直接使用 HTML 的标签</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://newPage.html&quot;</span> <span class="na">target=</span><span class="s">&quot;_blank&quot;</span><span class="nt">&gt;</span>new page<span class="nt">&lt;/a&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>经过测试，在本地 rake preview 模式下，上述两种跳转方式都无法正确执行。</h4>
 ]]></content>
   </entry>
   
