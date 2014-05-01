@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-05-01T09:46:45+08:00</updated>
+  <updated>2014-05-01T14:44:15+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -18,7 +18,7 @@
     <link href="http://yaonphy.github.io/blog/2014/05/01/review-io-me/"/>
     <updated>2014-05-01T08:39:37+08:00</updated>
     <id>http://yaonphy.github.io/blog/2014/05/01/review-io-me</id>
-    <content type="html"><![CDATA[<h2><a href="http://nshipster.com/associated-objects/">Associated Object</a><a href="http://nshipster.cn/associated-objects/">中文_1</a><a href="http://esoftmobile.com/2014/02/18/associated-objects/">中文_2</a></h2>
+    <content type="html"><![CDATA[<h2><a href="http://nshipster.com/associated-objects/">Associated Object</a><a href="http://nshipster.cn/associated-objects/">&lt;中文_1></a><a href="http://esoftmobile.com/2014/02/18/associated-objects/">&lt;中文_2></a></h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &lt;objc/runtime.h&gt;</span>
@@ -73,7 +73,7 @@ Associated Objects/Associative References 就是其中的一个主题。其在 O
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>key 最好是 static char，是一个指针的话更好。</p>
+<p>key 最好是 static char，是一个指针的话更好,必须保证唯一性。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -82,16 +82,61 @@ Associated Objects/Associative References 就是其中的一个主题。其在 O
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>用 selector 的话，是一种更加简洁的方式。</p>
+<p>用 selector 的话也行，是一种更加简洁的方式。</p>
 
 <blockquote><p>Since SELs are guaranteed to be unique and constant, you can use _cmd as the key for objc_setAssociatedObject(). <a href="https://twitter.com/search?q=%23objective&amp;src=hash">#objective-c</a> <a href="https://twitter.com/search?q=%23snowleopard&amp;src=hash">#snowleopard</a></p>
 
 <p>— Bill Bumgarner (<a href="https://twitter.com/bbum/statuses/3609098005">@bbum</a>) August 28, 2009</p></blockquote>
+
+<h3>AssociationPolicy</h3>
+
+<p>objc_AssociationPolicy 参数指定了 property 以何种方式与对象关联，具体对应关系查看原文列表，或者<a href="file:///Users/yaongfeng/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS7.1.iOSLibrary.docset/Contents/Resources/Documents/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/func/objc_setAssociatedObject">官方文档</a>。</p>
+
+<p>需要注意的是，OBJC_ASSOCIATION_ASSIGN 方式关联的 property 和 直接用 weak 修饰的 property 并不完全一样，反而更像 unsafe_unretained 修饰的property。</p>
+
+<blockquote><p>According to the Deallocation Timeline described in <a href="https://developer.apple.com/videos/wwdc/2011/#322-video">WWDC 2011, Session 322 (~36:00)</a>, associated objects are erased surprisingly late in the object lifecycle, in object_dispose(), which is invoked by NSObject -dealloc.</p></blockquote>
+
+<h3>Removing Objects</h3>
+
+<h4>不要直接使用 objc_removeAssociatedObjects() 来移除对象，因为该方法会移除目标对象关联的所有对象。可行的方法是，调用 objc_setAssociatedObject 方法，并传递 nil 为参数。</h4>
+
+<h3>应该这样使用</h3>
+
+<ul>
+<li>添加 private variable，以便于实现细节的东西。比如，<a href="https://github.com/AFNetworking/AFNetworking/blob/2.1.0/UIKit%2BAFNetworking/UIImageView%2BAFNetworking.m#L57-L63">AFNetworking 的实现中</a>，为 UIImageView category 关联了一个 AFHTTPRequestOperation 类型的 property，用于异步地从远程服务器下载图片。（用于追踪额外的信息）</li>
+<li><p>为 category 添加 public property，以便于扩展。同样，在 <a href="https://github.com/AFNetworking/AFNetworking/blob/2.1.0/UIKit%2BAFNetworking/UIImageView%2BAFNetworking.h#L60-L65">AFNetworking 的实现中</a>,为 UIImageView category 关联了一个 imageResponseSerializer 类型的 property，可以在设置其 UIImage （保存到磁盘）之前，对 UIImage 做一些渲染更改，而是否更改是可选的。</p></li>
+<li><p>为 KVO category 创建一个 associated observer。最好用 associated-object 作为 Observer，而不是对象自己 Observer 自己。</p></li>
+</ul>
+
+
+<h3>不要这样使用</h3>
+
+<ul>
+<li>如果 associated object 的值仅仅用到一次，那么最好不要用这种方式。</li>
+<li>如果 associated object 的值很容易通过其它方式获取到时，没必要这样使用。</li>
+<li>使用 associated object 来替代下面的选项时，也最好别用。
+
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/cocoa/conceptual/ProgrammingWithObjectiveC/CustomizingExistingClasses/CustomizingExistingClasses.html">Subclassing</a></li>
+<li><a href="https://developer.apple.com/library/ios/documentation/general/conceptual/Devpedia-CocoaApp/TargetAction.html">Target-Action</a></li>
+<li><a href="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/GestureRecognizer_basics/GestureRecognizer_basics.html">Gesture Recognizers</a></li>
+<li><a href="https://developer.apple.com/library/ios/documentation/general/conceptual/DevPedia-CocoaCore/Delegation.html">Delegation</a></li>
+<li><a href="http://nshipster.com/nsnotification-and-nsnotificationcenter/">NSNoification&amp;NSNotificationCenter</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h4>category 一般也不会成为最先考虑的技术，associated object 最好在别无选择时使用。一些 hack 形式的技术，很多人往往急着拿来一试身手。这样不好，最好先对其进行深入透彻的了解，再在合适的地方运用。</h4>
+
+<hr />
+
+<h1>#</h1>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[review.io.1]]></title>
+    <title type="html"><![CDATA[review.io.01]]></title>
     <link href="http://yaonphy.github.io/blog/2014/04/29/review-io-me/"/>
     <updated>2014-04-29T14:49:13+08:00</updated>
     <id>http://yaonphy.github.io/blog/2014/04/29/review-io-me</id>
