@@ -4,7 +4,7 @@
   <title><![CDATA[Category: review-io | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/review-io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-05-01T08:36:10+08:00</updated>
+  <updated>2014-05-01T09:46:45+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[review.io.02]]></title>
+    <link href="http://yaonphy.github.io/blog/2014/05/01/review-io-me/"/>
+    <updated>2014-05-01T08:39:37+08:00</updated>
+    <id>http://yaonphy.github.io/blog/2014/05/01/review-io-me</id>
+    <content type="html"><![CDATA[<h2><a href="http://nshipster.com/associated-objects/">Associated Object</a><a href="http://nshipster.cn/associated-objects/">中文_1</a><a href="http://esoftmobile.com/2014/02/18/associated-objects/">中文_2</a></h2>
+
+<p>``` objc</p>
+
+<h1>import &lt;objc/runtime.h></h1>
+
+<p>```</p>
+
+<p>使用 &lt;objc/runtime.h> 中的方法是有风险的。可以用它里面的方法来实现其它任何方法都无法实现的功能，也可以对系统产生比其它方法更加恶劣的影响。
+Associated Objects/Associative References 就是其中的一个主题。其在 Objective-C 2.0 中被引入，适用于 Mac OS X 10.6 Snow Leopard (及iOS4)之后的系统环境。主要包括三个方法：</p>
+
+<p>``` objc</p>
+
+<p>void objc_setAssociatedObject(id object, void <em>key, id value, objc_AssociationPolicy policy);
+id objc_getAssociatedObject(id object, void </em>key)
+void objc_removeAssociatedObjects(id object);</p>
+
+<p>```</p>
+
+<h4>最主要的一点是，它允许开发者在已经存在的类的 category 中添加自定义的 property。举个栗子：</h4>
+
+<p>``` objc NSObject + AssociatedObject.h</p>
+
+<p>@interface NSObject (AssociatedObject)
+@property (nonatomic, strong) id associatedObject;
+@end</p>
+
+<p>```</p>
+
+<p>``` objc  NSObject + AssociatedObject.m
+@implementation NSObject (AssociatedObject)
+@dynamic associatedObject;</p>
+
+<ul>
+<li><p>(void)setAssociatedObject:(id)object {
+   objc_setAssociatedObject(self, @selector(associatedObject), object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}</p></li>
+<li><p>(id)associatedObject {
+  return objc_getAssociatedObject(self, @selector(associatedObject));
+}</p></li>
+</ul>
+
+
+<p>```</p>
+
+<p>key 最好是 static char，是一个指针的话更好。</p>
+
+<p>``` objc</p>
+
+<p>static char kAssociatedObjectKey;
+objc_getAssociatedObject(self, &amp;kAssociatedObjectKey);</p>
+
+<p>```</p>
+
+<p>用 selector 的话，是一种更加简洁的方式。</p>
+
+<blockquote><p>Since SELs are guaranteed to be unique and constant, you can use _cmd as the key for objc_setAssociatedObject(). <a href="https://twitter.com/search?q=%23objective&amp;src=hash">#objective-c</a> <a href="https://twitter.com/search?q=%23snowleopard&amp;src=hash">#snowleopard</a></p>
+
+<p>— Bill Bumgarner (<a href="https://twitter.com/bbum/statuses/3609098005">@bbum</a>) August 28, 2009</p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[review.io.1]]></title>
