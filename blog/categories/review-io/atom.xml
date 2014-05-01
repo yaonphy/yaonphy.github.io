@@ -4,7 +4,7 @@
   <title><![CDATA[Category: review-io | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/review-io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-04-30T14:59:32+08:00</updated>
+  <updated>2014-05-01T08:36:10+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -192,6 +192,37 @@ $(document).bind('DOMNodeInserted', function(event) {
 <p>```</p>
 
 <h4>经过测试，在本地 rake preview 模式下，以及 deploy 之后，上述两种跳转方式都无效。</h4>
+
+<hr />
+
+<h2><a href="http://nshipster.com/nscache/">NSCache(|kæʃ|)</a><a href="http://nshipster.cn/nscache/">中文</a></h2>
+
+<p>NSCache 被很多开发者忽略了。它和 NSMutableDictionary 一样，都具有垃圾回收功能。唯一不同于 NSMutableDictionary 的是，NSCache 中保存的 keys 并不是复制的，这反而成了它的一个优势。
+NSCache 可以说是一个烫手的山芋。为什么呢？
+其 setObject:forKey:cost: 方法和 NSMutableDictionary 的 setObject:forKey: 很相似，只是多了一个 cost 参数。</p>
+
+<blockquote><p>官方文档中说，const 值用来衡量 Cache 中的所有对象所要消耗的资源。
+当内存不足，或者该值超出最大允许范围之后，Cache 将开始清理一些无用的元素。</p></blockquote>
+
+<div class="alert alert-info">
+<p>
+    <span class="glyphicon glyphicon-info-sign"></span>
+   但是，清理的过程并不能确保按照确定的顺序进行。所以，当你想通过控制 cost 参数来进行某些特殊操作时，结果可能不是你想要的。
+   最直观的 const 值应该是所占的字节数，如果不能很容易的读取到的话，也就没必要花太多功夫去计算了。这时可以传 0 ，或者选用 setObject:forKey: 方法。
+   使用 evictsObjectsWithDiscardedContent 和 NSDiscardableContent 来控制自动回收，也许同样会出现问题。
+</div>
+
+
+<p>总之，Mattt 认为，如果你不认识苹果内部写这些方法的人的话，最好别用它们了。</p>
+
+<h4>尽管如此，大家应该更多的使用 NSCache 来实现缓存处理，但是要用下面的这些不烫手的方法：</h4>
+
+<ul>
+<li>objectForKey:</li>
+<li>setObject:forKey</li>
+<li>removeObjectForKey:</li>
+</ul>
+
 ]]></content>
   </entry>
   
