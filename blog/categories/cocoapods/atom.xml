@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CocoaPods | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-05-04T11:07:05+08:00</updated>
+  <updated>2014-05-04T11:09:16+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -436,18 +436,20 @@ Resolving dependencies for target &lsquo;Pods&rsquo; (iOS 6.0)
 
 <hr />
 
-<h2>CocoaPods Specs 国内镜像</h2>
+<h3>CocoaPods Specs 国内镜像</h3>
 
 <p>[@阿宽] 分享了两个国内的 CocoaPod Specs 镜像地址，分别在 <a href="https://gitcafe.com/akuandev/Specs.git">gitcafe</a> 和 <a href="http://git.oschina.net/akuandev/Specs">oschina</a>，每隔 10 分钟更新一次。</p>
 
 <p>更改方法：</p>
 
-<p><code>sh
-pod repo remove master
-// 使用 oschina 的地址，换为 http://git.oschina.net/akuandev/Specs.git
-pod repo add master https://gitcafe.com/akuandev/Specs.git
+<p>``` sh
+pod repo remove master</p>
+
+<h1>使用 oschina 的地址，换为 <a href="http://git.oschina.net/akuandev/Specs.git">http://git.oschina.net/akuandev/Specs.git</a></h1>
+
+<p>pod repo add master <a href="https://gitcafe.com/akuandev/Specs.git">https://gitcafe.com/akuandev/Specs.git</a>
 pod repo update
-</code></p>
+```</p>
 
 <p>第二条命令执行的时间比较长，会 clone 整个 repository。</p>
 
