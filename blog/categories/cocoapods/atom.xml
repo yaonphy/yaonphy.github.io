@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CocoaPods | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-05-01T14:44:15+08:00</updated>
+  <updated>2014-05-04T11:07:05+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -402,7 +402,7 @@ Resolving dependencies for target &lsquo;Pods&rsquo; (iOS 6.0)
 
 <h3><a href="http://blog.devtang.com/blog/2012/12/02/use-cocoapod-to-manage-ios-lib-dependency/">使用CocoaPods来做iOS程序的包依赖管理</a></h3>
 
-<p>巧哥的这篇还是比较全面的，从其他语言的代码依赖管理工具引入，用他们团队开发的粉笔网客户端为例，阐释了为什么应该使用CocoaPods,以及其带来的好处。接着描述了CocoaPods的安装过程，用实例说明了如何用其导入<a href="https://github.com/CocoaPods/Specs">CocoaPods/Specs</a>中提供的第三方库。另外，还介绍了pod search命令——根据关键字快速查看相匹配库的信息。当然，甄选优质的同类型库需要咨询使用过的开发者或者跟进一步的实践。文章还提到，为了利于团队协作，不能将Podfile.lock加入.gitignore文件中，如果安装appledoc工具，CocoaPods还可以帮助生成帮助文档。最后，简单的阐释了下子CocoaPods的内部原理。</p>
+<p>巧哥的这篇还是比较全面的，从其他语言的代码依赖管理工具引入，用他们团队开发的粉笔网客户端为例，阐释了为什么应该使用CocoaPods,以及其带来的好处。接着描述了CocoaPods的安装过程，用实例说明了如何用其导入<a href="https://github.com/CocoaPods/Specs">CocoaPods/Specs</a>中提供的第三方库。另外，还介绍了pod search命令——根据关键字快速查看相匹配库的信息。当然，甄选优质的同类型库需要咨询使用过的开发者或者更进一步的实践。文章还提到，为了利于团队协作，不能将Podfile.lock加入.gitignore文件中，如果安装appledoc工具，CocoaPods还可以帮助生成帮助文档。最后，简单的阐释了下子CocoaPods的内部原理。</p>
 
 <hr />
 
@@ -436,7 +436,24 @@ Resolving dependencies for target &lsquo;Pods&rsquo; (iOS 6.0)
 
 <hr />
 
-<h4><em>2014.04.04 更新</em></h4>
+<h2>CocoaPods Specs 国内镜像</h2>
+
+<p>[@阿宽] 分享了两个国内的 CocoaPod Specs 镜像地址，分别在 <a href="https://gitcafe.com/akuandev/Specs.git">gitcafe</a> 和 <a href="http://git.oschina.net/akuandev/Specs">oschina</a>，每隔 10 分钟更新一次。</p>
+
+<p>更改方法：</p>
+
+<p><code>sh
+pod repo remove master
+// 使用 oschina 的地址，换为 http://git.oschina.net/akuandev/Specs.git
+pod repo add master https://gitcafe.com/akuandev/Specs.git
+pod repo update
+</code></p>
+
+<p>第二条命令执行的时间比较长，会 clone 整个 repository。</p>
+
+<hr />
+
+<h4><em>2014.05.04 更新</em></h4>
 ]]></content>
   </entry>
   
