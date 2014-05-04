@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-05-04T11:09:16+08:00</updated>
+  <updated>2014-05-04T11:12:05+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -1395,7 +1395,7 @@ pod &#39;HSEmailApp&#39;, :head</code></pre></noscript></div>
 
 <h3>CocoaPods Specs 国内镜像</h3>
 
-<p>[@阿宽] 分享了两个国内的 CocoaPod Specs 镜像地址，分别在 <a href="https://gitcafe.com/akuandev/Specs.git">gitcafe</a> 和 <a href="http://git.oschina.net/akuandev/Specs">oschina</a>，每隔 10 分钟更新一次。</p>
+<p><a href="http://weibo.com/325521517">@阿宽</a> 分享了两个国内的 CocoaPod Specs 镜像地址，分别在 <a href="https://gitcafe.com/akuandev/Specs.git">gitcafe</a> 和 <a href="http://git.oschina.net/akuandev/Specs">oschina</a>，每隔 10 分钟更新一次。</p>
 
 <p>更改方法：</p>
 
