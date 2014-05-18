@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Bash-io | yaongfeng]]></title>
+  <link href="http://yaonphy.github.io/blog/categories/bash-io/atom.xml" rel="self"/>
+  <link href="http://yaonphy.github.io/"/>
+  <updated>2014-05-18T16:48:25+08:00</updated>
+  <id>http://yaonphy.github.io/</id>
+  <author>
+    <name><![CDATA[yaongfeng]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Bash.io.01]]></title>
+    <link href="http://yaonphy.github.io/blog/2014/05/05/bash-io/"/>
+    <updated>2014-05-05T11:25:53+08:00</updated>
+    <id>http://yaonphy.github.io/blog/2014/05/05/bash-io</id>
+    <content type="html"><![CDATA[<h2>Bash and Bash scripts</h2>
+
+<h3>Common shell programs</h3>
+
+<p>UNIX shell 程序一行一行地解释执行用户指令，并在系统中搜寻这些指令。用户在 terminal 中输入这些命令，或者写入一个称之为 shell 脚本的文件中。 shell 除了将指令传送给内核程序外，另一个主要的任务是为用户提供一个交互环境，该环境可以通过 shell 的配置文件来配置。</p>
+
+<p>shell 也有很多类型(变种)，通过如下指令来查看特定 Linux 机器中可用的 shell
+``` sh
+$ cat /etc/shells</p>
+
+<h1>List of acceptable shells for chpass(1).</h1>
+
+<h1>Ftpd will not allow users to connect who are not using</h1>
+
+<h1>one of these shells.</h1>
+
+<p>/bin/bash
+/bin/csh
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh</p>
+
+<p>```
+不同类型 shell 之间的切换，在 terminal 直接输入 shell 名称即可。</p>
+
+<p>``` sh
+bash
+bash-3.2$</p>
+
+<p>```</p>
+
+<div class="alert alert-info">
+<p>
+    <span class="glyphicon glyphicon-info-sign"></span>
+    修改 Mac OS Terminal 默认打开的 shell： 偏好设置 --> 启动 --> Shell 的打开方式 --> 命令（完整路径）。
+    /etc/passwd 文件中未找到对默认 shell 的设置。
+</div>
+
+
+<h3>Bash startup files</h3>
+
+<p>interactive login shell 的形式调用，startup files 执行顺序</p>
+
+<ul>
+<li>/etc/profile</li>
+<li>~/.bash_profile, ~/.bash_login or ~/.profile   //first existing readable file is read</li>
+<li>~/.bash_logout //upon logout</li>
+</ul>
+
+
+<p>interactive non-login shell 的形式调用，Files read:</p>
+
+<ul>
+<li>~/.bashrc   //该文件通常指向 ~/.bash_profile</li>
+</ul>
+
+
+<p>non-interactively
+脚本文件通常用这种方式。Files read:</p>
+
+<ul>
+<li>defined by BASH_ENV</li>
+</ul>
+
+
+<p>Invoked remotely,Files read:</p>
+
+<ul>
+<li>~/.bashrc</li>
+</ul>
+
+
+<h3>Executing commands</h3>
+
+<p>在执行一个脚本程序时，Bash 会 fork 出一个子进程来负责处理，处理完成后，父进程被唤醒，继续下面的操作。fork 出来的子进程和父进程的配置差不多，只不过进程 ID 不一样。在 Terminal 执行时也相似。</p>
+
+<p>shell 内置命令：</p>
+
+<ul>
+<li><p>Bourne Shell built-ins: :, ., break, cd, continue, eval, exec, exit, export, getopts, hash, pwd, readonly, return, set, shift, test, [, times, trap, umask and unset
+Bash built-in commands:</p></li>
+<li><p>alias, bind, builtin, command, declare, echo, enable, help, let, local, logout, printf, read, shopt, type, typeset, ulimit and unalias.</p></li>
+</ul>
+
+
+<hr />
+
+<h2>preference</h2>
+
+<p><a href="http://stackoverflow.com/questions/2979609/is-there-a-good-free-prefrerably-pdf-bash-tutorial-online">stackoverflow</a>
+<a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/">Bash Guide for Begainnners</a>
+<a href="http://fity.info/2014/03/06/easy-bash-note/">简明 Bash 笔记</a>
+<a href="http://macshuo.com/?p=676">终极 Shell</a></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>这是一篇测试用的文章标题啊！！ - yaongfeng</title>
+  <title>Bash.io.01 - yaongfeng</title>
   <meta name="author" content="yaongfeng">
 
   
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yaonphy.github.io/blog/2014/03/06/just-for-test">
+  <link rel="canonical" href="http://yaonphy.github.io/blog/2014/05/05/bash-io">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="yaongfeng" type="application/atom+xml">
 
@@ -97,22 +97,28 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-06T17:23:22+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2014</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-05T11:25:53+08:00" pubdate data-updated="true">May 5<span>th</span>, 2014</time>
         
       </p>
     
     
     <h1 class="entry-title">
-        这是一篇测试用的文章标题啊！！
+        Bash.io.01
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix"><h2>第一篇blog</h2>
+<div class="entry-content clearfix"><h2>Bash and Bash scripts</h2>
 
-<figure class='code'><figcaption><span>let me test code highlighting</span><a href='http://www.github.com/'>source code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<h3>Common shell programs</h3>
+
+<p>UNIX shell 程序一行一行地解释执行用户指令，并在系统中搜寻这些指令。用户在 terminal 中输入这些命令，或者写入一个称之为 shell 脚本的文件中。 shell 除了将指令传送给内核程序外，另一个主要的任务是为用户提供一个交互环境，该环境可以通过 shell 的配置文件来配置。</p>
+
+<p>shell 也有很多类型(变种)，通过如下指令来查看特定 Linux 机器中可用的 shell</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -123,77 +129,91 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &quot;Cocoa1AppDelegate.h&quot;</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>cat /etc/shells
+</span><span class='line'><span class="c"># List of acceptable shells for chpass(1).</span>
+</span><span class='line'><span class="c"># Ftpd will not allow users to connect who are not using</span>
+</span><span class='line'><span class="c"># one of these shells.</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">@implementation</span> <span class="nc">Cocoa1AppDelegate</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">@synthesize</span> <span class="n">window</span><span class="p">,</span><span class="n">siteUrl</span><span class="p">,</span><span class="n">pageContents</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationDidFinishLaunching:</span><span class="p">(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">aNotification</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="c1">// Insert code here to initialize your application</span>
-</span><span class='line'>    <span class="n">model</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Cocoa1Model</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">getSiteContents:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span> <span class="p">{</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">model</span> <span class="nl">setPageUrl:</span><span class="p">[</span><span class="n">siteUrl</span> <span class="n">stringValue</span><span class="p">]];</span>
-</span><span class='line'>    <span class="n">NSString</span><span class="o">*</span> <span class="n">reply</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span> <span class="n">getUrlAsString</span><span class="p">];</span>
-</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;pageSrc: %@&quot;</span><span class="p">,</span> <span class="n">reply</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">pageContents</span> <span class="nl">setString:</span><span class="n">reply</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[[[</span><span class="n">pageContents</span> <span class="n">textStorage</span><span class="p">]</span> <span class="n">mutableString</span><span class="p">]</span> <span class="nl">appendString:</span><span class="n">reply</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">@end</span>
+</span><span class='line'>/bin/bash
+</span><span class='line'>/bin/csh
+</span><span class='line'>/bin/ksh
+</span><span class='line'>/bin/sh
+</span><span class='line'>/bin/tcsh
+</span><span class='line'>/bin/zsh
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>不同类型 shell 之间的切换，在 terminal 直接输入 shell 名称即可。</p>
 
-
-<figure class='code'><figcaption><span>Discover if a number is prime</span><a href='http://www.noulakaz.net/weblog/2007/03/18/a-regular-expression-to-check-for-prime-numbers/'>Source Article</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Fixnum</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">prime?</span>
-</span><span class='line'>    <span class="p">(</span><span class="s1">&#39;1&#39;</span> <span class="o">*</span> <span class="nb">self</span><span class="p">)</span> <span class="o">!~</span> <span class="sr">/^1?$|^(11+?)\1+$/</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>bash
+</span><span class='line'>bash-3.2<span class="err">$</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<div class="alert alert-info">
+<p>
+    <span class="glyphicon glyphicon-info-sign"></span>
+    修改 Mac OS Terminal 默认打开的 shell： 偏好设置 &#8211;> 启动 &#8211;> Shell 的打开方式 &#8211;> 命令（完整路径）。
+    /etc/passwd 文件中未找到对默认 shell 的设置。
+</div>
 
 
-<blockquote><p>Last night I lay in bed looking up at the stars in the sky and I thought to myself, where the heck is the ceiling.</p></blockquote>
+<h3>Bash startup files</h3>
+
+<p>interactive login shell 的形式调用，startup files 执行顺序</p>
+
+<ul>
+<li>/etc/profile</li>
+<li>~/.bash_profile, ~/.bash_login or ~/.profile   //first existing readable file is read</li>
+<li>~/.bash_logout //upon logout</li>
+</ul>
 
 
+<p>interactive non-login shell 的形式调用，Files read:</p>
+
+<ul>
+<li>~/.bashrc   //该文件通常指向 ~/.bash_profile</li>
+</ul>
 
 
-<blockquote><p>Over the past 24 hours I&#8217;ve been reflecting on my life & I&#8217;ve realized only one thing. I need a medieval battle axe.</p><footer><strong>@allanbranch</strong> <cite><a href='https://twitter.com/allanbranch/status/90766146063712256'>twitter.com/allanbranch/status/&hellip;</a></cite></footer></blockquote>
+<p>non-interactively
+脚本文件通常用这种方式。Files read:</p>
+
+<ul>
+<li>defined by BASH_ENV</li>
+</ul>
 
 
-<h1>添加些东西</h1>
+<p>Invoked remotely,Files read:</p>
 
-<div><script src='https://gist.github.com/4321346.js'></script>
-<noscript><pre><code>@@ -590,7 +590,7 @@ class SpritesTest &lt; Test::Unit::TestCase
-  it &quot;should generate a sprite from nested folders&quot; do
-    css = render &lt;&lt;-SCSS
--     @import &quot;nested/*.png&quot;;
-+     @import &quot;nested/**/*.png&quot;;
-      @include all-nested-sprites;
-    SCSS
-    assert_correct css, &lt;&lt;-CSS</code></pre></noscript></div>
+<ul>
+<li>~/.bashrc</li>
+</ul>
 
+
+<h3>Executing commands</h3>
+
+<p>在执行一个脚本程序时，Bash 会 fork 出一个子进程来负责处理，处理完成后，父进程被唤醒，继续下面的操作。fork 出来的子进程和父进程的配置差不多，只不过进程 ID 不一样。在 Terminal 执行时也相似。</p>
+
+<p>shell 内置命令：</p>
+
+<ul>
+<li><p>Bourne Shell built-ins: :, ., break, cd, continue, eval, exec, exit, export, getopts, hash, pwd, readonly, return, set, shift, test, [, times, trap, umask and unset
+Bash built-in commands:</p></li>
+<li><p>alias, bind, builtin, command, declare, echo, enable, help, let, local, logout, printf, read, shopt, type, typeset, ulimit and unalias.</p></li>
+</ul>
+
+
+<hr />
+
+<h2>preference</h2>
+
+<p><a href="http://stackoverflow.com/questions/2979609/is-there-a-good-free-prefrerably-pdf-bash-tutorial-online">stackoverflow</a>
+<a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/">Bash Guide for Begainnners</a>
+<a href="http://fity.info/2014/03/06/easy-bash-note/">简明 Bash 笔记</a>
+<a href="http://macshuo.com/?p=676">终极 Shell</a></p>
 </div>
 
 
@@ -217,13 +237,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-06T17:23:22+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2014</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-05T11:25:53+08:00" pubdate data-updated="true">May 5<span>th</span>, 2014</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/test/'>test</a>
+    <a class='category' href='/blog/categories/bash-io/'>Bash-io</a>
   
 </span>
 
@@ -272,8 +292,8 @@
         
           <ul class="meta text-muted pager">
             
+            <li class="previous"><a href="/blog/2014/05/01/review-io-me/" title="Previous Post: review.io.02">&laquo; review.io.02</a></li>
             
-            <li class="next"><a href="/blog/2014/03/31/cocospods-preliminary/" title="Next Post: CocoaPods —— 高效管理Xocde工程所依赖的第三方开源库(CocoaPods Guides)">CocoaPods —— 高效管理Xocde工程所依赖的第三方开源库(CocoaPods Guides) &raquo;</a></li>
             
           </ul>
         
@@ -292,7 +312,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2014/05/05/bash-io/">Bash.io.01</a>
+    <a class="list-group-item active" href="/blog/2014/05/05/bash-io/">Bash.io.01</a>
     
     <a class="list-group-item " href="/blog/2014/05/01/review-io-me/">review.io.02</a>
     

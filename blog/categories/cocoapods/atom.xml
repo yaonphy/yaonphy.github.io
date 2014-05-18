@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CocoaPods | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-05-04T11:12:05+08:00</updated>
+  <updated>2014-05-18T16:48:25+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -436,7 +436,7 @@ Resolving dependencies for target &lsquo;Pods&rsquo; (iOS 6.0)
 
 <hr />
 
-<h3>CocoaPods Specs 国内镜像</h3>
+<h3><a href="http://akinliu.github.io/2014/05/03/cocoapods-specs-/">CocoaPods Specs 国内镜像</a></h3>
 
 <p><a href="http://weibo.com/325521517">@阿宽</a> 分享了两个国内的 CocoaPod Specs 镜像地址，分别在 <a href="https://gitcafe.com/akuandev/Specs.git">gitcafe</a> 和 <a href="http://git.oschina.net/akuandev/Specs">oschina</a>，每隔 10 分钟更新一次。</p>
 
