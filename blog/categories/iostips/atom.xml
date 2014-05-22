@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOSTips | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/iostips/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-05-22T13:43:30+08:00</updated>
+  <updated>2014-05-22T13:45:07+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -135,6 +135,7 @@
 <ul>
 <li><a href="http://stackoverflow.com/questions/12561735/what-are-unwind-segues-for-and-how-do-you-use-them">What are Unwind segues for and how do you use them?</a></li>
 <li><a href="https://developer.apple.com/library/ios/technotes/tn2298/_index.html#//apple_ref/doc/uid/DTS40013591-CH1-UNWINDPROC">Technical Note TN2298 Using Unwind Segues</a></li>
+<li><a href="https://developer.apple.com/videos/wwdc/2012/?id=407">Adopting Storyboards in Your App</a></li>
 </ul>
 
 ]]></content>
