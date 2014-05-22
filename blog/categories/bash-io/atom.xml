@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Bash-io | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/bash-io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-05-18T16:48:25+08:00</updated>
+  <updated>2014-05-22T13:43:30+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -108,10 +108,13 @@ Bash built-in commands:</p></li>
 
 <h2>preference</h2>
 
-<p><a href="http://stackoverflow.com/questions/2979609/is-there-a-good-free-prefrerably-pdf-bash-tutorial-online">stackoverflow</a>
-<a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/">Bash Guide for Begainnners</a>
-<a href="http://fity.info/2014/03/06/easy-bash-note/">简明 Bash 笔记</a>
-<a href="http://macshuo.com/?p=676">终极 Shell</a></p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/2979609/is-there-a-good-free-prefrerably-pdf-bash-tutorial-online">stackoverflow</a></li>
+<li><a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/">Bash Guide for Begainnners</a></li>
+<li><a href="http://fity.info/2014/03/06/easy-bash-note/">简明 Bash 笔记</a></li>
+<li><a href="http://macshuo.com/?p=676">终极 Shell</a></li>
+</ul>
+
 ]]></content>
   </entry>
   

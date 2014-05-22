@@ -4,7 +4,7 @@
   <title><![CDATA[yaongfeng]]></title>
   <link href="http://yaonphy.github.io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-05-18T16:48:25+08:00</updated>
+  <updated>2014-05-22T13:43:30+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -12,6 +12,133 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Unwind Segues]]></title>
+    <link href="http://yaonphy.github.io/blog/2014/05/20/unwind-segues/"/>
+    <updated>2014-05-20T15:04:06+08:00</updated>
+    <id>http://yaonphy.github.io/blog/2014/05/20/unwind-segues</id>
+    <content type="html"><![CDATA[<h2>简述</h2>
+
+<p>Unwind segues 用于当前的 viewcontroller 与之前的 viewcontroller 之间的界面过渡与数据交互。一个 unwind segue 中需要的用于界面过渡的信息如下：</p>
+
+<ul>
+<li>sender，引发界面转换事件的对象，比如一个 button，一个 cell。</li>
+<li>source view controller,当前所在的 view controller。</li>
+<li>unwind action，destination view controller 中的响应 action。</li>
+<li>ID string,标示 segue 的唯一性。</li>
+</ul>
+
+
+<div class="alert alert-info">
+<p>
+    <span class="glyphicon glyphicon-info-sign"></span>
+   上述信息中，并不包含跳回的具体 destination view controller。因为用户可能以随意的方式跳回之前的 controller，destination view controller 必须是在 runtime 阶段才确定的。
+</div>
+
+
+<hr />
+
+<h2>在 storyboard 中添加 unwind segue</h2>
+
+<h3>首先在 destination view controller 中添加一个 IBAction 类型的方法。</h3>
+
+<p>destination view controller 是继承自 UIViewController 的，sender 类型精确为 UIStoryboardSegue，后面拖拽时才会识别到。</p>
+
+<h3>当前 view controller 中添加自动触发的 segue</h3>
+
+<p>自动触发类型的 segue，也就是 touch 一个 button 或者 Cell 等时，自动寻找相应的 segue，进行跳转，无需写其它代码。
+按住 control 键，同时从 button，cell 或者其它 item 拖拽到当前 view controller 的 exit 绿色图标上，如下：</p>
+
+<p><img src="https://developer.apple.com/library/ios/technotes/tn2298/Art/tn2298_ExitIcon.png" alt="figure 1" /></p>
+
+<p>然后会弹出上一步中设置的 action 列表供你选择，选择想要跳往的 controller 中定义的 action 即可。</p>
+
+<h3>当前 view controller 中添加程序触发的 segue</h3>
+
+<p>这种类型的 segue，需要在程序中调用 performSegueWithIdentifier:sender 方法来寻找需要的 segue。</p>
+
+<p>按住 control 键，同时从当前 view controller 的 controller 黄色 icon 拖拽到 exit 绿色图标上，如下：</p>
+
+<p><img src="https://developer.apple.com/library/ios/technotes/tn2298/Art/tn2298_SceneToExitIcon.png" alt="figure 1" /></p>
+
+<p>同上，在弹出的 action 列表中选择需要的即可。</p>
+
+<hr />
+
+<h2>unwind 的处理过程</h2>
+
+<ul>
+<li>一个 view controller 被选择为 destination view controller。</li>
+<li>当前 view controller 中的 prepareForSegue:sender: 方法被调用，默认不会做任何操作，如果想要传递数据，复写这个方法。</li>
+<li>destination view controller 中相应的 action 被触发。</li>
+<li>unwind segue 进行当前 controller 和 destination view controller 间的界面过渡转换。</li>
+</ul>
+
+
+<p>Container viewcontroller 中使用 unwind segue，需要额外的设置，自定义 Container viewcontroller 中的情况下面会讨论到。</p>
+
+<hr />
+
+<h2>一个 unwind segue 是如何选择它的的 Destination 的？</h2>
+
+<p>在 unwind segue 定义时确定了所对应的 unwind action，在层级结构中距离其最近的实现该 action 的 view controller，便成为当前 view controller 的 destination view controller。如果找不到相应的 destination，unwind segue 将取消。搜寻顺序如下：</p>
+
+<ul>
+<li><p>viewControllerForUnwindSegueAction:fromViewController:withSender: 方法发送给当前（source）view controller 的 parent controller。</p></li>
+<li><p>如果 parent controller 中没有实现相应的 action，接着会依次遍历其所有的 child controller , canPerformUnwindSegueAction:fromViewController:withSender: 方法用来检测某个 controller 是否能是 segue所要找的。</p></li>
+<li>如果还没找到，viewControllerForUnwindSegueAction:fromViewController:withSender: 发送给下一个 parent view controller，依次类推。</li>
+</ul>
+
+
+<p>在层级结构中，如果一个 destination view controller class 有多个实例化的对象，实现 canPerformUnwindSegueAction:fromViewController:withSender: 方法可以准确的定位。</p>
+
+<h2>自定义 Container View Controller 中使用 unwind segue</h2>
+
+<p>自定义的 Container View Controller 需要完成两件事，会在下面分别讨论。如果使用的是系统 SDK 提供的 Container，比如 UINavigationViewController，这些会被自动处理的。</p>
+
+<h3>选择一个子 view controller 来处理 unwind action</h3>
+
+<p>主要是复写下面的方法来搜寻能够处理相应 unwind action 的controller：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 通常使用 canPerformUnwindSegueAction:fromViewController:withSender: 方法来确定一个 view controller 是否能够处理给定的 action。</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nf">viewControllerForUnwindSegueAction:</span><span class="p">(</span><span class="kt">SEL</span><span class="p">)</span><span class="nv">action</span> <span class="nf">fromViewController:</span><span class="p">(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">fromViewController</span> <span class="nf">withSender:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果该 Container view controller 的所有子 controller 都无法处理，则交给该 Container 的父 controller 去搜寻，以此类推。</p>
+
+<h3>Transitioning Between Two Child View Controllers</h3>
+
+<p>source view controller 和 destination view controller 之间的关系决定了运行时两个 controller 的 UI 之间各种各样的过渡效果。如果 source view controller 是 presented，那么它，以及它与 destination view controller 之间的所有 controller，都会被 dismissed。其它的情况，通过向 the destination view controller 的 parent 获取的 UIStoryboardSegue 来处理过渡过程的所有操作。因此需要复写下面的方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">UIStoryboardSegue</span> <span class="o">*</span><span class="p">)</span><span class="nf">segueForUnwindingToViewController:</span><span class="p">(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">toViewController</span> <span class="nf">fromViewController:</span><span class="p">(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">fromViewController</span> <span class="nf">identifier:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">identifier</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<div class="alert alert-info">
+<p>
+    <span class="glyphicon glyphicon-info-sign"></span>
+    source view controller 和 destination view controller 之前可能不是直接的过渡关系，它们中间可以存在其它的 controller。
+</div>
+
+
+<hr />
+
+<h2>preference</h2>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/12561735/what-are-unwind-segues-for-and-how-do-you-use-them">What are Unwind segues for and how do you use them?</a></li>
+<li><a href="https://developer.apple.com/library/ios/technotes/tn2298/_index.html#//apple_ref/doc/uid/DTS40013591-CH1-UNWINDPROC">Technical Note TN2298 Using Unwind Segues</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Bash.io.01]]></title>
@@ -118,10 +245,13 @@ Bash built-in commands:</p></li>
 
 <h2>preference</h2>
 
-<p><a href="http://stackoverflow.com/questions/2979609/is-there-a-good-free-prefrerably-pdf-bash-tutorial-online">stackoverflow</a>
-<a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/">Bash Guide for Begainnners</a>
-<a href="http://fity.info/2014/03/06/easy-bash-note/">简明 Bash 笔记</a>
-<a href="http://macshuo.com/?p=676">终极 Shell</a></p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/2979609/is-there-a-good-free-prefrerably-pdf-bash-tutorial-online">stackoverflow</a></li>
+<li><a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/">Bash Guide for Begainnners</a></li>
+<li><a href="http://fity.info/2014/03/06/easy-bash-note/">简明 Bash 笔记</a></li>
+<li><a href="http://macshuo.com/?p=676">终极 Shell</a></li>
+</ul>
+
 ]]></content>
   </entry>
   
@@ -243,7 +373,15 @@ Associated Objects/Associative References 就是其中的一个主题。其在 O
 
 <hr />
 
-<h1>#</h1>
+<h2><a href="http://jianshu.io/p/86190cb19e56">开发一款 App 的成本</a></h2>
+
+<p>这篇文章主要讨论了开发一款 APP 需要的人力成本，组件团队的时间成本，开发时间成本，产品的运营成本，以及对于当前市场的认知。</p>
+
+<p>单就开发 iphone 客户端来计算，需要 3 ~ 6 人的的人员配备，花费 1 ~ 6 个月的时间来开发。其中 1 ~ 3 个月可以开发出基本版本，继续完善为成熟版本，总共需要大概 6 个月时间。组建团队所花费的时间成本可能比人员的工资成本更高。然而，更大的成本是运营成本。产品的营销可以通过分发渠道的曝光，产品本身的价值和品质，产品的社交属性来进行，同时还面临着被大厂临摹的风险。总之，让一款产品一直稳稳的浮在水面是非常不容易的。</p>
+
+<hr />
+
+<h2>[]</h2>
 ]]></content>
   </entry>
   

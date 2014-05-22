@@ -4,7 +4,7 @@
   <title><![CDATA[Category: review-io | yaongfeng]]></title>
   <link href="http://yaonphy.github.io/blog/categories/review-io/atom.xml" rel="self"/>
   <link href="http://yaonphy.github.io/"/>
-  <updated>2014-05-18T16:48:25+08:00</updated>
+  <updated>2014-05-22T13:43:30+08:00</updated>
   <id>http://yaonphy.github.io/</id>
   <author>
     <name><![CDATA[yaongfeng]]></name>
@@ -121,7 +121,15 @@ objc_getAssociatedObject(self, &amp;kAssociatedObjectKey);</p>
 
 <hr />
 
-<h1>#</h1>
+<h2><a href="http://jianshu.io/p/86190cb19e56">开发一款 App 的成本</a></h2>
+
+<p>这篇文章主要讨论了开发一款 APP 需要的人力成本，组件团队的时间成本，开发时间成本，产品的运营成本，以及对于当前市场的认知。</p>
+
+<p>单就开发 iphone 客户端来计算，需要 3 ~ 6 人的的人员配备，花费 1 ~ 6 个月的时间来开发。其中 1 ~ 3 个月可以开发出基本版本，继续完善为成熟版本，总共需要大概 6 个月时间。组建团队所花费的时间成本可能比人员的工资成本更高。然而，更大的成本是运营成本。产品的营销可以通过分发渠道的曝光，产品本身的价值和品质，产品的社交属性来进行，同时还面临着被大厂临摹的风险。总之，让一款产品一直稳稳的浮在水面是非常不容易的。</p>
+
+<hr />
+
+<h2>[]</h2>
 ]]></content>
   </entry>
   

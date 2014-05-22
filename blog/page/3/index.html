@@ -101,6 +101,146 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-31T15:29:06+08:00" pubdate data-updated="true">Mar 31<span>st</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/31/cocospods-preliminary/">CocoaPods —— 高效管理Xocde工程所依赖的第三方开源库(CocoaPods Guides)</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><h3>说明</h3>
+
+<p>对于CocoaPods的安装使用，<a href="http://guides.cocoapods.org/">其官方网站</a>中有详细的说明。也有一些中文Blog中的文章，翻译、
+总结了CocoaPods的使用技巧。既然有许多现成的学习资源，就没有必要再造轮子，自己闷头搞，这样吃力也没得好可讨。因此本篇文章的目
+的是，搜罗并整理相关的资源。</p>
+
+<hr />
+
+<h3><a href="http://guides.cocoapods.org/">cocoapods.org</a></h3>
+
+<p>官方英文教材已经非常的详细和完善了，但是对于英文不是母语，又需要在短时间内将其用于现有项目中的开发者来说，这并不是最佳的选择。
+我个人觉得，她适宜在时间比较充裕的时候仔细探究，如若兴趣使然，能力所及，还可以为其贡献源代码。</p>
+
+<p>待细读。。。</p>
+
+<hr />
+
+<h3><a href="http://geeklu.com/2013/06/cocoapods-101/">Cocoapods 101</a></h3>
+
+<p>这篇技术博文介绍了CocoaPods简单使用。简单的介绍了下子CocoaPods的背景之后，比较详细的描述了其安装过程，包括rbenv的安装，ruby
+的更新安装。最后通过一个简单的实例，用pod自动导入AFNetwork到项目中。</p>
+
+<p>对于不知道的童靴，这个细节值得关注下：淘宝提供一个国内的<a href="http://ruby.taobao.org/">RubyGems镜像地址</a>,解救深受间接性网络连接失败
+困扰的民众（15分钟更新一次）。如若这样，在安装CocoaPods前，需要添加新的Gem源地址，并且删掉默认的源地址。如下</p>
+
+<figure class='code'><figcaption><span>更改Gem源地址为国内淘宝镜像地址</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>   <span class="nv">$ </span>gem sources --remove https://rubygems.org/
+</span><span class='line'>   <span class="nv">$ </span>gem sources -a http://ruby.taobao.org/
+</span><span class='line'>   <span class="nv">$ </span>gem sources -l   <span class="c"># *** CURRENT SOURCES ***</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="c"># http://ruby.taobao.org</span>
+</span><span class='line'>   <span class="c"># 请确保只有 ruby.taobao.org</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="nv">$ </span>gem install cocoapods
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3><a href="http://blog.devtang.com/blog/2012/12/02/use-cocoapod-to-manage-ios-lib-dependency/">使用CocoaPods来做iOS程序的包依赖管理</a></h3>
+
+<p>巧哥的这篇还是比较全面的，从其他语言的代码依赖管理工具引入，用他们团队开发的粉笔网客户端为例，阐释了为什么应该使用CocoaPods,以及其带来的好处。接着描述了CocoaPods的安装过程，用实例说明了如何用其导入<a href="https://github.com/CocoaPods/Specs">CocoaPods/Specs</a>中提供的第三方库。另外，还介绍了pod search命令——根据关键字快速查看相匹配库的信息。当然，甄选优质的同类型库需要咨询使用过的开发者或者更进一步的实践。文章还提到，为了利于团队协作，不能将Podfile.lock加入.gitignore文件中，如果安装appledoc工具，CocoaPods还可以帮助生成帮助文档。最后，简单的阐释了下子CocoaPods的内部原理。</p>
+
+<hr />
+
+<h3><a href="http://www.iwangke.me/2013/04/18/advanced-cocoapods/">CocoaPods进阶：本地包管理</a></h3>
+
+<p>这篇文章列出了实际使用过程中遇到的两个问题，之后依次通过实例，细致的描述了相应的解决方案。对于<a href="https://github.com/CocoaPods/Specs">CocoaPods/Specs</a>中提供的三方库版本更新滞后的问题，可以通过自己创建最新版本的PodSpec来解决。另外，对于不便于公开的代码库，可以通过本地路径来引入。两者的关键都在于创建新的*.podspec文件，并在该文件添加所引用库的路径，之后在Podfile文件中导入新建的podspec。最后还提到weak_frameworks选项的用途。</p>
+
+<hr />
+
+<h3><a href="http://www.objc.io/issue-6/cocoapods-under-the-hood.html">CocoaPods Under The Hood</a></h3>
+
+<p>objc.io 系列的文章真的是太好了，当然这一篇也不例外。我的简体中文翻译版本：<a href="http://yaonphy.github.io/blog/2014/04/02/cocoapods-under-the-hood/">揭开CocoaPods的神秘面纱</a></p>
+
+<p>文章介绍了 CocoaPods 的几个核心组件：CocoaPods/CocoaPod，CocoaPods/Core，CocoaPods/Xcodeproj。之后通过 pod install &mdash;verbose 命令打印出信息入手，分析了详细的执行流程。之后又谈到 CocoaPod 如何在持续集成环境中更好的发挥作用。</p>
+
+<hr />
+
+<h3><a href="http://dev.hubspot.com/blog/architecting-a-large-ios-app-with-cocoapods">Using CocoaPods to Modularize a Big iOS App</a></h3>
+
+<p>这里有我的一篇翻译文章：<a href="http://yaonphy.github.io/blog/2014/04/02/using-cocoapods-to-modularize-big-app/">使用 CocoaPods 来模块化一个复杂庞大的 iOS App</a>，仅供参考。</p>
+
+<p>该文以作者开发的 HubSpot 项目为例，介绍了如何用 CocoaPods 来构建、管理功能丰富的大型 App。对于各个子功能之间耦合度比较松散，但是需要集成到一个整体 App 的情况，用 CocoaPods 将整体 App 模块化为若干个 sub-app，不但简化了架构，便于子功能层次的测试，还可以让代码管理变得更加轻松。</p>
+
+<p>文章通过具体的代码，分享了如何用 CocoaPods 将各个 sub-app 粘合起来，构建完整的应用。</p>
+
+<hr />
+
+<h3><a href="https://github.com/Galeas/CocoaPodUI">CocoaPodUI</a></h3>
+
+<p>这是一个 CocoaPod 图形化界面的 Xcode 插件，感兴趣的话可以试试。我目前还没用过。</p>
+
+<hr />
+
+<h3><a href="http://akinliu.github.io/2014/05/03/cocoapods-specs-/">CocoaPods Specs 国内镜像</a></h3>
+
+<p><a href="http://weibo.com/325521517">@阿宽</a> 分享了两个国内的 CocoaPod Specs 镜像地址，分别在 <a href="https://gitcafe.com/akuandev/Specs.git">gitcafe</a> 和 <a href="http://git.oschina.net/akuandev/Specs">oschina</a>，每隔 10 分钟更新一次。</p>
+
+<p>更改方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>pod repo remove master
+</span><span class='line'><span class="c"># 使用 oschina 的地址，换为 http://git.oschina.net/akuandev/Specs.git</span>
+</span><span class='line'>pod repo add master https://gitcafe.com/akuandev/Specs.git
+</span><span class='line'>pod repo update
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>第二条命令执行的时间比较长，会 clone 整个 repository。</p>
+
+<hr />
+
+<h4><em>2014.05.04 更新</em></h4>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-06T17:23:22+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2014</time>
         
       </p>
@@ -225,6 +365,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2014/05/20/unwind-segues/">Unwind Segues</a>
+    
     <a class="list-group-item " href="/blog/2014/05/05/bash-io/">Bash.io.01</a>
     
     <a class="list-group-item " href="/blog/2014/05/01/review-io-me/">review.io.02</a>
@@ -232,8 +374,6 @@
     <a class="list-group-item " href="/blog/2014/04/29/review-io-me/">review.io.01</a>
     
     <a class="list-group-item " href="/blog/2014/04/22/clone-a-octopress-to-new-places/">在新的环境（电脑）配置已有的 Octopress 博客</a>
-    
-    <a class="list-group-item " href="/blog/2014/04/03/introducing-mknetworkkit/">iOS Framework: Introducing MKNetworkKit（简体中文翻译）</a>
     
   </div>
 </section>
@@ -280,6 +420,12 @@
             Bash-io
         </a>
         
+        
+        <a class="list-group-item " href="/blog/categories/iostips/index.html">
+            <span class="badge">1</span>
+            iOSTips
+        </a>
+        
     </div>
 </section>
 
@@ -323,7 +469,7 @@
         <h3 class="panel-title">Tag Cloud</h3>
     </div>
     <span id="tag-cloud">
-        <embed type='application/x-shockwave-flash' src='/javascripts/tagcloud.swf'width='100%' height='250' bgcolor='#ffffff' id='tagcloudflash' name='tagcloudflash' quality='high' allowscriptaccess='always'flashvars="tcolor=0x333333&amp;tcolor2=0x333333&amp;hicolor=0x000000&amp;tspeed=100&amp;distr=true&amp;mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Fbash-io%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EBash-io%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Fcocoapods%27+style%3D%27font-size%3A+50.0%25%27%3ECocoaPods%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Fmknetworkkit%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EMKNetworkKit%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Foctopress%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EOctopress%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Freview-io%27+style%3D%27font-size%3A+36.66666666666667%25%27%3Ereview-io%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Ftest%27+style%3D%27font-size%3A+23.333333333333336%25%27%3Etest%3C%2Fa%3E+%3C%2Ftags%3E">
+        <embed type='application/x-shockwave-flash' src='/javascripts/tagcloud.swf'width='100%' height='250' bgcolor='#ffffff' id='tagcloudflash' name='tagcloudflash' quality='high' allowscriptaccess='always'flashvars="tcolor=0x333333&amp;tcolor2=0x333333&amp;hicolor=0x000000&amp;tspeed=100&amp;distr=true&amp;mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Fbash-io%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EBash-io%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Fcocoapods%27+style%3D%27font-size%3A+50.0%25%27%3ECocoaPods%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Fiostips%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EiOSTips%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Fmknetworkkit%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EMKNetworkKit%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Foctopress%27+style%3D%27font-size%3A+23.333333333333336%25%27%3EOctopress%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Freview-io%27+style%3D%27font-size%3A+36.66666666666667%25%27%3Ereview-io%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fyaonphy.github.io%2Fblog%2Fcategories%2Ftest%27+style%3D%27font-size%3A+23.333333333333336%25%27%3Etest%3C%2Fa%3E+%3C%2Ftags%3E">
     </span>
 </section>
 
