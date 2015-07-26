@@ -1,0 +1,174 @@
+---
+layout: post
+title: "Swift.io.01"
+date: 2014-06-08 15:32:35 +0800
+comments: true
+categories: Swift
+---
+
+## Basic Operators
+
+“Unlike the assignment operator in C and Objective-C, the assignment operator in Swift does not itself return a value. The following statement is not valid”
+
+“Unlike the arithmetic operators in C and Objective-C, the Swift arithmetic operators do not allow values to overflow by default”
+
+“The addition operator is also supported for String concatenation:”
+
+“However, its behavior in Swift for negative numbers means that it is, strictly speaking, a remainder rather than a modulo operation.”
+
+“The same method is applied when calculating the remainder for a negative value of a:”
+
+“The sign of b is ignored for negative values of b. This means that a % b and a % -b always give the same answer.”
+
+“Unlike the remainder operator in C and Objective-C, Swift’s remainder operator can also operate on floating-point numbers:”
+
+“The compound assignment operators do not return a value. ”
+
+“Swift also provides two identity operators (=== and !==), which you use to test whether two object references both refer to the same object instance. ”
+
+“The closed range operator (a...b) defines a range that runs from a to b, and includes the values a and b.”
+
+“The half-closed range operator (a..b) defines a range that runs from a to b, but does not include b. ”
+
+
+-------------------
+
+
+## Strings and Characters
+
+“Swift’s String type is a value type. If you create a new String value, that String value is copied when it is passed to a function or method, or when it is assigned to a constant or variable. ”
+
+“This behavior differs from that of NSString in Cocoa. When you create an NSString instance in Cocoa, and pass it to a function or method or assign it to a variable, you are always passing or assigning a reference to the same single NSString. No copying of the string takes place, unless you specifically request it.”
+
+“Note also that the character count returned by countElements is not always the same as the length property of an NSString that contains the same characters. The length of an NSString is based on the number of 16-bit code units within the string’s UTF-16 representation and not the number of Unicode characters within the string.”
+
+if quotation == sameQuotation
+
+dogString.utf8
+
+dogString.utf16
+
+dogString.unicodeScalars
+
+
+-------------------
+
+
+## Collection Types
+
+shoppingList.append("Flour")
+shoppingList += "Baking Powder"
+“shoppingList[4...6] = ["Bananas", "Apples"]”
+
+“var anotherThreeDoubles = Array(count: 3, repeatedValue: 2.5)”
+“var sixDoubles = threeDoubles + anotherThreeDoubles”
+
+“The only restriction is that KeyType must be hashable—that is, it must provide a way to make itself uniquely representable. All of Swift’s basic types (such as String, Int, Double, and Bool) are hashable by default, and all of these types can be used as the keys of a dictionary. Enumeration member values without associated values (as described in Enumerations) are also hashable by default.”
+
+“Behind the scenes, Swift’s array and dictionary types are implemented as generic collections. For more on generic types and collections, see Generics”
+
+“Immutability has a slightly different meaning for arrays, however. You are still not allowed to perform any action that has the potential to change the ”
+
+“size of an immutable array, but you are allowed to set a new value for an existing index in the array. This enables Swift’s Array type to provide optimal performance for array operations when the size of an array is fixed.”
+
+
+-------------------
+
+
+## Control Flow
+
+“ Swift adds a for-in loop that makes it easy to iterate over arrays, dictionaries, ranges, strings, and other sequences.”
+
+“Cases can match many different types of pattern, including range matches, tuples, and casts to a specific type. ”
+
+“If you don’t need each value from the range, you can ignore the values by using an underscore in place of a variable name:“for _ in 1...power ”
+
+“Multiple matches for a single switch case can be separated by commas, and can be written over multiple lines if the list is long”
+
+“To opt in to fallthrough behavior for a particular switch case, use the fallthrough keyword, as described in Fallthrough.”
+
+“Values in switch cases can be checked for their inclusion in a range.”
+
+“You can use tuples to test multiple values in the same switch statement. ”
+
+“You can use tuples to test multiple values in the same switch statement. ”
+
+“A switch case can bind the value or values it matches to temporary constants or variables, for use in the body of the case. This is known as value binding, because the values are “bound” to temporary constants or variables within the case’s body.”
+
+
+-------------------
+
+
+##Functions
+
+“passed as in-out parameters, which modify a passed variable once the function has completed its execution.”
+
+“Every function in Swift has a type, consisting of the function’s parameter types and return type.”
+
+“Function parameters and return values are extremely flexible in Swift. ”
+
+“Functions without a defined return type return a special value of type Void. This is simply an empty tuple, in effect a tuple with zero elements, which can be written as ().”
+“However, these parameter names are only used within the body of the function itself, and cannot be used when calling the function. These kinds of parameter names are known as local parameter names, because they are only available for use within the function’s body.”
+
+“You write an external parameter name before the local parameter name it supports, separated by a space”
+
+“func someFunction(externalParameterName localParameterName: Int) {
+// function body goes here, and can use localParameterName
+// to refer to the argument value for that parameter
+}”
+
+“If you provide an external parameter name for a parameter, that external name must always be used when calling the function.”
+
+“write the name once, and prefix the name with a hash symbol (#). This tells Swift to use that name as both the local parameter name and the external parameter name.”
+
+“You can define a default value for any parameter as part of a function’s definition. If a default value is defined, you can omit that parameter when calling the function.”
+
+“func join(string s1: String, toString s2: String,
+withJoiner joiner: String = " ") -> String {
+return s1 + joiner + s2
+}”
+
+“Place parameters with default values at the end of a function’s parameter list. This ensures that all calls to the function use the same order for their non-default arguments, and makes it clear that the same function is being called in each case.”
+“Swift provides an automatic external name for any defaulted parameter you define, if you do not provide an external name yourself. The automatic external name is the same as the local name, as if you had written a hash symbol before the local name in your code.”
+
+“You can opt out of this behavior by writing an underscore (_) instead of an explicit external name when you define the parameter. However, external names for defaulted parameters are always preferred where appropriate.”
+
+“A variadic parameter accepts zero or more values of a specified type.”
+
+“A function may have at most one variadic parameter, and it must always appear last in the parameter list, to avoid ambiguity when calling the function with multiple parameters.”
+
+“If your function has one or more parameters with a default value, and also has a variadic parameter, place the variadic parameter after all the defaulted parameters at the very end of the list.”
+
+“Function parameters are constants by default”
+
+“Variable parameters are available as variables rather than as constants, and give a new modifiable copy of the parameter’s value for your function to work with.”
+
+“Define variable parameters by prefixing the parameter name with the keyword var:”
+
+“The changes you make to a variable parameter do not persist beyond the end of each call to the function, and are not visible outside the function’s body. The variable parameter only exists for the lifetime of that function call.”
+
+“If you want a function to modify a parameter’s value, and you want those changes to persist after the function call has ended, define that parameter as an in-out parameter instead.”
+
+“You can only pass a variable as the argument for an in-out parameter. You cannot pass a constant or a literal value as the argument, because constants and literals cannot be modified. You place an ampersand (&) directly before a variable’s name when you pass it as an argument to an inout parameter, to indicate that it can be modified by the function.”
+
+“In-out parameters cannot have default values, and variadic parameters cannot be marked as inout. If you mark a parameter as inout, it cannot also be marked as var or let.”
+
+“You use function types just like any other types in Swift. For example, you can define a constant or variable to be of a function type and assign an appropriate function to that variable:
+
+var mathFunction: (Int, Int) -> Int = addTwoInts”
+
+“A different function with the same matching type can be assigned to the same variable, in the same way as for non-function types:
+
+mathFunction = multiplyTwoInts
+println("Result: \(mathFunction(2, 3))")”
+
+“As with any other type, you can leave it to Swift to infer the function type ”
+
+“when you assign a function to a constant or variable:
+
+let anotherMathFunction = addTwoInts”
+
+“You can use a function type such as (Int, Int) -> Int as a parameter type for another function. This enables you to leave some aspects of a function’s implementation for the function’s caller to provide when the function is called.”
+
+
+#### 摘录来自: Apple Inc. “The Swift Programming Language”。 iBooks. https://itun.es/cn/jEUH0.l

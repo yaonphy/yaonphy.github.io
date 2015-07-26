@@ -1,0 +1,238 @@
+---
+layout: post
+title: "Swift.io.02"
+date: 2014-06-30 14:46:27 +0800
+comments: true
+categories:
+---
+
+
+## Closures
+
+“Closures can capture and store references to any constants and variables from the context in which they are defined.”
+
+“ Closures take one of three forms:
+
+Global functions are closures that have a name and do not capture any values.
+Nested functions are closures that have a name and can capture values from their enclosing function.
+Closure expressions are unnamed closures written in a lightweight syntax that can capture values from their surrounding context.”
+
+“Closure expression syntax has the following general form:
+
+{ (parameters) -> return type in
+statements
+}”
+
+“The start of the closure’s body is introduced by the in keyword. This keyword indicates that the definition of the closure’s parameters and return type has finished, and the body of the closure is about to begin.”
+
+“Because the sorting closure is passed as an argument to a function, Swift can infer the types of its parameters and the type of the value it returns from the type of the sort function’s second parameter. ”
+
+“reversed = sort(names, { s1, s2 in return s1 > s2 } )”
+
+Here, the function type of the sort function’s second argument makes it clear that a Bool value must be returned by the closure.”
+“reversed = sort(names, { s1, s2 in s1 > s2 } )
+
+“Swift automatically provides shorthand argument names to inline closures, which can be used to refer to the values of the closure’s arguments by the names $0, $1, $2, and so on.”
+
+“reversed = sort(names, { $0 > $1 } )”
+
+“Therefore, you can simply pass in the greater-than operator, and Swift will infer that you want to use its string-specific implementation:
+
+reversed = sort(names, >)”
+
+“If you need to pass a closure expression to a function as the function’s final argument and the closure expression is long, it can be useful to write it as a trailing closure instead. ”
+
+“If a closure expression is provided as the function’s only argument and you provide that expression as a trailing closure, you do not need to write a pair of parentheses () after the function’s name when you call the function.”
+
+“Swift determines what should be captured by reference and what should be copied by value. You don’t need to annotate amount or runningTotal to say that they can be used within the nested incrementor function. Swift also handles all memory management involved in disposing of runningTotal when it is no longer needed by the incrementor function.”
+
+“Whenever you assign a function or a closure to a constant or a variable, you are actually setting that constant or variable to be a reference to the function or closure.”
+
+
+-------------------
+
+
+## Enumerations
+
+“An enumeration defines a common type for a group of related values and enables you to work with those values in a type-safe way within your code.”
+
+“If a value (known as a “raw” value) is provided for each enumeration member, the value can be a string, a character, or a value of any integer or floating-point type.”
+
+“enumeration members can specify associated values of any type to be stored along with each different member value, much as unions or variants do in other languages. ”
+
+“Enumerations in Swift are first-class types in their own right. They adopt many features traditionally supported only by classes”
+
+“The case keyword indicates that a new line of member values is about to be defined.”
+
+“Unlike C and Objective-C, Swift enumeration members are not assigned a default integer value when they are created. In the CompassPoints example above, North, South, East and West do not implicitly equal 0, 1, 2 and 3. Instead, the different enumeration members are fully-fledged values in their own right, with an explicitly-defined type of CompassPoint.”
+
+“Multiple member values can appear on a single line, separated by commas”
+
+“Each enumeration definition defines a brand new type. Like other types in Swift, their names (such as CompassPoint and Planet) should start with a capital letter.”
+
+var directionToHead = CompassPoint.West
+
+“Once directionToHead is declared as a CompassPoint, you can set it to a different CompassPoint value using a shorter dot syntax:
+
+directionToHead = .East”
+
+“If the case for .West is omitted, this code does not compile,”
+
+“When it is not appropriate to provide a case for every enumeration member, you can provide a default case to cover any members that are not addressed explicitly”
+
+“it is sometimes useful to be able to store associated values of other types alongside these member values. This enables you to store additional custom information along with the member value, and permits this information to vary each time you use that member in your code.”
+
+“enum Barcode {
+case UPCA(Int, Int, Int)
+case QRCode(String)
+}”
+
+“var productBarcode = Barcode.UPCA(8, 85909_51226, 3)”
+
+productBarcode = .QRCode("ABCDEFGHIJKLMNOP")
+
+“At this point, the original Barcode.UPCA and its integer values are replaced by the new Barcode.QRCode and its string value. Constants and variables of type Barcode can store either a .UPCA or a .QRCode (together with their associated values), but they can only store one of them at any given time.”
+
+“the associated values can be extracted as part of the switch statement. You extract each associated value as a constant (with the let prefix) or a variable (with the var prefix) for use within the switch case’s body”
+
+“switch productBarcode {
+case .UPCA(let numberSystem, let identifier, let check):
+println("UPC-A with value of \(numberSystem), \(identifier), \(check).")
+case .QRCode(let productCode):
+println("QR code with value of \(productCode).")
+}”
+
+“The raw value for a particular enumeration member is always the same. Associated values are set when you create a new constant or variable based on one of the enumeration’s members, and can be different each time you do so.”
+
+“Raw values can be strings, characters, or any of the integer or floating-point number types. Each raw value must be unique within its enumeration declaration. When integers are used for raw values, they auto-increment if no value is specified for some of the enumeration members.”
+
+“Access the raw value of an enumeration member with its toRaw method:
+
+let earthsOrder = Planet.Earth.toRaw()”
+
+“Use an enumeration’s fromRaw method to try to find an enumeration member with a particular raw value. This example identifies Uranus from its raw value of 7:
+
+let possiblePlanet = Planet.fromRaw(7)”
+
+## Classes and Structures
+
+“Unlike other programming languages, Swift does not require you to create separate interface and implementation files for custom classes and structures. In Swift, you define a class or a structure in a single file, and the external interface to that class or structure is automatically made available for other code to use.”
+
+“Classes have additional capabilities that structures do not:
+
+Inheritance enables one class to inherit the characteristics of another.
+Type casting enables you to check and interpret the type of a class instance at runtime.
+Deinitializers enable an instance of a class to free up any resources it has assigned.
+Reference counting allows more than one reference to a class instance”
+
+
+“Structures are always copied when they are passed around in your code, and do not use reference counting.”
+
+“Unlike Objective-C, Swift enables you to set sub-properties of a structure property directly. ”
+
+“All structures have an automatically-generated memberwise initializer, which you can use to initialize the member properties of new structure instances. ”
+
+“Unlike structures, class instances do not receive a default memberwise initializer. ”
+
+“A value type is a type that is copied when it is assigned to a variable or constant, or when it is passed to a function.”
+
+“You’ve actually been using value types extensively throughout the previous chapters. In fact, all of the basic types in Swift—integers, floating-point numbers, Booleans, strings, arrays and dictionaries—are value types, and are implemented as structures behind the scenes.”
+
+“All structures and enumerations are value types in Swift. This means that any structure and enumeration instances you create—and any value types they have as properties—are always copied when they are passed around in your code.”
+
+“Unlike value types, reference types are not copied when they are assigned to a variable or constant, or when they are passed to a function. Rather than a copy, a reference to the same existing instance is used instead.”
+
+“It can sometimes be useful to find out if two constants or variables refer to exactly the same instance of a class. To enable this, Swift provides two identity operators:
+
+Identical to (===)
+Not identical to (!==)”
+
+“A Swift constant or variable that refers to an instance of some reference type is similar to a pointer in C, but is not a direct pointer to an address in memory, and does not require you to write an asterisk (*) to indicate that you are creating a reference. Instead, these references are defined like any other constant or variable in Swift.”
+
+“As a general guideline, consider creating a structure when one or more of these conditions apply:
+
+The structure’s primary purpose is to encapsulate a few relatively simple data values.
+It is reasonable to expect that the encapsulated values will be copied rather than referenced when you assign or pass around an instance of that structure.
+
+Any properties stored by the structure are themselves value types, which would also be expected to be copied rather than referenced.
+The structure does not need to inherit properties or behavior from another existing type.
+Examples of good candidates for structures include:
+
+The size of a geometric shape, perhaps encapsulating a width property and a height property, both of type Double.
+A way to refer to ranges within a series, perhaps encapsulating a start property and a length property, both of type Int.
+A point in a 3D coordinate system, perhaps encapsulating x, y and z properties, each of type Double.”
+
+“However, Swift only performs an actual copy behind the scenes when it is absolutely necessary to do so. Swift manages all value copying to ensure optimal performance, and you should not avoid assignment to try to preempt this optimization.”
+
+“If the keys and/or values stored in the Dictionary instance are value types (structures or enumerations), they too are copied when the assignment or call takes place. Conversely, if the keys and/or values are reference types (classes or functions), the references are copied, but not the class instances or functions that they refer to. This copy behavior for a dictionary’s keys and values is the same as the copy behavior for a structure’s stored properties when the structure is copied.”
+
+“The assignment and copy behavior for Swift’s Array type is more complex than for its Dictionary type. Array provides C-like performance when you work with an array’s contents and copies an array’s contents only when copying is necessary.
+
+If you assign an Array instance to a constant or variable, or pass an Array instance as an argument to a function or method call, the contents of the array are not copied at the point that the assignment or call takes place. Instead, both arrays share the same sequence of element values. When you modify an element value through one array, the result is observable through the other.
+
+For arrays, copying only takes place when you perform an action that has the potential to modify the length of the array. This includes appending, inserting, or removing items, or using a ranged subscript to replace a range of items in the array. If and when array copying does take place, the copy behavior for an array’s contents is the same as for a dictionary’s keys and values”
+
+“You ensure the uniqueness of an array reference by calling the unshare method on a variable of array type. (The unshare method cannot be called on a constant array.)”
+
+“If multiple variables currently refer to the same array, and you call the unshare method on one of those variables, the array is copied, so that the variable has its own independent copy of the array. However, no copying takes place if the variable is already the only reference to the array.”
+
+“Alternatively, use the identity operators to check whether two subarrays share the same elements. The example below compares two identical subarrays from b and confirms that they refer to the same elements:
+
+if b[0...1] === b[0...1] {
+println("These two subarrays share the same elements.")
+} else {
+println("These two subarrays do not share the same elements.")
+}”
+
+“If you simply need to be sure that your reference to an array’s contents is the only reference in existence, call the unshare method, not the copy method. The unshare method does not make a copy of the array unless it is necessary to do so. The copy method always copies the array, even if it is already unshared.”
+
+
+
+-------------------
+
+
+## Properties
+
+“This behavior is due to structures being value types. When an instance of a value type is marked as a constant, so are all of its properties.
+
+The same is not true for classes, which are reference types. If you assign an instance of a reference type to a constant, you can still change that instance’s variable properties”
+
+“A lazy stored property is a property whose initial value is not calculated until the first time it is used. You indicate a lazy stored property by writing the @lazy attribute before its declaration.”
+
+“You must always declare a lazy property as a variable (with the var keyword), because its initial value may not be retrieved until after instance initialization completes. Constant properties must always have a value before initialization completes, and therefore cannot be declared as lazy”
+
+“f you have experience with Objective-C, you may know that it provides two ways to store values and references as part of a class instance. In addition to properties, you can use instance variables as a backing store for the values stored in a property.
+
+Swift unifies these concepts into a single property declaration. A Swift property does not have a corresponding instance variable, and the backing store for a property is not accessed directly. This approach avoids confusion about how the value is accessed in different contexts and simplifies the property’s declaration into a single, definitive statement. All information about the property—including its name, type, and memory management characteristics—is defined in a single location as part of the type’s definition.”
+
+“In addition to stored properties, classes, structures, and enumerations can define computed properties, which do not actually store a value. Instead, they provide a getter and an optional setter to retrieve and set other properties and values indirectly.”
+
+“If a computed property’s setter does not define a name for the new value to be set, a default name of newValue is used.”
+
+“You must declare computed properties—including read-only computed properties—as variable properties with the var keyword, because their value is not fixed. The let keyword is only used for constant properties, to indicate that their values cannot be changed once they are set as part of instance initialization.”
+
+“Property observers observe and respond to changes in a property’s value. Property observers are called every time a property’s value is set, even if the new value is the same as the property’s current value.”
+
+“You can add property observers to any stored properties you define, apart from lazy stored properties. You can also add property observers to any inherited property (whether stored or computed) by overriding the property within a subclass. ”
+
+“You don’t need to define property observers for non-overridden computed properties, because you can observe and respond to changes to their value from directly within the computed property’s setter.”
+
+“willSet and didSet observers are not called when a property is first initialized. They are only called when the property’s value is set outside of an initialization context.”
+
+“If you assign a value to a property within its own didSet observer, the new value that you assign will replace the one that was just set.”
+
+“The capabilities described above for computing and observing properties are also available to global variables and local variables. Global variables are variables that are defined outside of any function, method, closure, or type context. Local variables are variables that are defined within a function, method, or closure context.”
+
+“Global constants and variables are always computed lazily, in a similar manner to Lazy Stored Properties. Unlike lazy stored properties, global constants and variables do not need to be marked with the @lazy attribute.
+
+Local constants and variables are never computed lazily.”
+
+“You can also define properties that belong to the type itself, not to any one instance of that type. There will only ever be one copy of these properties, no matter how many instances of that type you create. These kinds of properties are called type properties.”
+
+“For value types (that is, structures and enumerations), you can define stored and computed type properties. For classes, you can define computed type properties only.”
+
+“Stored type properties for value types can be variables or constants. Computed type properties are always declared as variable properties, in the same way as computed instance properties.”
+
+“Unlike stored instance properties, you must always give stored type properties a default value. This is because the type itself does not have an initializer that can assign a value to a stored type property at initialization time.”
+
+#### 摘录来自: Apple Inc. “The Swift Programming Language”。 iBooks. https://itun.es/cn/jEUH0.l

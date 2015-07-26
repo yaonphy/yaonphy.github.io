@@ -1,0 +1,135 @@
+---
+layout: post
+title: "swift.io.03"
+date: 2014-07-02 11:51:27 +0800
+comments: true
+categories:
+---
+
+
+
+## Method
+
+“In Objective-C, classes are the only types that can define methods. In Swift, you can choose whether to define a class, structure, or enumeration, and still have the flexibility to define methods on the type you create.”
+
+“However, the default behavior of local names and external names is different for functions and methods.”
+
+“Swift makes this established method naming convention easy to write by using a different default approach for method parameters than it uses for function parameters.”
+
+“Specifically, Swift gives the first parameter name in a method a local parameter name by default, and gives the second and subsequent parameter names both local and external parameter names by default.”
+
+“Sometimes it’s useful to provide an external parameter name for a method’s first parameter, even though this is not the default behavior. You can either add an explicit external name yourself, or you can prefix the first parameter’s name with a hash symbol to use the local name as an external name too.
+
+Conversely, if you do not want to provide an external name for the second or subsequent parameter of a method, override the default behavior by using an underscore character (_) as an explicit external parameter name for that parameter.”
+
+“The main exception to this rule occurs when a parameter name for an instance method has the same name as a property of that instance. In this situation, the parameter name takes precedence, and it becomes necessary to refer to the property in a more qualified way. You use the implicit self property to distinguish between the parameter name and the property name.”
+
+“Structures and enumerations are value types. By default, the properties of a value type cannot be modified from within its instance methods.
+
+However, if you need to modify the properties of your structure or enumeration within a particular method, you can opt in to mutating behavior for that method. The method can then mutate (that is, change) its properties from within the method, and any changes that it makes are written back to the original structure when the method ends. The method can also assign a completely new instance to its implicit self property, and this new instance will replace the existing one when the method ends.”
+
+“You can opt in to this behavior by placing the mutating keyword before the func keyword for that method:”
+
+
+“Note that you cannot call a mutating method on a constant of structure type, because its properties cannot be changed, even if they are variable properties”
+
+“Mutating methods can assign an entirely new instance to the implicit self property.”
+
+“Mutating methods for enumerations can set the implicit self parameter to be a different member from the same enumeration”
+
+“You indicate type methods for classes by writing the keyword class before the method’s func keyword, and type methods for structures and enumerations by writing the keyword static before the method’s func keyword.”
+
+“Within the body of a type method, the implicit self property refers to the type itself, rather than an instance of that type.”
+
+
+--------------------
+
+
+## Subscripts
+
+“You can define multiple subscripts for a single type, and the appropriate subscript overload to use is selected based on the type of index value you pass to the subscript. Subscripts are not limited to a single dimension, and you can define subscripts with multiple input parameters to suit your custom type’s needs.”
+
+“Their syntax is similar to both instance method syntax and computed property syntax.”
+
+“Subscripts can take any number of input parameters, and these input parameters can be of any type. Subscripts can also return any type. Subscripts can use variable parameters and variadic parameters, but cannot use in-out parameters or provide default parameter values.”
+
+“A class or structure can provide as many subscript implementations as it needs, and the appropriate subscript to be used will be inferred based on the types of the value or values that are contained within the subscript braces at the point that the subscript is used. This definition of multiple subscripts is known as subscript overloading.”
+
+
+--------------------
+
+
+
+## Inheritance
+
+“Classes can also add property observers to inherited properties in order to be notified when the value of a property changes. Property observers can be added to any property, regardless of whether it was originally defined as a stored or computed property.”
+
+“Swift classes do not inherit from a universal base class. Classes you define without specifying a superclass automatically become base classes for you to build upon.”
+
+“Although initializers are not methods, they are written in a very similar syntax to instance methods. An initializer prepares a new instance for use, and ensures that all properties of the instance have valid initial values.”
+
+“Subclasses are only allowed to modify variable properties of superclasses during initialization. You can’t modify inherited constant properties of subclasses.”
+
+“A subclass can provide its own custom implementation of an instance method, class method, instance property, or subscript that it would otherwise inherit from a superclass. This is known as overriding.”
+
+“An overridden method named someMethod can call the superclass version of someMethod by calling super.someMethod() within the overriding method implementation.
+An overridden property called someProperty can access the superclass version of someProperty as super.someProperty within the overriding getter or setter implementation.
+An overridden subscript for someIndex can access the superclass version of the same subscript as super[someIndex] from within the overriding subscript implementation”
+
+“You can override an inherited instance or class method to provide a tailored or alternative implementation of the method within your subclass.”
+
+“You can present an inherited read-only property as a read-write property by providing both a getter and a setter in your subclass property override. You cannot, however, present an inherited read-write property as a read-only property.”
+
+“If you provide a setter as part of a property override, you must also provide a getter for that override. If you don’t want to modify the inherited property’s value within the overriding getter, you can simply pass through the inherited value by returning super.”
+
+“You cannot add property observers to inherited constant stored properties or inherited read-only computed properties. The value of these properties cannot be set, and so it is not appropriate to provide a willSet or didSet implementation as part of an override.”
+
+“Note also that you cannot provide both an overriding setter and an overriding property observer.”
+
+“You can prevent a method, property, or subscript from being overridden by marking it as final. Do this by writing the @final attribute before its introducer keyword (such as @final var, @final func, @final class func, and @final subscript).”
+
+“You can mark an entire class as final by writing the @final attribute before the class keyword in its class definition (@final class). Any attempts to subclass a final class will be reported as a compile-time error.”
+
+
+--------------------
+
+
+
+## Initialization
+“Classes and structures must set all of their stored properties to an appropriate initial value by the time an instance of that class or structure is created. Stored properties cannot be left in an indeterminate state.
+
+You can set an initial value for a stored property within an initializer, or by assigning a default property value as part of the property’s definition.”
+
+“When you assign a default value to a stored property, or set its initial value within an initializer, the value of that property is set directly, without calling any property observers.”
+
+“ Initialization parameters have the same capabilities and syntax as function and method parameters.”
+
+
+“Swift provides an automatic external name for every parameter in an initializer if you don’t provide an external name yourself. This automatic external name is the same as the local name, as if you had written a hash symbol before every initialization parameter.”
+
+“If you do not want to provide an external name for a parameter in an initializer, provide an underscore (_) as an explicit external name for that parameter to override the default behavior described above.”
+
+“ Properties of optional type are automatically initialized with a value of nil, indicating that the property is deliberately intended to have “no value yet” during initialization.”
+
+“You can modify the value of a constant property at any point during initialization, as long as it is set to a definite value by the time initialization finishes.”
+
+“For class instances, a constant property can only be modified during initialization by the class that introduces it. It cannot be modified by a subclass.”
+
+“The default initializer simply creates a new instance with all of its properties set to their default values.”
+
+“The rules for how initializer delegation works, and for what forms of delegation are allowed, are different for value types and class types. Value types (structures and enumerations) do not support inheritance, and so their ”
+
+“initializer delegation process is relatively simple, because they can only delegate to another initializer that they provide themselves. Classes, however, can inherit from other classes, as described in Inheritance. This means that classes have additional responsibilities for ensuring that all stored properties they inherit are assigned a suitable value during initialization.”
+
+“If you want your custom value type to be initializable with the default initializer and memberwise initializer, and also with your own custom initializers, write your custom initializers in an extension rather than as part of the value type’s original implementation.”
+
+“All of a class’s stored properties—including any properties the class inherits from its superclass—must be assigned an initial value during initialization.
+
+Swift defines two kinds of initializers for class types to help ensure all stored properties receive an initial value. These are known as designated initializers and convenience initializers.”
+
+“All of a class’s stored properties—including any properties the class inherits from its superclass—must be assigned an initial value during initialization.
+
+Swift defines two kinds of initializers for class types to help ensure all stored properties receive an initial value. These are known as designated initializers and convenience initializers.”
+
+
+#### 摘录来自: Apple Inc. “The Swift Programming Language”。 iBooks. https://itun.es/cn/jEUH0.l

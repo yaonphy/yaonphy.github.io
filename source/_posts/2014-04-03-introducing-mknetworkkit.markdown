@@ -83,9 +83,7 @@ MKNetwork能够自动的缓存所有的 "GET" 请求。当你再次发送相同�
 
 当你发送了一个微博，并将其网络请求标记为冻结模式，这样 MKNetworkKit 将会自动的处理冻结操作，并为你保存这个请求。这样的微博将会在稍后自动发布，而你不用写一行额外的代码的。这种方式也可以用到其它网络请求中，比如喜欢某个微博，在 Google reader 客户端分享一篇文章，向 Instapaper 中添加一条链接。
 
-对于相似的网络请求，只执行一次
-
-当你加载缩略图（for a twitter stream）时，你最终可能会为每一个缩略图都创建一个网络请求。事实上，你所需要的的请求数和 独立的（unique URLs） 的URL个数是一致的。使用 MKNetworkKit ，在 queue 中的每个 GET 请求，实际上只被执行了一次。MKNetworkKit 还不能做到对“POST”方式的请求进行智能缓存处理。
+对于相似的网络请求，只执行一次。当你加载缩略图（for a twitter stream）时，你最终可能会为每一个缩略图都创建一个网络请求。事实上，你所需要的的请求数和独立的（unique URLs） URL个数是一致的。使用 MKNetworkKit ，在 queue 中的每个 GET 请求，实际上只被执行了一次。MKNetworkKit 还不能做到对“POST”方式的请求进行智能缓存处理。
 
 
 ###图片缓存
@@ -140,7 +138,7 @@ MKNetworkKit 可以完美的实现对图片的缓存处理。通过复写一些�
 
 MKNetworkEngine 是一个管理网络队列的"假"单例类。由于是假的单例，对于一些简单的请求，你可以直接使用MKNetworkEngine中的方法。在需要更多自定义功能的情况下，应该创建一个它的子类。每一个MKNetworkEngine的子类都有一个属于它自己的用于监测网络连接性的对象，此对象会在网络状态发生变化的时候给它发送通知。你应当为你所使用的每一个独立REST服务器创建一个 MKNetworkEngine 类的子类。由于是伪单例，所以在它的子类中的每一个单独请求都共享一个全局的单一队列。
 
-你可以在 application delegate 中保留一次 MKNetworkEngine 的实例对象，就像对 CoreData 中 managedObjectContext 类一样。在你使用 MKNetworkKit 的时候，你创建了一个 MKnetworkEngine 类的子类去有序的管理网络请求。比如，所以向Yahoo的请求方法定义在一个单独的类中，所有向 Facebook 的请求放在另一个单独的类中。我将展示使用该框架的三个不同的案例。
+你可以在 application delegate 中保留一次 MKNetworkEngine 的实例对象，就像对 CoreData 中 managedObjectContext 类一样。在你使用 MKNetworkKit 的时候，你创建了一个 MKnetworkEngine 类的子类去有序的管理网络请求。比如，所有向Yahoo的请求方法定义在一个单独的类中，所有向 Facebook 的请求放在另一个单独的类中。我将展示使用该框架的三个不同的案例。
 
 
 ###示例1：
@@ -346,7 +344,7 @@ MKNetworkOperation 中提供了如下一些用来格式化网络请求返回数�
 5. responseXML
 6. error
 
-当网络请求成功后处理 response 时，使用它们会显得非常便捷。如果数据格式不对，这些方法将会返回 nil。比如，使用 responseImage 来返回图片，但是 response 中的数据却是 HTML 格式，这样便会得到一个 nil。唯一一个不会出现错误的方法是r esponseData，使用其它的方法时你必须确保自己知道 response中数据的类型。
+当网络请求成功后处理 response 时，使用它们会显得非常便捷。如果数据格式不对，这些方法将会返回 nil。比如，使用 responseImage 来返回图片，但是 response 中的数据却是 HTML 格式，这样便会得到一个 nil。唯一一个不会出现错误的方法是 responseData，使用其它的方法时你必须确保自己知道 response中数据的类型。
 
 
 ---------------------------

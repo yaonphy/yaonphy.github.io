@@ -1,0 +1,101 @@
+---
+layout: post
+title: "Swift.io.00"
+date: 2014-06-08 00:04:10 +0800
+comments: true
+categories: Swift
+---
+
+
+
+##The Basics
+
+“In addition to familiar types, Swift introduces advanced types not found in Objective-C. These include tuples, which enable you to create and pass around groupings of values. Tuples can return multiple values from a function as a single compound value.”
+
+“Swift also introduces optional types, which handle the absence of a value. Optionals say either “there is a value, and it equals x” or “there isn’t a value at all”. Optionals are similar to using nil with pointers in Objective-C, but they work for any type, not just classes. Optionals are safer and more expressive than nil pointers in Objective-C and are at the heart of many of Swift’s most powerful features”
+
+### Constants and Variables
+
+####
+“The value of a constant cannot be changed once it is set, whereas a variable can be set to a different value in the future.”
+
+“Constants and variables must be declared before they are used”
+
+“ You declare constants with the let keyword and variables with the var keyword.”
+
+“You can declare multiple constants or multiple variables on a single line, separated by commas:”
+
+“You can provide a type annotation when you declare a constant or variable, to be clear about the kind of values the constant or variable can store. Write a type annotation by placing a colon after the constant or variable name, followed by a space, followed by the name of the type to use.”
+
+“You can use almost any character you like for constant and variable names, including Unicode characters”
+
+“Constant and variable names cannot contain mathematical symbols, arrows, private-use (or invalid) Unicode code points, or line- and box-drawing characters. Nor can they begin with a number, although numbers may be included elsewhere within the name”
+
+<div class="alert alert-info">
+<p>
+<span class="glyphicon glyphicon-info-sign"></span>
+[Unicode symbols](http://en.wikipedia.org/wiki/Unicode_Symbols)
+</div>
+
+“Once you’ve declared a constant or variable of a certain type, you can’t redeclare it again with the same name, or change it to store values of a different type. Nor can you change a constant into a variable or a variable into a constant.--(`)”
+
+“Swift uses string interpolation to include the name of a constant or variable as a placeholder in a longer string, and to prompt Swift to replace it with the current value of that constant or variable. ”
+
+“Unlike multiline comments in C, multiline comments in Swift can be nested inside other multiline comments. ”
+
+“Swift provides signed and unsigned integers in 8, 16, 32, and 64 bit forms. ”
+
+“You can access the minimum and maximum values of each integer type with its min and max properties”
+
+“In most cases, you don’t need to pick a specific size of integer to use in your code. Swift provides an additional integer type, Int, which has the same size as the current platform’s native word size, On a 32-bit platform, Int is the same size as Int32, On a 64-bit platform, Int is the same size as Int64”
+
+“Unless you need to work with a specific size of integer, always use Int for integer values in your code. This aids code consistency and interoperability”
+
+“Double has a precision of at least 15 decimal digits, whereas the precision of Float can be as little as 6 decimal digits. The appropriate floating-point type to use depends on the nature and range of values you need to work with in your code.”
+
+“Swift is a type safe language. A type safe language encourages you to be clear about the types of values your code can work with”
+“Type-checking helps you avoid errors when you’re working with different types of values”
+“ If you don’t specify the type of value you need, Swift uses type inference to work out the appropriate type. Type inference enables a compiler to deduce the type of a particular expression automatically when it compiles your code, simply by examining the values you provide.”
+
+“Swift always chooses Double (rather than Float) when inferring the type of floating-point numbers.”
+
+“A binary number, with a 0b prefix  An octal number, with a 0o prefix  A hexadecimal number, with a 0x prefix”
+“Floating-point literals can be decimal (with no prefix), or hexadecimal (with a 0x prefix). They must always have a number (or hexadecimal number) on both sides of the decimal point. They can also have an optional exponent, indicated by an uppercase or lowercase e for decimal floats, or an uppercase or lowercase p for hexadecimal floats”
+
+“Behind the scenes, UInt16 has an initializer that accepts a UInt8 value, and so this initializer is used to make a new UInt16 from an existing UInt8. You can’t pass in any type here, however—it has to be a type for which UInt16 provides an initializer. ”
+
+“The rules for combining numeric constants and variables are different from the rules for numeric literals. The literal value 3 can be added directly to the literal value 0.14159, because number literals do not have an explicit type in and of themselves. Their type is inferred only at the point that they are evaluated by the compiler.
+
+”
+
+“Type aliases define an alternative name for an existing type. You define type aliases with the typealias keyword.”
+
+“Tuples group multiple values into a single compound value. The values within a tuple can be of any type and do not have to be of the same type as each other”
+
+“You can decompose a tuple’s contents into separate constants or variables, which you then access as usual”
+
+“If you only need some of the tuple’s values, ignore parts of the tuple with an underscore (_) when you decompose the tuple”
+
+“Tuples are useful for temporary groups of related values. They are not suited to the creation of complex data structures. If your data structure is likely to persist beyond a temporary scope, model it as a class or structure, rather than as a tuple. ”
+
+“ Swift’s optionals let you indicate the absence of a value for any type at all, without the need for special constants.”
+
+“You can use an if statement to find out whether an optional contains a value. If an optional does have a value, it evaluates to true; if it has no value at all, it evaluates to false.”
+
+“ The exclamation mark effectively says, “I know that this optional definitely has a value; please use it.” This is known as forced unwrapping of the optional’s value:”
+
+“Always make sure that an optional contains a non-nil value before using ! to force-unwrap its value.”
+
+“You use optional binding to find out whether an optional contains a value, and if so, to make that value available as a temporary constant or variable. ”
+
+“nil cannot be used with non-optional constants and variables. If a constant or variable in your code needs to be able to cope with the absence of a value under certain conditions, always declare it as an optional value of the appropriate type.”
+
+“Swift’s nil is not the same as nil in Objective-C. In Objective-C, nil is a pointer to a non-existent object. In Swift, nil is not a pointer—it is the absence of a value of a certain type. Optionals of any type can be set to nil, not just object types.”
+
+“You can think of an implicitly unwrapped optional as giving permission for the optional to be unwrapped automatically whenever it is used. ”
+
+“You can still treat an implicitly unwrapped optional like a normal optional, to check if it contains a value:”
+
+“Assertion messages cannot use string interpolation.”
+
+#### 摘录来自: Apple Inc. “The Swift Programming Language”。 iBooks. https://itun.es/cn/jEUH0.l
